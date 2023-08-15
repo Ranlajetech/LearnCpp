@@ -1,2 +1,4 @@
 *.bkp
 desktop.ini
+.gitignore
+highlight/*
