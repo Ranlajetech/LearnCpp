@@ -12,7 +12,7 @@ h2 {
     padding-top: 1.5%;
 }
 
-code {
+code.inline {
     background-color: #e6e6e6;
     padding: 1px 5px;
     border-radius: 5px;
@@ -51,6 +51,11 @@ div.learncpp-blocktext-red {
 div.learncpp-blocktext-grey {
     background-color: #f4f4f4;
     border-color: #c7c7c7;
+}
+
+div.learncpp-blocktext-yellow {
+    background-color: #ffffdf;
+    border-color: #dad591;
 }
 
 span.learncpp-translator-note {

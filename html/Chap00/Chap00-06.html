@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>
+        0.6 -- 安装集成开发环境（IDE）
+    </title>
+    <link rel="stylesheet" href="../../css/main.css"/>
+</head>
+
+<body>
+<h1>
+    0.6 -- 安装集成开发环境（IDE）
+</h1>
+
+    <p>
+        集成开发环境（IDE）是个软件包，提供了开发、编译、链接、调试等功能。
+    </p>
+    <p>
+        典型的 C++ IDE 会提供具有行号和代码高亮的代码编辑器。很多（但不是全部）IDE 都提供了 C++ 编译器和链接器，IDE 知道如何处理这些文件，直到转换成可执行文件。当需要调试程序时，可以使用内置的调试器。
+    </p>
+    <p>
+        另外，IDE 一般还会提供许多其他有助于编辑代码的功能，例如内置的帮助、自动补全、自动格式化，有的还包括版本控制系统。虽然你也可以分开做这些事，但安装一个 IDE 一站式完成所有工作会简单很多。
+    </p>
+    <p>
+        所以我们安装一个吧！显然下一个问题就是：“安装哪个？”许多 IDE 都是免费的，你可以多安装几个然后试出你最喜欢的，这里我们推荐几个。
+    </p>
+    <p>
+        如果你有自己喜欢的其他 IDE 也可以，本教程所展示的这些概念在绝大部分现代 IDE 上应该是通用的。但不同的 IDE 可能会使用不同的名称、排版布局、快捷键映射等等，所以你可能需要额外付出一些精力找到你的 IDE 中对应的功能。
+    </p>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-title">
+            提示
+        </p>
+        <p>
+            为了能够学习本教程提供的绝大部分知识，我们建议安装一个带有兼容 C++17 标准的编译器的 IDE。
+        </p>
+        <p>
+            如果你坚持使用仅支持 C++14 标准的编译器（可能是因为教育需要或者工作上的限制），大部分课程和例子仍然有用。但讲到 C++17（或更新的）内容时你还在使用较旧的编译器，你就不得不跳过这一部分，或者自己将其转换成你所用版本的代码，而这可能并不容易。
+        </p>
+        <p>
+            你不该使用比 C++11 更老的编译器，大家普遍认为这是现代 C++ 的最低标准。
+        </p>
+        <p>
+            我们推荐你安装编译器的最新版本。如果你不能使用最新版，这是支持 C++17 标准的编译器最低版本：
+        </p>
+        <ul>
+            <li>GCC/G++ 7</li>
+            <li>Clang++ 8</li>
+            <li>Visual Studio 2017 15.7</li>
+        </ul>
+    </div>
+
+<h2>
+    Visual Studio（Windows 用户）
+</h2>
+    <p>
+        如果你在 Windows 10 系统上搞开发，我们强烈推荐下载使用 <a href="https://visualstudio.microsoft.com/downloads/" target="_blank" title="Microsoft">Visual Studio 2022 Community</a>。
+    </p>
+    <p>
+        运行安装程序后，会出现一个屏幕询问你要安装什么工作负载。选择 <em>使用 C++ 的桌面开发</em>，否则无法使用 C++ 功能。
+    </p>
+    <p>
+        使用屏幕右侧的默认选项就可以，但要确保勾选了 <em>Windows 11 SDK</em>（或 <em>Windows 10 SDK</em>）。
+    </p>
+    <p>
+        <!-- 此处应有屏幕截图 -->
+    </p>
+    <p>
+        如果它的硬盘占用空间或网络下载大小你无法接受，微软还提供了 <a href="https://visualstudio.microsoft.com/vs/express/" target="_blank" title="Microsoft">Visual Studio Express 2017 for Windows Desktop</a> 作为替代，你可以在链接页面底部找到。微软不再对此产品提供支持，它没有多少对 C++ 最新特性的支持，所以我们只向无法安装 Visual Studio Community 的用户指出这一替代作为最后选择。
+    </p>
+
+<h2>
+    Code::Blocks（Linux 和 Windows 用户）
+</h2>
+    <p>
+        如果你使用 Linux 开发，或者在 Windows 上开发可迁移到 Linux 的程序，我们推荐 <a href="Code::Blocks" target="_blank" title="Code::Blocks">Code::Blocks</a>。Code::Blocks 是个免费、开源、跨平台的 IDE，可以在 Linux 和 Windows 上运行。
+    </p>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-title">
+            Windows 用户
+        </p>
+        <p>
+            要选择集成了 MinGW 的 Code::Blocks 版本（文件名以 <em>mingw-setup.exe</em> 结尾）。这会安装 MinGW，它包括了 GCC C++ 编译器的 Windows 接口。
+        </p>
+        <p>
+            <!-- 此处应有屏幕截图 -->
+        </p>
+        <p>
+            Code::Blocks 20.03 的 MinGW 版本过老，只支持 C++17（比现有的最新版 C++ 落后了一个版本）。如果你想用最新版的 C++20，你就需要升级 MinGW：
+        </p>
+        <ol>
+            <li>如上文所述安装 Code::Blocks。</li>
+            <li>如果它自动打开了就把它关掉。</li>
+            <li>打开 Windows 文件资源管理器（快捷键是 <em>Win-E</em>）。</li>
+            <li>打开 Code::Blocks 的安装目录（默认是 C:\Program Files (x86)\CodeBlocks）。</li>
+            <li>把“MinGW”文件夹重命名为“MinGW.bak”（以防出错）。</li>
+            <li>在浏览器中打开网址 <a href="https://winlibs.com/">https://winlibs.com/</a>。</li>
+            <li>下载最新版 MinGW。一般来说你应该下载 <em>Release Versions -> UCRT Runtime -> LATEST -> Win64 -> without LLVM/Clang/LLD/LLDB -> Zip archive</em> 中的一个。</li>
+            <li>把“mingw64”文件夹解压到安装目录。</li>
+            <li>把“mingw64”重命名为“MinGW”。</li>
+        </ol>
+        <p>
+            如果你确定正确地更新了编译器并能正常使用，就可以删掉以前的“MinGW.bak”文件夹。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-title">
+            Linux 用户
+        </p>
+        <p>
+            某些 Linux 安装可能缺少运行 Code::Blocks 或用它编译程序所需的依赖。
+        </p>
+        <p>
+            类 Debian 的 Linux 用户（例如 Mint 和 Ubuntu）可能会需要安装 <em>build-essential</em> 包。在终端命令行中运行 <code class="inline">sudo apt-get install build-essential</code>。
+        </p>
+        <p>
+            类 Arch 的 Linux 用户可能需要安装 <em>base-devel</em> 包。
+        </p>
+        <p>
+            Linux 其他变种的用户可能需要自行确认自己的包管理器和需要的包。
+        </p>
+    </div>
+    <p>
+        第一次运行 Code::Blocks 时，可能会出现 <em>Compilers auto-detection</em> 对话框。如果有，确保选择了 <em>GNU GCC Compiler</em> 作为默认编译器，按 OK 按钮。
+    </p>
+    <p>
+        <!-- 此处应有截图 -->
+    </p>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-head-content">
+            Q: 出现错误“在设置的搜索路径中找不到编译器可执行文件”怎么办？<br/>（Can't find compiler executable in your configured search paths for GNU GCC Compiler）
+        </p>
+        <p>
+            尝试以下方法：
+        </p>
+        <ol>
+            如果你是 Windows 用户，确保你下载了带有 MinGW 的 Code::Blocks。
+        </ol>
+    </div>
+
+<nav>
+    <a href="Chap00-07.html">[ 下一课 ]</a> | <a href="../../index.html" target="_blank">[ 目录 ]</a> | <a href="Chap00-05.html">[ 上一课 ]</a>
+</nav>
+
+</body>
+
+</html>
