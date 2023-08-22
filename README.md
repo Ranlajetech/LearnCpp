@@ -17,3 +17,5 @@
 - highlight.js: [官网](https://highlightjs.org/) | [GitHub](https://github.com/highlightjs/highlight.js)
 - highlightjs-line-numbers.js: [GitHub](https://github.com/wcoder/highlightjs-line-numbers.js/)
 - draw.io: [官网](https://www.drawio.com/)
+
+## 本教程翻译仍在施工中
