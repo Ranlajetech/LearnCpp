@@ -13,7 +13,6 @@
 <h1>
     0.6 -- 安装集成开发环境（IDE）
 </h1>
-
     <p>
         集成开发环境（IDE）是个软件包，提供了开发、编译、链接、调试等功能。
     </p>
@@ -24,14 +23,14 @@
         另外，IDE 一般还会提供许多其他有助于编辑代码的功能，例如内置的帮助、自动补全、自动格式化，有的还包括版本控制系统。虽然你也可以分开做这些事，但安装一个 IDE 一站式完成所有工作会简单很多。
     </p>
     <p>
-        所以我们安装一个吧！显然下一个问题就是：“安装哪个？”许多 IDE 都是免费的，你可以多安装几个然后试出你最喜欢的，这里我们推荐几个。
+        所以我们安装一个吧！显然下一个问题就是：安装哪个？许多 IDE 都是免费的，你可以多安装几个然后试出你最喜欢的，这里我们推荐几个。
     </p>
     <p>
         如果你有自己喜欢的其他 IDE 也可以，本教程所展示的这些概念在绝大部分现代 IDE 上应该是通用的。但不同的 IDE 可能会使用不同的名称、排版布局、快捷键映射等等，所以你可能需要额外付出一些精力找到你的 IDE 中对应的功能。
     </p>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
-            提示
+            小贴士
         </p>
         <p>
             为了能够学习本教程提供的绝大部分知识，我们建议安装一个编译器兼容 C++17 标准的 IDE。
@@ -51,7 +50,6 @@
             <li>Visual Studio 2017 15.7</li>
         </ul>
     </div>
-
 <h2>
     Visual Studio（Windows 用户）
 </h2>
@@ -70,7 +68,6 @@
     <p>
         如果它的硬盘占用或网络下载大小你无法接受，微软还提供了 <a href="https://visualstudio.microsoft.com/vs/express/" target="_blank" title="Microsoft">Visual Studio Express 2017 for Windows Desktop</a> 作为替代，你可以在链接页面底部找到。微软不再对此产品提供支持，它没有多少对 C++ 最新特性的支持，所以我们只向无法安装 Visual Studio Community 的用户指出这一替代作为最后选择。
     </p>
-
 <h2>
     Code::Blocks（Linux 和 Windows 用户）
 </h2>
@@ -95,14 +92,14 @@
             <li>如果它自动打开了就把它关掉。</li>
             <li>打开 Windows 文件资源管理器（快捷键是 <em>Win-E</em>）。</li>
             <li>打开 Code::Blocks 的安装目录（默认是 C:\Program Files (x86)\CodeBlocks）。</li>
-            <li>把“MinGW”文件夹重命名为“MinGW.bak”（以防出错）。</li>
+            <li>把 MinGW 文件夹重命名为 MinGW.bak（以防出错）。</li>
             <li>在浏览器中打开网址 <a href="https://winlibs.com/">https://winlibs.com/</a>。</li>
-            <li>下载最新版 MinGW。一般来说你应该下载 <em>Release Versions -> UCRT Runtime -> LATEST -> Win64 -> without LLVM/Clang/LLD/LLDB -> Zip archive</em> 中的一个。</li>
-            <li>把“mingw64”文件夹解压到安装目录。</li>
-            <li>把“mingw64”重命名为“MinGW”。</li>
+            <li>下载最新版 MinGW。一般来说你应该下载 <em>Release Versions -- UCRT Runtime -- LATEST -- Win64 -- without LLVM/Clang/LLD/LLDB -- Zip archive</em> 中的一个。</li>
+            <li>把 mingw64 文件夹解压到安装目录。</li>
+            <li>把 mingw64 重命名为 MinGW。</li>
         </ol>
         <p>
-            如果你确定正确地更新了编译器并能正常使用，就可以删掉以前的“MinGW.bak”文件夹。
+            如果你确定正确地更新了编译器并能正常使用，就可以删掉以前的 MinGW.bak 文件夹。
         </p>
     </div>
     <div class="learncpp-blocktext-yellow">
@@ -130,17 +127,17 @@
     </p>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
-            Q: 出现错误“在设置的搜索路径中找不到编译器可执行文件”怎么办？<br/>（Can't find compiler executable in your configured search paths for GNU GCC Compiler）
+            Q： 出现错误“在设置的搜索路径中找不到编译器可执行文件”怎么办？<br/>（Can't find compiler executable in your configured search paths for GNU GCC Compiler）
         </p>
         <p>
             尝试以下方法：
         </p>
         <ol>
             <li>如果你是 Windows 用户，确保你下载了带有 MinGW 的 Code::Blocks。</li>
-            <li>到设置 -> 编译器，选择重置到默认（Settings -> Compiler -> Reset to defaults）。</li>
-            <li>到设置 -> 编译器 -> 工具链可执行文件（Settings -> Compiler -> Toolchain executables），确保“编译器安装目录”（Compiler's installation directory）已经设置到 MinGW 的文件夹（默认是C:\Program Files (x86)\CodeBlocks\MinGW）。</li>
+            <li>到 Settings -- Compiler -- Reset to defaults。</li>
+            <li>到 Settings -- Compiler -- Toolchain executables，确保 Compiler's installation directory 已经设置到 MinGW 的文件夹（默认是C:\Program Files (x86)\CodeBlocks\MinGW）。</li>
             <li>卸载重装。</li>
-            <li><a href="http://wiki.codeblocks.org/index.php/Installing_a_supported_compiler" target="_blank" title="Code::Blocks Wiki">换个编译器</a>。</li>
+            <li><a href="https://wiki.codeblocks.org/index.php/Installing_a_supported_compiler" target="_blank" title="Code::Blocks Wiki">换个编译器</a>。</li>
         </ol>
     </div>
 
@@ -194,7 +191,6 @@
             VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/setup/windows" target="_blank" title="VS Code Docs">如何在 Windows 上配置 C++</a>。
         </p>
     </div>
-
 <h2>
     其他 macOS IDE
 </h2>
@@ -204,13 +200,12 @@
     <p>
         虽然 Visual Studio for Mac 已经发布，但直到 2022 年 8 月为止仍不支持 C++，所以现在不推荐。
     </p>
-
 <h2>
     其他编译器和平台
 </h2>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
-            Q: 可以使用在线编译器吗？
+            Q： 可以使用在线编译器吗？
         </p>
         <p>
             在某种程度上可以。你下载 IDE 的过程中（或者还没决定安装一个的时候），你可以先用在线编译器继续学习本教程。推荐下面几个：
@@ -226,7 +221,7 @@
     </div>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
-            Q: 可以使用命令行编译器（比如 Linux 上的 g++）吗？
+            Q： 可以使用命令行编译器（比如 Linux 上的 g++）吗？
         </p>
         <p>
             可以，但不推荐初学者这么做。你可能需要自己找编辑器再到别处查找怎么使用它。使用命令行调试器也不像集成调试器那么简单，会增大你调试的难度。
@@ -234,13 +229,12 @@
     </div>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
-            Q: 可以使用别的代码编辑器吗，比如 Eclipse、Sublime 或 Notepad++？
+            Q： 可以使用别的代码编辑器吗，比如 Eclipse、Sublime 或 Notepad++？
         </p>
         <p>
             可以，但不推荐初学者这么做。很多优秀的代码编辑器和 IDE 可配置支持的语言范围很广，也允许用户混合搭配插件以自定义使用体验。但这样的编辑器和 IDE 同时也要做很多设置才能编译 C++ 程序，这个过程中有很多步骤容易出错。对于初学者来说，我们还是建议使用开箱即用的产品，这样可以花更多时间来学习编程，而不是浪费在弄清楚为什么编辑器、编译器、调试器不能正常工作上。
         </p>
     </div>
-
 <h2>
     不应选择的 IDE
 </h2>
@@ -255,7 +249,6 @@
     <p>
         有轻量级、免费、支持现代 C++ 的替代品存在时，没理由选择过时的不再受支持的编译器。
     </p>
-
 <h2>
     如果出错了……
 </h2>
@@ -265,7 +258,6 @@
     <p>
         如果还有问题，有两个选择。简单的就是换个 IDE，另一个就是尝试修复问题。不幸的是，这种安装和配置问题五花八门且与 IDE 软件本身紧密相关，所以我们也没法有效地给出解决问题的建议。这种时候，我们推荐你复制错误信息或者把你的问题拿到搜索引擎上查找，或者到一些论坛上找找帖子，看看有没有别的倒霉蛋和你遇到了相同的问题。一般你能找到修复问题的建议。
     </p>
-
 <h2>
     接下来
 </h2>
