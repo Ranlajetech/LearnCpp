@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>
+        0.9 -- 编译器设置：编译器扩展
+    </title>
+    <link rel="stylesheet" href="../../css/main.css"/>
+</head>
+
+<body>
+<h1>
+    0.9 -- 编译器设置：编译器扩展
+</h1>
+    <p>
+        C++ 标准规定了程序在给定的情况下应该怎么运行。绝大多数情况下，编译器会遵守规定。然而，很多编译器的实现对语言做了一些改动，一般是为了增强对语言其他版本的兼容，或者是因为历史原因。这些取决于编译器的行为称为<strong>编译器扩展</strong>。
+    </p>
+    <p>
+        利用编译器扩展，写出的程序可以不遵循 C++ 标准。使用了非标准扩展的程序一般没法在别的编译器（没支持同样扩展的编译器）上编译。即使能编译通过，运行可能也会不正确。
+    </p>
+    <p>
+        遗憾的是，编译器扩展经常默认开启。这对于初学者来说相当有破坏性，某些行为会被认为是 C++ 官方标准的一部分，实际上却是编译器自作主张。
+    </p>
+    <p>
+        因为编译器扩展不是必要的，而且会使你的程序和 C++ 标准不一致，我们建议把它关掉。
+    </p>
+    <div class="learncpp-blocktext-green">
+        <p class="learncpp-block-title">
+            最佳实践
+        </p>
+        <p>
+            禁用编译器扩展，保证程序和编程习惯和 C++ 保持一致，这样在任何系统上都能运行。
+        </p>
+    </div>
+<h2>
+    禁用编译器扩展
+</h2>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            Visual Studio 用户
+        </p>
+        <p>
+            右键单击 <em>Solution Explorer</em> 里的项目名称，选择 <em>Properties</em>。
+        </p>
+        <!-- 此处应有截图 -->
+        <p>
+            在 <em>Project</em> 对话框里，先确保 <em>Configuration</em> 栏是 <em>All Configurations</em>。
+        </p>
+        <p>
+            点击 <em>C/C++ -- Language</em> 选项卡，把 <em>Conformance mode</em> 设为 <em>Yes (/permissive-)</em>。
+        </p>
+        <!-- 此处应有截图 -->
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            Code::Blocks 用户
+        </p>
+        <p>
+            在 <em>Settings -- Compiler -- Compiler flags</em> 选项卡里，找到 <em>-pedantic-errors</em> 选项打勾。
+        </p>
+        <!-- 此处应有截图 -->
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            GCC/G++ 用户
+        </p>
+        <p>
+            在编译命令行里添加 <em>-pedantic-errors</em> 选项。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            VSCode 用户
+        </p>
+        <p>
+            打开 <em>task.json</em> 文件，找到 <em>"args"</em>，定位到该部分的 <em>“${file}”</em> 行。
+        </p>
+        <p>
+            在这行上面添加一行，添加 <br/><code class="inline">"-pedantic-errors",</code>
+        </p>
+        <p>
+            截止本文写就之时，VSCode 不会自动向没有末尾空行的文件添加空行（这是 C++ 标准里面一个古旧的规定）。幸运的是，可以通过设置让它这么做。
+        </p>
+        <ul>
+            <li>转到 <em>File -- Preferences -- Settings</em></li>
+            <li>在搜索栏里输入 <code class="inline">insert final newline</code>。</li>
+            <li>在 <em>Workspace Settings</em> 和 <em>User Settings</em> 选项卡里，确保标记了 <em>Files: Insert Final Newline</em> 的选择框打了勾。</li>
+        </ul>
+    </div>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            延申阅读
+        </p>
+        <p>
+            Xcode 用户可以参考 <a href="https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-compiler-extensions/comment-page-1/#comment-446983" title="LearnCpp" target="_blank">Rory 的评论</a> 中给出的指导。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            提示
+        </p>
+        <p>
+            这些设置只应用在单个项目上。每次创建新项目时都要设置一遍，或者创建一个带有这些设置的项目模板，可以用它创建新项目。
+        </p>
+    </div>
+
+<nav>
+    <a href="Chap00-10.html">[ 下一课 ]</a> | <a href="../../index.html" target="_blank">[ 目录 ]</a> | <a href="Chap00-08.html">[ 上一课 ]</a>
+</nav>
+</body>
+</html>

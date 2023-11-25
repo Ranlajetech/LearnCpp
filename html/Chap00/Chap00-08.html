@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/default.min.css">
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/languages/cpp.min.js"></script>
-    
+
     <script src="../../script/highlightjs-line-numbers.js"></script>
     <script>hljs.highlightAll();</script>
     <script>hljs.initLineNumbersOnLoad();</script>
@@ -26,7 +26,7 @@
 </h1>
 
     <p>
-        本节会列举新程序员很可能遇到的常见问题。这不是编译或执行问题的全解清单，而是基础问题解决方案的实用清单。如果你想列入其他问题，请在下面的评论区发表。<span class="learncpp-translator-note">（译者注：评论区请到<a href="https://www.learncpp.com" target="_blank" title="LearnCpp">原文网站</a>的对应课程章节查看）</span>
+        本节会列举新程序员很可能遇到的常见问题。这不是编译或执行问题的全解清单，而是基础问题解决方案的实用清单。如果你想列入其他问题，请在下面的评论区发表。<span class="learncpp-translator-note">（译者注：评论区请到<a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a>的对应课程章节查看）</span>
     </p>
 <h2>
     一般的运行时问题
@@ -62,7 +62,7 @@ std::cin.get(); // get one more char from the user</code></pre>
         </p>
         <p>
             可能是杀毒软件阻止了运行。尝试关闭杀毒软件看看能不能解决。
-        </p> 
+        </p>
     </div>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
@@ -88,7 +88,7 @@ std::cin.get(); // get one more char from the user</code></pre>
         <ul>
             <li>代码包含 main 函数了吗？</li>
             <li>拼写正确吗？</li>
-            <li>编译程序时，包含函数 main() 的文件被编译了吗？如果没有，要么将 main() 函数移到会被编译的文件中，要么将该文件添加到项目中（详见 <a href="../Chap02/Chap02-08.html">2.8 -- 有多个代码文件的程序</a>）</li>
+            <li>编译程序时，包含函数 main() 的文件被编译了吗？如果没有，要么将 main() 函数移到会被编译的文件中，要么将该文件添加到项目中（详见 <a href="../Chap02/Chap02-08.html" target="_blank">2.8 -- 有多个代码文件的程序</a>）</li>
             <li>有没有创建控制台程序？试试新建一个控制台程序。</li>
         </ul>
     </div>
@@ -100,7 +100,7 @@ std::cin.get(); // get one more char from the user</code></pre>
             如果是老版编译器，它可能不支持最近几个版本新加入语言的特性。请升级编译器。
         </p>
         <p>
-            对于现代 IDE / 编译器来说，编译器可能默认使用较早的语言标准。详见 <a href="Chap00-12.html">0.12 -- 编译器设置：选择语言标准</a>
+            对于现代 IDE / 编译器来说，编译器可能默认使用较早的语言标准。详见 <a href="Chap00-12.html" target="_blank">0.12 -- 编译器设置：选择语言标准</a>
         </p>
     </div>
     <div class="learncpp-blocktext-violet">
@@ -146,7 +146,7 @@ std::cin.get(); // get one more char from the user</code></pre>
             Microsoft Visual C++ 编译器设置里打开了预编译头文件功能，但一个（或多个） C++ 源文件的第一行没有 #include &quot;stdafx.h&quot; 或 #include &quot;pch.h&quot; 时，就会出现此错误。
         </p>
         <p>
-            建议关闭预编译头文件，详见 <a href="Chap00-07.html">0.7 -- 编译第一个程序</a>。
+            建议关闭预编译头文件，详见 <a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>。
         </p>
         <p>
             如果你想保持开启预编译头文件功能，只需找到造成错误的文件（在上述错误信息中是test.cpp），然后在文件的最顶端添加：
@@ -189,7 +189,7 @@ std::cin.get(); // get one more char from the user</code></pre>
             首先，在搜索引擎上找。清晰表述你的问题，然后搜索。如果您搜索的是错误信息，请使用引号并粘贴准确的错误信息（不包括文件名或行号）。很可能已经有人提过同样的问题并得到解决。
         </p>
         <p>
-            如果还是不行，可以在论坛上提问。有些专门的编程问答网站，如 <a href="https://stackoverflow.com" target="_blank">Stack Overflow</a>。在那发帖询问。要详细说明问题，并包含所有相关信息，比如使用的操作系统和 IDE。
+            如果还是不行，可以在论坛上提问。有些专门的编程问答网站，如 <a href="https://stackoverflow.com" title="StackOverflow" target="_blank">Stack Overflow</a>。在那发帖询问。要详细说明问题，并包含所有相关信息，比如使用的操作系统和 IDE。
         </p>
     </div>
 
