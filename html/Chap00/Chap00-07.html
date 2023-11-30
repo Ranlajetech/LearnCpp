@@ -25,13 +25,13 @@
     0.7 -- 编译第一个程序
 </h1>
     <p>
-        写第一个程序之前，先要学会怎么在 IDE 中创建新程序。本节中，我们会学习如何创建、编译并运行第一个程序！
+        写第一个程序之前，先要学会怎么在 IDE 中创建新程序。本节中，我们将学习如何创建、编译并运行第一个程序！
     </p>
 <h2>
     项目（Projects）
 </h2>
     <p>
-        在 IDE 中写 C++ 程序，一般从创建新项目开始（一会说）。<strong>项目</strong>（<strong>project</strong>）是个容器，里面装有用于生成可执行文件（或库、网站……等）的源码文件、图像、数据文件等东西。项目还保存了各种 IDE、编译器、链接器的设置，同时记住了你上次离开的位置，所以你下次再打开项目时，IDE 就会恢复到你离开时的状态。编译程序时，项目中所有的 .cpp 文件都会被编译链接。
+        在 IDE 中写 C++ 程序，一般从创建新项目开始（一会说）。<strong>项目</strong>（<strong>project</strong>）是个容器，里面装有用于生成可执行文件（或库、网站……等）的源码文件、图像、数据文件等东西。项目还保存了 IDE、编译器、链接器的设置，同时记住了你上次离开的位置，所以你下次再打开项目时，IDE 就能恢复到你离开时的状态。编译程序时，项目中所有的 .cpp 文件都会被编译链接。
     </p>
     <p>
         每个项目都对应一个程序。准备编写第二个程序时，要么新建一个，要么覆写一个已存在但你不想保留的项目。项目文件一般是 IDE 专属的，在一个 IDE 里创建的项目在别的 IDE 里需要重新创建。
@@ -78,7 +78,7 @@
         按传统，学习新语言写的第一个程序就是大名鼎鼎的 HelloWorld，我们不会让你错过这个乐趣！你以后会感谢我们的，也许。
     </p>
 <h2>
-    在 Visual Studio 中创建新项目
+    在 Visual Studio 中创建新项目（2019 或更新的版本）
 </h2>
     <p>
         运行 Visual Studio 时，你会看到如下对话框：
@@ -96,7 +96,7 @@
         <!-- 此处应有图片 -->
     </p>
     <p>
-        如果你已经打开了之前的项目，可以通过<em>文件 -- 新建 -- 项目</em>（<em>File -- New -- Project</em>）。
+        如果你已经打开了之前的项目，可以在<em>文件 -- 新建 -- 项目</em>（<em>File -- New -- Project</em>）打开这个对话框。
     </p>
     <p>
         选择 <em>Windows 桌面程序向导</em>（<em>Windows Desktop Wizard</em>） 并点击<em>下一步</em>（<em>Next</em>）。如果你没看到这个，你可能是在安装 Visual Studio 时忘记选择安装 <em>C++ 桌面开发</em>（<em>Desktop development with C++</em>）工作负载。此时请回到上一课 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a>，按照指示重新安装（不用彻底重装，可以运行 Visual Studio installer 更改现有安装，添加 C++ 工作负载）。
@@ -126,14 +126,14 @@
         确保<em>应用类型</em>（<em>Application type</em>）已设置为<em>控制台应用</em>（<em>Console Application (.exe)</em>），<em>预编译头文件</em>（<em>Precompiled Header</em>）选项没有选中。然后点击<em>确认</em>（<em>OK</em>）。
     </p>
     <p>
-        你现在创建了一个新项目！向下跳转到 Visual Studio 解决方案浏览器方案继续。
+        你现在创建了一个新项目！向下跳转到 Visual Studio 解决方案浏览器（Solution Explorer）一节继续。
     </p>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
             Q： 什么是预编译头文件，为什么要关掉？
         </p>
         <p>
-            在大型项目（有很多源码文件的哪种），预编译头文件可以优化编译速度，避免一些在更大的项目中可能会发生的多余编译过程。
+            在大型项目（有很多源码文件的那种），预编译头文件可以优化编译速度，避免一些在更大的项目中可能会发生的多余编译过程。
         </p>
         <p>
             然而，使用预编译头文件需要更多工作，对于小项目（比如本教程带你创建的）来说减少不了多少编译时间。
@@ -145,14 +145,14 @@
 <h2>
     在 Visual Studio 2017 或更老的版本中创建项目
 </h2>
-
+    <em>（暂时省略）</em>
 <!-- 暂时省略 -->
 
 <h2>
-    Visual Studio 解决方案资源管理器
+    Visual Studio 解决方案资源管理器（Solution Explorer）
 </h2>
     <p>
-        在窗口的左侧或右侧，有个叫“解决方案资源管理器”的窗口。在这个窗口中，Visual Studio 已经创建了一个解决方案（<em>HelloWorld</em>）。其中，名称为粗体的是你的新项目（<em>HelloWorld</em>）。在该项目中，Visual Studio 创建了许多文件，包括 <em>HelloWorld</em>（位于<em>源文件</em>树项下方）。可能还有其他的 .cpp 或 .h 文件，可以暂时忽略。
+        在窗口的左侧或右侧，有个叫<em>解决方案资源管理器</em>（<em>Solution Explorer</em>）的窗口。在这个窗口中，Visual Studio 已经创建了一个解决方案（<em>HelloWorld</em>）。其中，名称为粗体的是你的新项目（<em>HelloWorld</em>）。在该项目中，Visual Studio 创建了许多文件，包括 <em>HelloWorld</em>（位于<em>源文件</em>树项下方）。可能还有其他的 .cpp 或 .h 文件，可以暂时忽略。
     </p>
     <p>
         <!-- 此处应有图片 -->
@@ -219,10 +219,10 @@ int main()
         选择 <em>Console application</em> 然后点击 <em>Go</em>（或 <em>Create</em>）按钮。
     </p>
     <p>
-        如果出现了控制台应用向导对话框，按 <em>Next</em>，确保选择了 C++ 后再次点击 <em>Next</em>。
+        如果出现了 console application wizard 对话框，按 <em>Next</em>，确保选择了 C++ 后再次点击 <em>Next</em>。
     </p>
     <p>
-        现在应该会要求你给项目命名。命名为 <code class="inline">HelloWorld</code>。可以把项目放在任何位置，Windows 用户建议放到 C 盘的一个子文件夹下，比如 <code class="inline">C:\CppProjects</code>。
+        现在应该会要求你给项目命名。命名为 <code class="inline">HelloWorld</code>。可以把项目放在任何位置，Windows 用户建议放到 C 盘的一个子文件夹下，比如 &quot;C:\CppProjects&quot;
     </p>
     <p>
         <!-- 此处应有图片 -->
@@ -243,7 +243,7 @@ int main()
         在 <em>HelloWorld</em> 项目里，展开 <em>Sources</em> 文件夹，双击 "main.cpp"。你会发现 hello world 程序已经帮你写好了！
     </p>
     <p>
-        用以下代码替代：
+        替换为以下代码：
     </p>
     <pre><code class="language-cpp">#include &lt;iostream&gt;
 
@@ -367,7 +367,7 @@ int main()
         首先，看看编译器给你的错误信息。大多数情况下会告诉你出错位置的行号。检查一下那一行和它附近的几行，确保没有打错字拼错词。也要确保你的代码里没把行号也粘贴进去（你的编辑器应该能阻止这一点）。
     </p>
     <p>
-        其次，看看 <a href="Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>的 Q&A 部分。你的问题可能在那里就有解决。
+        其次，看看 <a href="Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a> 的 Q&A 部分。你的问题可能在那里就有解决。
     </p>
     <p>
         第三，读一下你编译的代码示例所在章节下面的评论区，可能别人也遇到了同样的问题，有人提供了解决办法。<span class="learncpp-translator-note">（译者注：评论区请到<a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a>的对应课程章节查看）</span>
@@ -402,7 +402,7 @@ std::cin.get(); // get one more char from the user (waits for user to press ente
         这会使你的程序在继续之前等待用户按下回车键（你可能要按两次回车），这就给你机会在 IDE 关闭控制台窗口之前检查程序输出。
     </p>
     <p>
-        其他方案，比如经常有人推荐的 <code class="inline">system(&quot;pause&quot;)</code>，因为它只在特定平台上有效，所以本教程会回避它。
+        其他方案，比如经常有人推荐的 <code class="inline">system(&quot;pause&quot;)</code>，它只在特定平台上有效，所以本教程会回避它。
     </p>
     <p>
         如果控制台窗口根本没出现，你的程序似乎没有运行，那可能是杀毒软件阻止了程序运行。要是这种情况，建议暂时禁用杀毒软件看看会不会解决问题，或者把项目所在目录排除在扫描范围外。
@@ -435,7 +435,7 @@ std::cin.get(); // get one more char from the user (waits for user to press ente
         <li>运行（Run/start）：利用之前的生成结果，运行可执行文件。某些 IDE，比如 Visual Studio，就会在运行之前先调用生成功能，保证你运行的是最新版本代码的程序。其他的 IDE，比如 Code::Blocks，就会直接运行上次生成的可执行文件。</li>
     </ul>
     <p>
-        尽管我们会非正式地说“编译”程序，但实际上想编译我们的程序，应该使用生成或运行功能。<span class="learncpp-translator-note">（译者注：今后一般不再区分“生成”和“编译”，统一翻译成“编译”）</span>
+        尽管我们会非正式地说“编译”程序，但实际上想编译我们的程序，应该使用生成或运行功能。<span class="learncpp-translator-note">（译者注：今后一般不再区分“生成”和“编译”）</span>
     </p>
 <h2>
     总结

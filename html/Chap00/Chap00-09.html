@@ -20,7 +20,7 @@
         在 IDE 中创建新项目时，大多数集成开发环境都会设置两种不同的编译配置：发布（<em>Release</em>）配置和调试（<em>Debug</em>）配置。
     </p>
     <p>
-        调试配置用于帮助调试程序，一般编写程序时就用这个。该配置关闭了所有优化功能，并包含调试信息，因此程序会变大变慢，但调试起来却容易得多。默认情况下，调试配置通常被选为活动配置。以后会详细介绍调试技术。
+        调试配置用于帮助调试程序，编写程序时一般用的是这个。该配置关闭了所有优化功能，并包含调试信息，因此程序会变大变慢，但调试起来却容易得多。默认情况下，调试配置通常被选为活动配置。以后会详细介绍调试技术。
     </p>
     <p>
         发布配置用于发布程序。该版本通常对大小和性能做了优化，且不包含额外的调试信息。由于发布配置包含所有优化，因此该配置也可用于测试代码性能（以后会演示如何进行测试）。
@@ -29,7 +29,7 @@
         使用 Visual Studio 编译 Hello World 程序时（<a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>），调试配置生成的可执行文件有 65KB，而在发布配置下只有 12KB。造成差异的主要原因是调试配置时保留了额外的调试信息。
     </p>
     <p>
-        虽然可以创建自己的自定义编译配置，但除非你想比较使用不同编译配置的结果，一般几乎没理由这样做。
+        虽然可以创建自己的自定义编译配置，但除非你想比较使用不同编译配置的结果，一般情况下没理由这样做。
     </p>
     <div class="learncpp-blocktext-green">
         <p class="learncpp-block-title">
@@ -50,7 +50,7 @@
             Visual 用户
         </p>
         <p>
-            在 Visual Studio 中切换调试和发布有多种方法。最简单的是直接在 <em>Standard Toolbar Options</em> 中的 <em>Solution Configurations</em> 下拉菜单中选择。
+            在 Visual Studio 中切换调试和发布有多种方法。最简单的是直接在 <em>Standard Toolbar Options</em> 中的 <em>Solution Configurations</em> 下拉菜单中选择。这里先设为 <em>Debug</em>。
         </p>
         <!-- 此处应有截图 -->
         <p>
@@ -65,7 +65,7 @@
             Code::Blocks 用户
         </p>
         <p>
-            在 <em>Compiler toolbar</em> 中，有个 <em>Build Target</em> 选项，设为 <em>Debug</em>。
+            在 <em>Compiler toolbar</em> 中，有个 <em>Build Target</em> 选项，这里先设为 <em>Debug</em>。
         </p>
     </div>
     <div class="learncpp-blocktext-yellow">
@@ -73,7 +73,7 @@
             GCC/G++ 用户
         </p>
         <p>
-            调试时在命令行添加 <code class="inline">-ggdb</code>，发布时添加 <code class="inline">-O2 -DNDEBUG</code>。
+            调试时在命令行添加 <code class="inline">-ggdb</code>，发布时添加 <code class="inline">-O2 -DNDEBUG</code>。现在先用前者。
         </p>
     </div>
     <div class="learncpp-blocktext-yellow">
@@ -81,10 +81,14 @@
             VSCode 用户
         </p>
         <p>
-            第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <em>“args”</em>，定位到该部分的 <em>“${file}”</em> 行。
+            第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <em>&quot;args&quot;</em>，定位到该部分的 <em>&quot;${file}&quot;</em> 行。
         </p>
         <p>
-            在这行上面添加一行，编译时写 <br/><code class="inline">"-ggdb",</code>，<br/>发布时写（一行一条） <br/><code class="inline">"-O2",</code><br/><code class="inline">"-DNDEBUG",</code>
+            在这行上面添加一行，编译时写 <br/>
+            <code class="inline">&quot;-ggdb&quot;,</code>，<br/>
+            发布时写（一行一条） <br/>
+            <code class="inline">&quot;-O2&quot;,</code><br/>
+            <code class="inline">&quot;-DNDEBUG&quot;,</code>
         </p>
     </div>
 <h2>

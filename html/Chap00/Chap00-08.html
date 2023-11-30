@@ -53,7 +53,7 @@ std::cin.get(); // get one more char from the user</code></pre>
             其他解决方案，如通常建议的 system(&quot;pause&quot;)，可能只适用于某些操作系统，应避免使用。
         </p>
         <p>
-            旧版 Visual Studio 在 <em>Start With Debugging</em>（<em>F5</em>）模式下运行程序时可能无法暂停。试试 <em>Start Without Debugging</em>（<em>Ctrl-F5</em>）模式。
+            旧版 Visual Studio 在 <em>Start With Debugging</em>（<em>F5</em>）模式下运行程序后可能不会暂停。试试 <em>Start Without Debugging</em>（<em>Ctrl-F5</em>）模式。
         </p>
     </div>
     <div class="learncpp-blocktext-violet">
@@ -126,6 +126,10 @@ std::cin.get(); // get one more char from the user</code></pre>
         <p>
             确保不要将 endl 中的字母 l（小写 L）误认为数字 1。确保您的编辑器使用的字体能清楚区分小写字母 L、大写字母 i 和数字 1。在许多非编程字体中，大写字母 o 和数字 0 也很容易混淆。
         </p>
+        <p>
+            对比：<br/>
+            <code class="inline">Il1O0</code>
+        </p>
     </div>
     <div class="learncpp-blocktext-violet">
         <p class="learncpp-block-head-content">
@@ -156,7 +160,7 @@ std::cin.get(); // get one more char from the user</code></pre>
             老版本 Visual Studio 用的是 stdafx.h 而不是 pch.h，要是上面的方法没解决，试试 stdafx.h。
         </p>
         <p>
-            注意，多文件的情况下，每个文件都要以它开头。
+            注意，多文件的情况下，每个 C++ 源代码文件都要以它开头。
         </p>
     </div>
     <div class="learncpp-blocktext-violet">
