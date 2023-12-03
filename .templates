@@ -24,9 +24,28 @@
 
 </h1>
 
+<hr/>
+<nav>
+    <a href="Chap.html">[ 下一课： ]</a><br/>
+    <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
+    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="Chap.html">[ 上一课： ]</a>
+</nav>
+</body>
+</html>
+
+<div class="learncpp-blocktext-purple">
+    <p class="learncpp-block-title">
+        规则
+    </p>
+    <p>
+
+    </p>
+</div>
+
 <div class="learncpp-blocktext-green">
     <p class="learncpp-block-title">
-        规则/最佳实践
+        最佳实践
     </p>
     <p>
 
@@ -72,15 +91,8 @@
 </div>
 
 <pre><code class="language-cpp"></code></pre>
+<pre><code class="language-plaintext nohljsln"></code></pre>
 <code class="inline"></code>
 <a href="" title="" target="_blank"></a>
 
 &lt; &gt; &quot; &apos; &amp;
-
-<nav>
-    <a href="">[ 下一课 ]</a> | <a href="../../index.html" target="_blank">[ 目录 ]</a> | <a href="">[ 上一课 ]</a>
-</nav>
-
-</body>
-
-</html>

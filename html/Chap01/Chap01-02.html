@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>
+        1.2 -- 注释
+    </title>
+
+    <link rel="stylesheet" href="../../css/main.css"/>
+    <link rel="stylesheet" href="../../css/linenumbercool.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/languages/cpp.min.js"></script>
+
+    <script src="../../script/highlightjs-line-numbers.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+</head>
+
+<body>
+<h1>
+    1.2 -- 注释
+</h1>
+    <p>
+        <strong>注释</strong>（<strong>comment</strong>）是穿插在源代码间供程序员阅读的注解。注释会被编译器忽略，它只供程序员使用。
+    </p>
+    <p>
+        C++ 里有两种风格的注释，它们都是同一个作用：帮助程序员给代码做文档。
+    </p>
+    <p>
+        <span class="learncpp-translator-note">译者注：从本课开始，教程中的注释都做了汉化。但行业实际中大多要求使用英文注释。这里仅为学习阅读方便使用。另外，部分代码编辑器和编译器不支持使用中文，或者由于编码问题造成乱码，此时请删除中文注释。</span>
+    </p>
+<h2>
+    单行注释
+</h2>
+    <p>
+        <code class="inline">//</code> 符号标志着 C++ 单行注释的开始，编译器会忽略从这里开始到行尾的所有内容。例如：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!&quot;; // 这里到行尾的所有东西都被忽略了</code></pre>
+    <p>
+        单行注释一般用于对单行代码做简短的注解。
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!\n&quot;; // std::cout 在 iostream 库里
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;; // 这些注释让代码可读性下降
+std::cout &lt;&lt; &quot;Yeah!\n&quot;; // 尤其是当每行长度不一致时</code></pre>
+    <p>
+        注释紧贴在代码右侧会让代码和注释都很难阅读，尤其是当这一行很长的时候。如果行很短，评论可以很简单地对齐（一般是用制表符），比如：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!\n&quot;;                 // std::cout 在 iostream 库里
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;; // 这样就好看多了
+std::cout &lt;&lt; &quot;Yeah!\n&quot;;                        // 你觉得呢?</code></pre>
+    <p>
+        但这行要是很长的话，在右侧放注释就会让这一行更长了。这时一般把单行注释放到上一行：
+    </p>
+    <pre><code class="language-cpp">// std::cout 在 iostream 库里
+std::cout &lt;&lt; &quot;Hello world!\n&quot;;
+
+// 这样更好看了
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;;
+
+// 你觉得呢?
+std::cout &lt;&lt; &quot;Yeah!\n&quot;;</code></pre>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            作者的话
+        </p>
+        <p>
+            以上这些代码是我们第一次遇到代码片段。它们不是完整程序，所以不能单独编译。它们是用来以简洁的形式解释特定的概念用的。
+        </p>
+        <p>
+            如果你想编译代码片段，就需要先把它改成完整程序。一般来说，程序大概长这样：
+        </p>
+        <pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    // 把这行替换成你要编译的代码片段
+
+    return 0;
+}</code></pre>
+    </div>
+<h2>
+    多行注释
+</h2>
+    <p>
+        <code class="inline">/*</code> 和 <code class="inline">*/</code> 这一对符号表示 C 风格多行注释。所有在它们中间的内容都会被忽略。
+    </p><pre><code class="language-cpp">/*  这是多行注释
+    此行会被忽略
+    这行也是 */</code></pre>
+    <p>
+        因为中间的所有东西都会被忽略，所以有的程序员会“美化”这样的注释：
+    </p>
+    <pre><code class="language-cpp">/*  这是多行注释
+ *  左侧对齐的星号
+ *  让这段注释更美观
+ */</code></pre>
+    <p>
+        多行注释不能嵌套。这种写法可能会造成意外的结果：
+    </p>
+    <pre><code class="language-cpp">/*  这是多行 /* 注释 */ 这句不在注释里 */
+//  上面的注释截止于第一个 */, 而不是第二个 */</code></pre>
+    <p>
+        编译器尝试编译时，它会把第一个 <code class="inline">/*</code> 和第一个 <code class="inline">*/</code> 之间的内容忽略掉。由于 <code class="inline"> 这句不在注释里 */</code> 不被认为是注释的一部分，所以编译器会尝试编译它。这会不可避免地造成编译错误。
+    </p>
+    <p>
+        这是语法高亮发挥作用的一个例子。因为不同的颜色会让注释部分变得非常显眼。
+    </p>
+    <div class="learncpp-blocktext-red">
+        <p class="learncpp-block-title">
+            警告
+        </p>
+        <p>
+            不要在多行注释里嵌套使用多行注释。可以在多行注释里使用单行注释。
+        </p>
+    </div>
+<h2>
+    注释的合理使用
+</h2>
+    <p>
+        注释主要做三件事。第一，对于给定的库、程序、函数等，注释最好是用来描述它的功能。这一般在文件或库的最上端，或者紧挨着函数上方。例如：
+    </p>
+    <pre><code class="language-cpp">// 这段程序基于学生的考试成绩和家庭作业分数给他们计算最终得分</code></pre>
+    <pre><code class="language-cpp">// 此函数用牛顿法求给定方程的近似解</code></pre>
+    <pre><code class="language-cpp">// 下面几行基于稀有度、等级和权重因子生成一个随机物品</code></pre>
+    <p>
+        这些注释让读者无需阅读代码就知道这个库、程序、函数在做 <em>什么</em>。用户（一般是其他人，也有可能是想用之前写过的代码的自己）看一眼就能知道这段代码和他想完成的工作有没有关系。这在团队协作时很有用，因为没人能熟知所有代码。
+    </p>
+    <p>
+        第二，在库、程序、函数内，可以用注释标明代码是 <em>如何</em> 做某事的：
+    </p>
+    <pre><code class="language-cpp">/*  为计算最终得分，把期中考试成绩和作业得分加在一起
+    然后除以总的得分项数量求得一个百分比
+    用于给出最终的字母评级 */</code></pre>
+    <pre><code class="language-cpp">//  为生成随机物品，作如下操作:
+//  1) 把所有具有期望的稀有度的物品放进一个列表
+//  2) 基于等级和权重因子计算每种物品的概率
+//  3) 选择一个随机数
+//  4) 找到这个随机数对应的物品
+//  5) 返回正确的物品</code></pre>
+    <p>
+        这些注释可让用户了解代码如何实现目标，而无需了解每一行代码的作用。
+    </p>
+    <p>
+        第三，在语句层面，注释可以用来描述代码 <em>为什么</em> 做某事。糟糕的注释解释代码在做 <em>什么</em>。如果你写的代码非常复杂，需要用注释来解释语句在做什么，那么你可能需要重写语句，而不是注释它。
+    </p>
+    <p>
+        这里有一些好注释和坏注释的例子。
+    </p>
+    <p>
+        坏注释：
+    </p>
+    <pre><code class="language-cpp">// 把视野设为 0
+sight = 0;</code></pre>
+    <p>
+        原因：光看语句本身就知道视野被设为 0 了。
+    </p>
+    <p>
+        好注释：
+    </p>
+    <pre><code class="language-cpp">// 玩家刚喝了失明药水所以什么都看不见
+sight = 0;</code></pre>
+    <p>
+        原因：现在知道为什么玩家的视野被设为 0 了。
+    </p>
+    <p>
+        坏注释：
+    </p>
+    <pre><code class="language-cpp">// 计算买物品的开销
+cost = quantity * 2 * storePrice;</code></pre>
+    <p>
+        原因：知道这是个开销计算，但为什么数量要乘 2？
+    </p>
+    <p>
+        好注释：
+    </p>
+    <pre><code class="language-cpp">// 数量要乘 2，因为成对买
+cost = quantity * 2 * storePrice;</code></pre>
+    <p>
+        原因：现在知道这个式子什么意思了。
+    </p>
+    <p>
+        程序员经常纠结采用哪个方案来解决问题。用注释可以提醒自己（或告诉别人）这里为什么用了这个解决办法而不是其他。
+    </p>
+    <p>
+        好注释：
+    </p>
+    <pre><code class="language-cpp">// 选用链表而不是数组的原因是
+// 数组插入数据太慢</code></pre>
+    <pre><code class="language-cpp">// 选用牛顿法求解的原因是
+// 方程没有解析解</code></pre>
+    <p>
+        最后，注释应当能让对这个程序一无所知的人看懂这段代码是做什么的。程序员经常说：“这不是很明显吗？不可能忘掉这个是干什么的。”其实并不明显，你会惊讶于自己忘记的速度。你（或者其他人）会感谢你现在坐下来用人话把注释写清楚的。读懂单行代码很容易，读懂一堆代码要完成什么很难。
+    </p>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            延申阅读
+        </p>
+        <p>
+            我们会在 <a href="Chap01-07.html" target="_blank">1.7 -- 关键字与标识符命名</a> 一节里讨论对变量声明语句的注释。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-green">
+        <p class="learncpp-block-title">
+            最佳实践
+        </p>
+        <p>
+            多作注释，写注释时要假设自己在对不清楚这段代码在做什么的人说话。不要假设自己能记得为什么要做出这个特定的选择。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            作者的话
+        </p>
+        <p>
+            在本教程中，我们将在代码块中使用注释来引起你的注意，或辅助说明事物是如何工作的（同时确保程序可编译）。聪明的读者会注意到，按照上述标准，这些注释大多都很糟糕。当你阅读剩下的教程时，请记住这些注释是为了辅助教学，而不是为了展示好注释该怎么写。
+        </p>
+    </div>
+<h2>
+    把代码注释掉
+</h2>
+    <p>
+        把一行或多行代码变成注释的行为被称作把代码 <em>注释掉</em>。可以通过这种方式把部分代码临时排除在要编译的代码之外。
+    </p>
+    <p>
+        要注释掉单行代码，直接在一行开头用 <code class="inline">//</code> 来把这一行临时变成注释。
+    </p>
+    <p>
+        未注释时：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; 1;</code></pre>
+    <p>
+        注释掉之后：
+    </p>
+    <pre><code class="language-cpp">//    std::cout &lt;&lt; 1;</code></pre>
+    <p>
+        要注释掉一整块代码，可以在每一行开头使用 <code class="inline">//</code>，也可以用 <code class="inline">/*</code> <code class="inline">*/</code> 一次性注释掉一整块。
+    </p>
+    <p>
+        未注释时：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; 1;
+std::cout &lt;&lt; 2;
+std::cout &lt;&lt; 3;</code></pre>
+    <p>
+        注释掉之后：
+    </p>
+    <pre><code class="language-cpp">//    std::cout &lt;&lt; 1;
+//    std::cout &lt;&lt; 2;
+//    std::cout &lt;&lt; 3;</code></pre>
+    <p>
+        或者：
+    </p>
+    <pre><code class="language-cpp">/*
+    std::cout &lt;&lt; 1;
+    std::cout &lt;&lt; 2;
+    std::cout &lt;&lt; 3;
+*/</code></pre>
+    <p>
+        这么做有不少原因：
+    </p>
+    <ol>
+        <li>你添加了一段暂时还无需编译的新代码，此时想要运行程序。如果有编译问题，编译器就不会完成编译。注释掉无法编译的代码就能让程序编译成功，这样就可以运行它了。没有别的事情之后，就可以取消注释继续编写程序。</li>
+        <li>新写的代码能通过编译但运行有问题，现在没时间要等以后再修复它。这时就可以把有问题的代码暂时先注释掉。</li>
+        <li>为了寻找出错之处。如果程序运行结果不对，或者程序崩溃了，一种方法是把部分代码注释掉，看看能不能找到造成问题的部分。如果把一部分代码注释掉之后运行正确或者不再崩溃了，那么刚注释掉的部分就是造成问题的代码。然后就可以研究这里为什么会导致问题了。</li>
+        <li>想用另一段代码替换当前的代码。可以不删掉原来的代码，而是把它们注释掉放在那，这样可以把原来的代码作为参考，直到确保新代码运行正确。确定了新代码没问题之后，就可以删掉原来被注释掉的代码了。如果新代码无法正常工作，就可以把新代码删掉把老代码取消注释恢复到原来的状态。</li>
+    </ol>
+    <p>
+        把代码注释掉是程序开发过程中的常见行为，许多 IDE 都有把选中的代码注释掉的功能。具体怎么做取决于 IDE。
+    </p>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            Visual Studio 用户
+        </p>
+        <p>
+            <em>Edit -- Advanced -- Comment Selection / Uncomment Selection</em>
+        </p>
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            Code::Blocks 用户
+        </p>
+        <p>
+            <em>Edit -- Comment / Uncomment / Toggle comment</em> 或其他注释工具。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            VS Code 用户
+        </p>
+        <p>
+            注释掉选中的代码用 <em>Ctrl-K-C</em>，取消注释用 <em>Ctrl-K-U</em>。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-head-content">
+            提示
+        </p>
+        <p>
+            如果通常做注释的时候总是用单行注释风格，那么使用多行注释风格把代码注释掉永远也不会发生冲突。如果使用多行注释风格来给代码做文档，那么把代码注释掉可能会面临一些困难。
+        </p>
+        <p>
+            如果要注释掉包含多行注释的代码片段，可以考虑使用 <code class="inline">#if 0</code> 预编译器指令，这会在 <a href="../Chap02/Chap02-10.html" target="_blank">2.10 -- 预处理器简介</a> 一课中详细讨论。
+        </p>
+    </div>
+<h2>
+    小结
+</h2>
+    <ul>
+        <li>在库、程序、函数层面上，用注释描述 <em>做什么</em>。</li>
+        <li>在库、程序、函数之内，用注释描述 <em>怎么做</em>。</li>
+        <li>在语句层面上，用注释描述 <em>为什么</em> 这么做。</li>
+    </ul>
+
+
+<hr/>
+<nav>
+    <a href="Chap01-03.html">[ 下一课：1.3 -- 对象与变量 ]</a><br/>
+    <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/comments/" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="Chap01-01.html">[ 上一课：1.1 -- 语句与程序结构 ]</a>
+</nav>
+</body>
+</html>
