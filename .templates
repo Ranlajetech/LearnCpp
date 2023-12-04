@@ -34,61 +34,70 @@
 </body>
 </html>
 
-<div class="learncpp-blocktext-purple">
-    <p class="learncpp-block-title">
-        规则
-    </p>
-    <p>
+    <div class="learncpp-blocktext-purple">
+        <p class="learncpp-block-title">
+            规则
+        </p>
+        <p>
 
-    </p>
-</div>
+        </p>
+    </div>
 
-<div class="learncpp-blocktext-green">
-    <p class="learncpp-block-title">
-        最佳实践
-    </p>
-    <p>
+    <div class="learncpp-blocktext-green">
+        <p class="learncpp-block-title">
+            最佳实践
+        </p>
+        <p>
 
-    </p>
-</div>
+        </p>
+    </div>
 
-<div class="learncpp-blocktext-red">
-    <p class="learncpp-block-title">
-        警告
-    </p>
-    <p>
+    <div class="learncpp-blocktext-red">
+        <p class="learncpp-block-title">
+            警告
+        </p>
+        <p>
 
-    </p>
-</div>
+        </p>
+    </div>
 
-<div class="learncpp-blocktext-violet">
-    <p class="learncpp-block-head-content">
-        Q：/ 提示
-    </p>
-    <p>
+    <div class="learncpp-blocktext-yellow">
+        <p class="learncpp-block-head-content">
+            用户
+        </p>
+        <p>
+            
+        </p>
+    </div>
 
-    </p>
-</div>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-head-content">
+            Q：/ 提示
+        </p>
+        <p>
 
-<div class="learncpp-blocktext-grey">
-    <p class="learncpp-block-title">
-        延申阅读/作者的话
-    </p>
-    <p>
+        </p>
+    </div>
 
-    </p>
-</div>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-title">
+            知识重点
+        </p>
+        <p>
+
+        </p>
+    </div>
+
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            延申阅读/作者的话/术语
+        </p>
+        <p>
+
+        </p>
+    </div>
 
 <span class="learncpp-translator-note">（译者注：）</span>
-
-<div class="learncpp-blocktext-yellow">
-    <p class="learncpp-block-head-content">
-        用户
-    </p>
-    <p>
-
-    </p>
-</div>
 
 <pre><code class="language-cpp"></code></pre>
 <pre><code class="language-plaintext nohljsln"></code></pre>
