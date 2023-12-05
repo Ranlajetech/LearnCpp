@@ -208,7 +208,7 @@
             lines.pop();
         }
 
-        //if (lines.length > 1 || options.singleLine) {
+        if (lines.length > 1 || options.singleLine) {
             var html = '';
 
             for (var i = 0, l = lines.length; i < l; i++) {
@@ -233,7 +233,7 @@
             }
 
             return format('<table class="{0}">{1}</table>', [ TABLE_NAME, html ]);
-        //}
+        }
 
         return inputHtml;
     }

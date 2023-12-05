@@ -20,6 +20,20 @@ code.inline {
     white-space: pre;
 }
 
+code.nohljsln {
+    font-weight: lighter;
+}
+
+span.learncpp-language-standard {
+    color: white;
+    font-size: medium;
+    font-weight: normal;
+    background-color: #6aa3e7;
+    padding: 1px 5px;
+    border-radius: 5px;
+    white-space: pre;
+}
+
 img {
     height: auto;
     max-width: 100%;
