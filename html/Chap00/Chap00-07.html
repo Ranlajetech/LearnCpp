@@ -32,7 +32,7 @@
     项目（Projects）
 </h2>
     <p>
-        在 IDE 中写 C++ 程序，一般从创建新项目开始（一会说）。<strong>项目</strong>（<strong>project</strong>）是个容器，里面装有用于生成可执行文件（或库、网站……等）的源码文件、图像、数据文件等东西。项目还保存了 IDE、编译器、链接器的设置，同时记住了你上次离开的位置，所以你下次再打开项目时，IDE 就能恢复到你离开时的状态。编译程序时，项目中所有的 .cpp 文件都会被编译链接。
+        在 IDE 中写 C++ 程序，一般从创建新项目开始（一会说）。<strong>项目</strong>（<strong>project</strong>）是个容器，里面装有用于生成可执行文件（或库、网站……等）的源码文件、图像、数据文件等东西。项目还保存了 IDE、编译器、链接器的设置，同时记住了你上次离开的位置，所以你下次再打开项目时，IDE 就能恢复到你离开时的状态。编译程序时，项目中所有的 <em>.cpp</em> 文件都会被编译链接。
     </p>
     <p>
         每个项目都对应一个程序。准备编写第二个程序时，要么新建一个，要么覆写一个已存在但你不想保留的项目。项目文件一般是 IDE 专属的，在一个 IDE 里创建的项目在别的 IDE 里需要重新创建。
@@ -49,7 +49,7 @@
     控制台项目
 </h2>
     <p>
-        新建项目时，一般会问你想要创建哪种项目。本教程中都是控制台项目。<strong>控制台项目</strong>就是可以在 Windows、Linux、Mac 控制台上运行的程序。
+        新建项目时，一般会问你想要创建哪种项目。本教程中都是控制台项目。<strong>控制台项目</strong> 就是可以在 Windows、Linux、Mac 控制台上运行的程序。
     </p>
     <p>
         这是 Windows 控制台的截图：
@@ -76,7 +76,7 @@
     编写第一个程序
 </h2>
     <p>
-        按传统，学习新语言写的第一个程序就是大名鼎鼎的 HelloWorld，我们不会让你错过这个乐趣！你以后会感谢我们的，也许。
+        按传统，学习新语言写的第一个程序就是大名鼎鼎的 <em>HelloWorld</em>，我们不会让你错过这个乐趣！你以后会感谢我们的，也许。
     </p>
 <h2>
     在 Visual Studio 中创建新项目（2019 或更新的版本）
@@ -88,7 +88,7 @@
         <!-- 此处应有图片 -->
     </p>
     <p>
-        选择<em>创建新项目</em>（<em>Create a new project</em>）。
+        选择 <em>创建新项目</em>（<em>Create a new project</em>）。
     </p>
     <p>
         然后会看到如下对话框：
@@ -97,10 +97,10 @@
         <!-- 此处应有图片 -->
     </p>
     <p>
-        如果你已经打开了之前的项目，可以在<em>文件 -- 新建 -- 项目</em>（<em>File -- New -- Project</em>）打开这个对话框。
+        如果你已经打开了之前的项目，可以在 <em>文件 -- 新建 -- 项目</em>（<em>File -- New -- Project</em>）打开这个对话框。
     </p>
     <p>
-        选择 <em>Windows 桌面程序向导</em>（<em>Windows Desktop Wizard</em>） 并点击<em>下一步</em>（<em>Next</em>）。如果你没看到这个，你可能是在安装 Visual Studio 时忘记选择安装 <em>C++ 桌面开发</em>（<em>Desktop development with C++</em>）工作负载。此时请回到上一课 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a>，按照指示重新安装（不用彻底重装，可以运行 Visual Studio installer 更改现有安装，添加 C++ 工作负载）。
+        选择 <em>Windows 桌面程序向导</em>（<em>Windows Desktop Wizard</em>） 并点击 <em>下一步</em>（<em>Next</em>）。如果你没看到这个，你可能是在安装 Visual Studio 时忘记选择安装 <em>C++ 桌面开发</em>（<em>Desktop development with C++</em>）工作负载。此时请回到上一课 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a>，按照指示重新安装（不用彻底重装，可以运行 Visual Studio installer 更改现有安装，添加 C++ 工作负载）。
     </p>
     <p>
         然后你会看到如下对话框：
@@ -109,13 +109,13 @@
         <!-- 此处应有图片 -->
     </p>
     <p>
-        把项目名改成 <code class="inline">HelloWorld</code>。
+        把项目名改成 <em>HelloWorld</em>。
     </p>
     <p>
-        推荐勾选<em>把解决方案和项目放在同一目录</em>（<em>Place solution and project in the same directory</em>），能减少每个项目的子目录数量。
+        推荐勾选 <em>把解决方案和项目放在同一目录</em>（<em>Place solution and project in the same directory</em>），能减少每个项目的子目录数量。
     </p>
     <p>
-        点击<em>下一步</em>（<em>Next</em>）。
+        点击 <em>下一步</em>（<em>Next</em>）。
     </p>
     <p>
         看到最后一个对话框：
@@ -124,7 +124,7 @@
         <!-- 此处应有图片 -->
     </p>
     <p>
-        确保<em>应用类型</em>（<em>Application type</em>）已设置为<em>控制台应用</em>（<em>Console Application (.exe)</em>），<em>预编译头文件</em>（<em>Precompiled Header</em>）选项没有选中。然后点击<em>确认</em>（<em>OK</em>）。
+        确保 <em>应用类型</em>（<em>Application type</em>）已设置为 <em>控制台应用</em>（<em>Console Application (.exe)</em>），<em>预编译头文件</em>（<em>Precompiled Header</em>）选项没有选中。然后点击 <em>确认</em>（<em>OK</em>）。
     </p>
     <p>
         你现在创建了一个新项目！向下跳转到 Visual Studio 解决方案浏览器（Solution Explorer）一节继续。
@@ -153,7 +153,7 @@
     Visual Studio 解决方案资源管理器（Solution Explorer）
 </h2>
     <p>
-        在窗口的左侧或右侧，有个叫<em>解决方案资源管理器</em>（<em>Solution Explorer</em>）的窗口。在这个窗口中，Visual Studio 已经创建了一个解决方案（<em>HelloWorld</em>）。其中，名称为粗体的是你的新项目（<em>HelloWorld</em>）。在该项目中，Visual Studio 创建了许多文件，包括 <em>HelloWorld</em>（位于<em>源文件</em>树项下方）。可能还有其他的 .cpp 或 .h 文件，可以暂时忽略。
+        在窗口的左侧或右侧，有个叫 <em>解决方案资源管理器</em>（<em>Solution Explorer</em>）的窗口。在这个窗口中，Visual Studio 已经创建了一个解决方案（<em>HelloWorld</em>）。其中，名称为粗体的是你的新项目（<em>HelloWorld</em>）。在该项目中，Visual Studio 创建了许多文件，包括 <em>HelloWorld</em>（位于<em>源文件</em>树项下方）。可能还有其他的 <em>.cpp</em> 或 <em>.h</em> 文件，可以暂时忽略。
     </p>
     <p>
         <!-- 此处应有图片 -->
@@ -171,7 +171,7 @@ int main()
     <p>
         编译程序的话，可以按 <em>F7</em>、<em>Ctrl-Shift-B</em> 或 <em>生成 -- 生成解决方案</em>（<em>Build -- Build Solution</em>）。如果一切顺利，应该能在输出窗口看到：
     </p>
-    <pre><code class="language-plaintext nohljsln">1&gt;------ Build started: Project: HelloWorld, Configuration: Debug Win32 ------
+    <pre><code class="language-plaintext nohljsln lighter">1&gt;------ Build started: Project: HelloWorld, Configuration: Debug Win32 ------
 1&gt;HelloWorld.cpp
 1&gt;HelloWorld.vcxproj -&gt; c:\users\username\documents\visual studio 20xx\Projects\HelloWorld\Debug\HelloWorld.exe
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========</code></pre>
@@ -187,7 +187,7 @@ int main()
         </p>
     </div>
     <p>
-        按 <em>Ctrl-F5</em> 运行编译好的程序，或<em>调试 -- 开始执行(不调试)</em>（<em>Debug -- Start Without Debugging</em>）。应该可以看到：
+        按 <em>Ctrl-F5</em> 运行编译好的程序，或 <em>调试 -- 开始执行(不调试)</em>（<em>Debug -- Start Without Debugging</em>）。应该可以看到：
     </p>
     <p>
         <!-- 此处应有图片 -->
@@ -202,7 +202,7 @@ int main()
         <p>
             在 Visual Studio 里直接运行程序时，可能会多一行输出：
         </p>
-        <pre><code class="language-plaintext nohljsln">C:\Users\username\source\repos\Project\Debug\Project.exe (process xxx) exited with code 0.</code></pre>
+        <pre><code class="language-plaintext nohljsln lighter">C:\Users\username\source\repos\Project\Debug\Project.exe (process xxx) exited with code 0.</code></pre>
         <p>
             这是正常现象。Visual Studio 会提供一些额外信息提示程序退出是否正常。在 <a href="../Chap02/Chap02-02.html" target="_blank">2.2 -- 有返回值的函数</a>一节中会更深入地讨论。
         </p>
@@ -220,10 +220,10 @@ int main()
         选择 <em>Console application</em> 然后点击 <em>Go</em>（或 <em>Create</em>）按钮。
     </p>
     <p>
-        如果出现了 console application wizard 对话框，按 <em>Next</em>，确保选择了 C++ 后再次点击 <em>Next</em>。
+        如果出现了 <em>Console Application Wizard</em> 对话框，按 <em>Next</em>，确保选择了 C++ 后再次点击 <em>Next</em>。
     </p>
     <p>
-        现在应该会要求你给项目命名。命名为 <code class="inline">HelloWorld</code>。可以把项目放在任何位置，Windows 用户建议放到 C 盘的一个子文件夹下，比如 &quot;C:\CppProjects&quot;
+        现在应该会要求你给项目命名。命名为 <em>HelloWorld</em>。可以把项目放在任何位置，Windows 用户建议放到 C 盘的一个子文件夹下，比如 &quot;C:\CppProjects&quot;
     </p>
     <p>
         <!-- 此处应有图片 -->
@@ -241,7 +241,7 @@ int main()
         <!-- 此处应有图片 -->
     </p>
     <p>
-        在 <em>HelloWorld</em> 项目里，展开 <em>Sources</em> 文件夹，双击 "main.cpp"。你会发现 hello world 程序已经帮你写好了！
+        在 <em>HelloWorld</em> 项目里，展开 <em>Sources</em> 文件夹，双击 <em>main.cpp</em>。你会发现程序已经自动写好了！
     </p>
     <p>
         替换为以下代码：
@@ -256,7 +256,7 @@ int main()
     <p>
         按 <em>Ctrl-F9</em> 或 <em>Build -- Build</em> 编译项目。如果一切顺利，在 Build 日志窗口可以看见：
     </p>
-    <pre><code class="language-plaintext nohljsln">-------------- Build: Debug in HelloWorld (compiler: GNU GCC Compiler)---------------
+    <pre><code class="language-plaintext nohljsln lighter">-------------- Build: Debug in HelloWorld (compiler: GNU GCC Compiler)---------------
 mingw32-g++.exe -Wall -fexceptions -g -std=c++14  -c C:\CppProjects\HelloWorld\main.cpp -o obj\Debug\main.o
 mingw32-g++.exe  -o bin\Debug\HelloWorld.exe obj\Debug\main.o
 Output file is bin\Debug\HelloWorld.exe with size x.xx MB
@@ -311,13 +311,13 @@ int main()
         下一步是选择 <em>g++ build and debug active file</em>，macOS 用户请选择 <em>clang++</em>。在下面把选项卡从 <em>DEBUG CONSOLE</em> 改成 <em>TERMINAL</em>。
     </p>
     <p>
-        如果终端中出现了文本 &quot;Hello, world!&quot;，那么祝贺你，你已经运行了你的第一个 C++ 程序！
+        如果终端中出现了文本 <code class="lighter">Hello, world!</code>，那么祝贺你，你已经运行了你的第一个 C++ 程序！
     </p>
 <h2>
     如果你在命令行使用 g++
 </h2>
     <p>
-        要是这种情况，就无需建立项目。就简单地把下面的代码复制到 HelloWorld.cpp 并保存：
+        要是这种情况，就无需建立项目。就简单地把下面的代码复制到 <em>HelloWorld.cpp</em> 并保存：
     </p>
     <pre><code class="language-cpp">#include &lt;iostream&gt;
 
@@ -333,7 +333,7 @@ int main()
         <code class="inline">g++ -o HelloWorld HelloWorld.cpp</code>
     </p>
     <p>
-        此命令会编译链接 HelloWorld.cpp。输入 <code class="inline">HelloWorld</code>（也有可能是 <code class="inline">./HelloWorld</code>）运行，然后就能看见程序的结果了。
+        此命令会编译链接 <em>HelloWorld.cpp</em>。输入 <code class="inline">HelloWorld</code>（也有可能是 <code class="inline">./HelloWorld</code>）运行，然后就能看见程序的结果了。
     </p>
 <h2>
     如果用的是其他 IDE 或在线编译器
@@ -344,9 +344,9 @@ int main()
     <p>
         <ol>
             <li>（适用于 IDE 的情况）建立一个项目</li>
-            <li>（适用于 IDE，且没有自动生成的情况）向项目添加一个 .cpp 程序</li>
+            <li>（适用于 IDE，且没有自动生成的情况）向项目添加一个 <em>.cpp</em> 程序</li>
             <li>把以下代码粘贴到文件中：
-                <pre><code class="language-cpp">#include &lt;iostream&gt;
+                <pre style="line-height: initial;"><code class="language-cpp">#include &lt;iostream&gt;
 
 int main()
 {
@@ -371,7 +371,7 @@ int main()
         其次，看看 <a href="Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a> 的 Q&A 部分。你的问题可能在那里就有解决。
     </p>
     <p>
-        第三，读一下你编译的代码示例所在章节下面的评论区，可能别人也遇到了同样的问题，有人提供了解决办法。<span class="learncpp-translator-note">（译者注：评论区请到<a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a>的对应课程章节查看）</span>
+        第三，读一下你编译的代码示例所在章节下面的评论区，可能别人也遇到了同样的问题，有人提供了解决办法。<span class="learncpp-translator-note">（译者注：评论区请到 <a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a> 的对应课程章节查看）</span>
     </p>
     <p>
         如果以上都没奏效，试试在搜索引擎查一下你的问题。可能别人以前也遇到过这种问题并找到了修复办法。
@@ -445,7 +445,7 @@ std::cin.get(); // get one more char from the user (waits for user to press ente
         恭喜，你已经完成了本教程最难的部分（指安装 IDE 并编译你的第一个程序）！
     </p>
     <p>
-        不用担心自己不理解 HelloWorld 程序每一行都是做什么的。我们会在下一章的一开始就详细解释每一行代码。
+        不用担心自己不理解 <em>HelloWorld</em> 程序每一行都是做什么的。我们会在下一章的一开始就详细解释每一行代码。
     </p>
 <hr/>
 <nav>

@@ -76,7 +76,7 @@
             延申阅读
         </p>
         <p>
-            “bug”一词于 1870 年代由 Thomas Edison（爱迪生）首次使用。这个词真正开始流行源于 1940 年代工程师发现了一只真正的蛾子卡在早期计算机的硬件上造成了短路。当时的错误日志和那只蛾子现在陈列在 Smithsonian Museum of American History（史密森尼美国历史博物馆）。可以在<a href="https://americanhistory.si.edu/collections/search/object/nmah_334663" title="AmericanHistory.si.edu" target="_blank">这里</a>查看。
+            <em>bug</em> 一词于 1870 年代由 Thomas Edison（爱迪生）首次使用。这个词真正开始流行源于 1940 年代工程师发现了一只真正的蛾子卡在早期计算机的硬件上造成了短路。当时的错误日志和那只蛾子现在陈列在 Smithsonian Museum of American History（史密森尼美国历史博物馆）。可以在<a href="https://americanhistory.si.edu/collections/search/object/nmah_334663" title="AmericanHistory.si.edu" target="_blank">这里</a>查看。
         </p>
     </div>
     <p>
@@ -98,9 +98,9 @@
         典型的专为编程设计的编辑器有一些方便写代码的特性，包括：
     </p>
     <ul>
-        <li>行号显示。编译器给出的错误信息包含行号，比如：<em>some error code/message, line 64</em>。如果编辑器不显示行号，想要找到第 64 行会很困难。</li>
+        <li>行号显示。编译器给出的错误信息包含行号，比如：<code class="lighter">some error code/message, line 64</code>。如果编辑器不显示行号，想要找到第 64 行会很困难。</li>
         <li>语法高亮和颜色。这能让程序的各部分更易辨别。</li>
-        <li>无歧义的等宽字体。非编程用的字体大多难以分辨数字 0 和字母 O，数字 1、字母 l（小写 L）和字母 I（大写 i）。好的编程字体保证它们能被一眼分辨出来以防混用。所有代码编辑器都会默认开启这一功能，但一般的文本编辑器可能不会。使用等宽字体（即所有字符符号数字的宽度都相同）使代码更易格式化和对齐。</li>
+        <li>无歧义的等宽字体。非编程用的字体大多难以分辨数字 <code>0</code> 和字母 <code>O</code>，数字 <code>1</code>、字母 <code>l</code>（小写 <code>L</code>）和字母 <code>I</code>（大写 <code>i</code>）。好的编程字体保证它们能被一眼分辨出来以防混用。所有代码编辑器都会默认开启这一功能，但一般的文本编辑器可能不会。使用等宽字体（即所有字符符号数字的宽度都相同）使代码更易格式化和对齐。</li>
     </ul>
     <p>
         以下是带有行号、语法高亮和等宽字体的 C++ 程序示例：
@@ -135,18 +135,18 @@ int main()
         </p>
     </div>
     <p>
-        自己写的程序一般都会命名为 <em>something.cpp</em> 这样，其中 <em>something</em> 可以替换为你为你的程序挑选的名称（比如 <em>calculator</em>，<em>hi-lo</em> 等等）。后缀 <em>.cpp</em> 告诉编译器（和你）这是一个包含 C++ 指令的 C++ 源代码文件。有些人会用 .cc 后缀，但我们这推荐使用 .cpp。
+        自己写的程序一般都会命名为 <em>something.cpp</em> 这样，其中 <em>something</em> 可以替换为你为你的程序挑选的名称（比如 <em>calculator</em>，<em>hi-lo</em> 等等）。后缀 <em>.cpp</em> 告诉编译器（和你）这是一个包含 C++ 指令的 C++ 源代码文件。有些人会用 <em>.cc</em> 后缀，但我们这推荐使用 <em>.cpp</em>。
     </p>
     <div class="learncpp-blocktext-green">
         <p class="learncpp-block-title">
             最佳实践
         </p>
         <p>
-            把你的代码文件命名为 <code class="inline">something.cpp</code>，其中 <code class="inline">something</code> 是你挑选的名称，<code class="inline">.cpp</code> 是后缀名，表示这是一个 C++ 源文件。
+            把你的代码文件命名为 <em>something.cpp</em>，其中 <em>something</em> 是你挑选的名称，<em>.cpp</em> 是后缀名，表示这是一个 C++ 源文件。
         </p>
     </div>
     <p>
-        另外还要注意，许多复杂的 C++ 程序具有多个 .cpp 文件。虽然最开始我们创建的程序只有一个 .cpp 文件，但也可以写那种包含几十甚至上百个 .cpp 文件的程序。
+        另外还要注意，许多复杂的 C++ 程序具有多个 <em>.cpp</em> 文件。虽然最开始我们创建的程序只有一个 <em>.cpp</em> 文件，但也可以写那种包含几十甚至上百个 <em>.cpp</em> 文件的程序。
     </p>
     <p>
         写完自己的程序，下一步就是把源代码转换成某种可以运行的东西，看看它能不能工作！我们将在下一课中讨论这些步骤（第 4 - 7 步）。

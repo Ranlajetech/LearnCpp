@@ -3,7 +3,7 @@ body {
     font-size: 12pt;
 }
 
-p {
+p, li {
     line-height: 1.8;
 }
 
@@ -20,7 +20,7 @@ code.inline {
     white-space: pre;
 }
 
-code.nohljsln {
+code.lighter {
     font-weight: lighter;
 }
 
@@ -87,6 +87,6 @@ span.learncpp-translator-note {
 }
 
 .learncpp-block-title {
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
 }

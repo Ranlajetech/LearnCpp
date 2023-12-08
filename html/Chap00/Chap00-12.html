@@ -174,13 +174,13 @@
         使用 <code class="inline">&quot;-std=c++11&quot;,</code>，<code class="inline">&quot;-std=c++14&quot;,</code>，<code class="inline">&quot;-std=c++17&quot;,</code>，<code class="inline">&quot;-std=c++20&quot;,</code> 这些参数来开启对应的 C++11/14/17/20 特性。如果你使用的是 GCC 8 或 9，需要使用 <code class="inline">&quot;-std=c++2a&quot;,</code>。
     </p>
     <p>
-        把合适的语言标准参数（包括引号和逗号）放到 <code class="inline">task.json</code> 文件 <code class="inline">&quot;args&quot;</code> 一节 <code class="inline">&quot;${file}&quot;</code> 行前面。
+        把合适的语言标准参数（包括引号和逗号）放到 <em>task.json</em> 文件 <code class="inline">&quot;args&quot;</code> 一节 <code class="inline">&quot;${file}&quot;</code> 行前面。
     </p>
     <p>
-        同时还要让 Intellisense 使用相同的语言标准。例如使用 C++20 时，要在 <code class="inline">setting.json</code> 文件中添加单独一行 <code class="inline">&quot;C_Cpp.default.cppStandard&quot;: &quot;c++20&quot;</code>
+        同时还要让 Intellisense 使用相同的语言标准。例如使用 C++20 时，要在 <em>setting.json</em> 文件中添加单独一行 <code class="inline">&quot;C_Cpp.default.cppStandard&quot;: &quot;c++20&quot;</code>
     </p>
 <h2>
-    测试编译器的 C++17 兼容性
+    测试编译器的 C++17 兼容性 <span class="learncpp-language-standard">C++17</span>
 </h2>
     <p>
         启用 C++17 或更新标准之后，编译下面这段代码应该不会抛出任何错误或警告。如果无法通过编译，要么是没启用 C++17，要么是你的编译器对 C++17 的支持不完整。如果是后者，请更新你的 IDE 到最新版本。参见 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a>。
@@ -214,7 +214,7 @@ int main()
     return 0;
 }</code></pre>
 <h2>
-    测试编译器的 C++20 兼容性
+    测试编译器的 C++20 兼容性 <span class="learncpp-language-standard">C++20</span>
 </h2>
     <p>
         启用 C++20 或更新标准之后，编译下面这段代码应当不抛出任何错误或警告。
@@ -271,7 +271,7 @@ int main()
             下次创建新项目时，就可以看到这里创建的模板出现在列表里了。
         </p>
         <p>
-            使用这个模板创建新项目时，可能不会自动打开任何文件。你可以在 <em>Solution -- &lt;Project Name&gt; -- Source Files -- &lt;templatename&gt;.cpp</em> 打开 .cpp 文件。
+            使用这个模板创建新项目时，可能不会自动打开任何文件。你可以在 <em>Solution -- &lt;Project Name&gt; -- Source Files -- &lt;templatename&gt;.cpp</em> 打开 <em>.cpp</em> 文件。
         </p>
     </div>
     <div class="learncpp-blocktext-yellow">

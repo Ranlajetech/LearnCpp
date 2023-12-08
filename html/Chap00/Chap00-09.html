@@ -26,7 +26,7 @@
         发布配置用于发布程序。该版本通常对大小和性能做了优化，且不包含额外的调试信息。由于发布配置包含所有优化，因此该配置也可用于测试代码性能（以后会演示如何进行测试）。
     </p>
     <p>
-        使用 Visual Studio 编译 Hello World 程序时（<a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>），调试配置生成的可执行文件有 65KB，而在发布配置下只有 12KB。造成差异的主要原因是调试配置时保留了额外的调试信息。
+        使用 Visual Studio 编译 <em>HelloWorld</em> 程序时（<a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>），调试配置生成的可执行文件有 65KB，而在发布配置下只有 12KB。造成差异的主要原因是调试配置时保留了额外的调试信息。
     </p>
     <p>
         虽然可以创建自己的自定义编译配置，但除非你想比较使用不同编译配置的结果，一般情况下没理由这样做。
@@ -81,7 +81,7 @@
             VSCode 用户
         </p>
         <p>
-            第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <em>&quot;args&quot;</em>，定位到该部分的 <em>&quot;${file}&quot;</em> 行。
+            第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <code class="inline">&quot;args&quot;</code>，定位到该部分的 <code class="inline">&quot;${file}&quot;</code> 行。
         </p>
         <p>
             在这行上面添加一行，编译时写 <br/>

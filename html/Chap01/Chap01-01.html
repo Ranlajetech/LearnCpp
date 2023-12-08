@@ -76,7 +76,7 @@
         </p>
     </div>
 <h2>
-    函数（Function）和 main 函数
+    函数（Function）和 <code>main</code> 函数
 </h2>
     <p>
         在 C++ 中，语句一般会集合成称作函数的单位。<strong>函数</strong>（<strong>function</strong>）是是一组按顺序执行的语句。在学习写自己的程序时，你将能够创造自己的函数，并按自己所想来组合排列语句。
@@ -107,16 +107,16 @@
         在编程领域，函数（对象、类型、模板等）的名字叫做 <strong>标识符</strong>（<strong>identifier</strong>）。
     </p>
 <h2>
-    剖析 Hello world
+    剖析 <em>HelloWorld</em>
 </h2>
     <p>
-        我们现在有了对语句和函数的基本认识，再回到之前的 Hello world 程序，用更高级的视角深入了解每一行都是做什么的。
+        我们现在有了对语句和函数的基本认识，再回到之前的 <em>HelloWorld</em> 程序，用更高级的视角深入了解每一行都是做什么的。
     </p>
     <pre><code class="language-cpp">#include <iostream>
 
 int main()
 {
-   std::cout << &quot;Hello world!&quot;;
+   std::cout &lt;&lt; &quot;Hello world!&quot;;
    return 0;
 }</code></pre>
     <p>
@@ -129,10 +129,10 @@ int main()
         第 3 行告诉编译器我们要定义一个名（标识符）为 <code class="inline">main</code> 的函数。之前说过，每个 C++ 程序必须有一个 <code class="inline">main</code> 函数，否则就会链接失败。
     </p>
     <p>
-        第 4 和 7 行告诉编译器 <em>main</em> 函数的范围。在前后两个大括号之间的所有内容都是 <code class="inline">main</code> 函数的一部分。这一段叫做函数体。
+        第 4 和 7 行告诉编译器 <code class="inline">main</code> 函数的范围。在前后两个大括号之间的所有内容都是 <code class="inline">main</code> 函数的一部分。这一段叫做函数体。
     </p>
     <p>
-        第 5 行是 <code class="inline">main</code> 函数的第一条语句，也是程序运行时执行的第一条语句。<code class="inline">std::cout</code>（字符输出，character output） 和 <code class="inline">&lt;&lt;</code> 运算符让我们在控制台显示信息。在这里，我们显示的是文本 &quot;Hello world!&quot;。这条语句产生了程序的可见输出。
+        第 5 行是 <code class="inline">main</code> 函数的第一条语句，也是程序运行时执行的第一条语句。<code class="inline">std::cout</code>（字符输出，character output） 和 <code class="inline">&lt;&lt;</code> 运算符让我们在控制台显示信息。在这里，我们显示的是文本 <code class="inline">Hello world!</code>。这条语句产生了程序的可见输出。
     </p>
     <p>
         第 6 行是返回语句。程序运行结束后会向操作系统返回一个值来指示它有没有正常运行。这里向操作系统返回了 <code class="inline">0</code> 以表示一切顺利。这是程序运行时执行的最后一条语句。
@@ -151,7 +151,7 @@ int main()
     <p>
         你可以自己编译运行程序，可以在控制台看到输出：
     </p>
-    <pre><code class="language-plaintext nohljsln">Hello world!</code></pre>
+    <pre><code class="language-plaintext nohljsln lighter">Hello world!</code></pre>
     <p>
         如果编译运行过程中出现问题，参见 <a href="../Chap00/Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>。
     </p>
@@ -167,7 +167,7 @@ int main()
     <p>
         看看把第 5 行末尾的分号删掉会发生什么。编译这个有问题的程序，Visual Studio 会给出如下错误（其他编译器可能会有一些用词上的差别）：
     </p>
-    <pre><code class="language-plaintext nohljsln">c:\vcprojects\helloworld.cpp(6): error C2143: syntax error : missing &apos;;&apos; before &apos;return&apos;</code></pre>
+    <pre><code class="language-plaintext nohljsln lighter">c:\vcprojects\HelloWorld.cpp(6): error C2143: syntax error : missing &apos;;&apos; before &apos;return&apos;</code></pre>
     <p>
         这告诉你在第 6 行有语法错误：编译器期望在返回语句之前要有分号，但没有找到。尽管编译器告诉了你它在哪遇到的语法错误，但实际的问题在前一行。这个例子里，错误实际上发生在第 5 行末尾，而编译器直到第 6 行才能发现问题。
     </p>

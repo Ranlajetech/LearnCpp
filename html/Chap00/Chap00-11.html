@@ -17,10 +17,10 @@
         编译器会检查你写的程序是否符合 C++ 规则（假设你已按 <a href="Chap00-10.html" target="_blank">0.10 -- 编译器设置：编译器扩展</a> 一节所述，关闭了编译器扩展）。
     </p>
     <p>
-        如果你的程序肯定不符合语言规则，编译器就会抛出一个<strong>错误</strong>（<strong>error</strong>），提供错误所在的行号，并给出一段文本对比编译器的期望与实际找到的东西。错误实际上可能就在这一行，或者上下一行。找到错误并修正后，可以尝试再次编译。
+        如果你的程序肯定不符合语言规则，编译器就会抛出一个 <strong>错误</strong>（<strong>error</strong>），提供错误所在的行号，并给出一段文本对比编译器的期望与实际找到的东西。错误实际上可能就在这一行，或者上下一行。找到错误并修正后，可以尝试再次编译。
     </p>
     <p>
-        某些情况下，编译器可能会认为一些代码可能有问题，但并不确定（记住，C++“信任程序员”）。此时，编译器可能会抛出一个<strong>警告</strong>（<strong>warning</strong>）。触发警告不会中止编译过程，但程序员应当留意有没有漏洞。
+        某些情况下，编译器可能会认为一些代码可能有问题，但并不确定（记住，C++“信任程序员”）。此时，编译器可能会抛出一个 <strong>警告</strong>（<strong>warning</strong>）。触发警告不会中止编译过程，但程序员应当留意有没有漏洞。
     </p>
     <div class="learncpp-blocktext-green">
         <p class="learncpp-block-title">
@@ -34,7 +34,7 @@
         大多数情况下，可以修改警告指出的代码问题来消除警告，也可以用不会触发警告的方式重写那一部分代码。
     </p>
     <p>
-        某些少见的情况下，需要明确告知编译器不要在这行代码上抛出警告。C++ 官方支持并不支持直接做到这点，但许多编译器（包括 Visual Studio 和 GCC）提供了暂时禁用警告的方法（通过不可移植的 #pragma 指令）。
+        某些少见的情况下，需要明确告知编译器不要在这行代码上抛出警告。C++ 官方支持并不支持直接做到这点，但许多编译器（包括 Visual Studio 和 GCC）提供了暂时禁用警告的方法（通过不可移植的 <code>#pragma</code> 指令）。
     </p>
 <h2>
     提高警告等级
@@ -100,7 +100,7 @@
             VS Code 用户
         </p>
         <p>
-            打开 task.json 文件，找到 &quot;args&quot;，定位到这一段的 &quot;${file}&quot; 行。在这一行上面，添加以下行（一行一个）：<br/>
+            打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面，添加以下行（一行一条）：<br/>
             <code class="inline">&quot;-Wall&quot;,</code><br/>
             <code class="inline">&quot;-Weffc++&quot;,</code><br/>
             <code class="inline">&quot;-Wextra&quot;,</code><br/>
@@ -154,7 +154,7 @@
             VS Code 用户
         </p>
         <p>
-            打开 task.json 文件，找到 &quot;args&quot;，定位到这一段的 &quot;${file}&quot; 行。在这一行上面写（一行一条）：<br/>
+            打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面写（一行一条）：<br/>
             <code class="inline">&quot;-Werror&quot;,</code>
         </p>
     </div>
