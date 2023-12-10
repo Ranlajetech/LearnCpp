@@ -21,6 +21,222 @@
 <h1>
     1.6 -- 未初始化的变量与未定义行为
 </h1>
+<h2>
+    未初始化的变量
+</h2>
+    <p>
+        与其他一些编程语言不同，绝大多数变量都不会被 C / C++ 自动初始化为某个给定的值（比如 0）。因此，给变量分配内存地址后，变量的默认值就是那块内存里原有的随机垃圾值。变量在没被明确赋值时被称为 <strong>未初始化的变量</strong>（<strong>uninitialized variable</strong>）。
+    </p>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            作者的话
+        </p>
+        <p>
+            许多读者认为 <em>初始化了</em> 和 <em>未初始化</em> 应该正好相反，但实际并非如此。<em>初始化了</em> 指对象在定义时就给了一个初始值；而 <em>未初始化</em> 指还没给对象一个已知的值（无论通过什么方式，包括赋值）。因此，没有初始化但后续有赋值的对象不再处于 <em>未初始化</em> 状态（因为它已经被赋给了一个已知的值）。
+        </p>
+        <p>
+            总结一下：
+        </p>
+        <ul>
+            <li>初始化了： 定义时就有了初始值。</li>
+            <li>赋值：定义之后赋给一个值。</li>
+            <li>未初始化：对象还没被赋予一个已知的值。</li>
+        </ul>
+    </div>
+    <div class="learncpp-blocktext-grey">
+        <p class="learncpp-block-title">
+            延申阅读
+        </p>
+        <p>
+            没有默认初始化的行为是继承自 C 的一种性能优化，那时计算机还很慢。想象要从文件读取 100000 个值。这种情况下，可能要创建 100000 个变量，然后用文件里的数据填充。
+        </p>
+        <p>
+            如果 C++ 在创建这些变量时就用默认值初始化（可能很慢），这就造成了 100000 次初始化，但几乎没有回报（因为反正这些值要被覆盖）。
+        </p>
+        <p>
+            目前，应当总是把变量初始化，因为弊远大于利。对语言更熟悉之后，可能有某些特定的情况下要为了优化而省略初始化，但总是应当特地选择这么做。
+        </p>
+    </div>
+    <p>
+        使用未初始化的变量的值可能会导致意外的结果。考虑下面的程序：
+    </p>
+    <pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    // 定义变量 x
+    int x; // 此变量未初始化, 因为还没给它一个值
+
+    // 把 x 的值显示到屏幕
+    std::cout &lt;&lt; x &lt;&lt; &apos;\n&apos;; // 谁也不知道会是什么结果, 因为 x 未初始化
+
+    return 0;
+}</code></pre>
+    <p>
+        在这种情况下，计算机会把一些未使用的内存分配给 <code class="inline">x</code>，再把那块内存中的值传给 <code class="inline">std::cout</code>， 然后显示这个值（解释为整数）。但它会打印出什么值呢？谁也不知道，而且可能每次运行结果都不一样。作者在 Visual Studio 中运行这个程序时，<code class="inline">std::cout</code> 一次显示的值是 <code class="inline">7177728</code>，而下一次是 <code class="inline">5277592</code>。你可以编译并运行这个程序（电脑不会炸）。
+    </p>
+    <div class="learncpp-blocktext-red">
+        <p class="learncpp-block-title">
+            警告
+        </p>
+        <p>
+            某些编译器，比如 Visual Studio，会在 <em>debug</em> 编译配置下自动把内存里的内容初始化为某个预设的值，而在 <em>release</em> 编译配置下不会。因此，如果想要运行上面这个程序，确保使用了 <em>release</em> 编译配置（参见 <a href="../Chap00/Chap00-09.html" target="_blank">0.9 -- 编译器设置：程序编译配置</a>）。如果在 Visual Studio 的 <em>debug</em> 编译配置下运行，它会持续性输出 <code class="inline">-858993460</code>，这是 Visual Studio 在 <em>debug</em> 编译配置下给内存的初始化值（解释为整数）。
+        </p>
+    </div>
+    <p>
+        绝大多数现代编译器会检查变量是否未赋值就使用。如果编译器有检查功能，就会抛出编译警告或错误。例如，在 Visual Studio 编译上述程序会产生如下警告：
+    </p>
+    <pre><code class="language-plaintext nohljsln lighter">c:\VCprojects\test\test.cpp(11) : warning C4700: uninitialized local variable &apos;x&apos; used</code></pre>
+    <p>
+        如果上面的程序无法通过编译（比如编译器认为这是个错误），有一个办法绕过这个问题：
+    </p>
+    <pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void doNothing(int&amp;) // 不知道这里的 &amp; 是什么也没关系, 这里只是用来让编译器以为变量 x 使用过了。
+{
+}
+
+int main()
+{
+    // 定义变量 x
+    int x; // 此变量未初始化
+
+    doNothing(x); // 让编译器以为给变量 x 赋值了
+
+    // 显示 x 的值, 没人知道结果是什么, 因为 x 未初始化
+    std::cout &lt;&lt; x &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+    <p>
+        未初始化变量是新手最常犯的错误之一，但很不幸，这也是最难找到的问题之一（因为程序有可能会正常运行，如果未初始化的变量的内存位置恰巧有个合理的值，比如 0）。
+    </p>
+    <p>
+        这也是 <em>总是把变量初始化</em> 的基本原因。
+    </p>
+<h2>
+    未定义行为
+</h2>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
 
 <hr/>
 <nav>
