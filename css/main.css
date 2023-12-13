@@ -4,21 +4,23 @@ body {
 }
 
 p,
-li {
+li,
+table.content-nohead td,
+table.content-withhead td {
     line-height: 1.8;
 }
 
 h2 {
-    border-top: 1px solid #e3e3e3;
     padding-top: 1.5%;
+    border-top: 1px solid #e3e3e3;
 }
 
 code.inline {
-    background-color: #e6e6e6;
     padding: 1px 5px;
-    border-radius: 5px;
-    border-bottom: 2px solid #c7c7c7;
     white-space: pre;
+    border-bottom: 2px solid #c7c7c7;
+    border-radius: 5px;
+    background-color: #e6e6e6;
 }
 
 code.lighter {
@@ -26,56 +28,56 @@ code.lighter {
 }
 
 span.learncpp-language-standard {
+    padding: 1px 5px;
+    white-space: pre;
+    border-radius: 5px;
+    background-color: #6aa3e7;
     color: white;
     font-size: medium;
     font-weight: normal;
-    background-color: #6aa3e7;
-    padding: 1px 5px;
-    border-radius: 5px;
-    white-space: pre;
 }
 
 img {
-    height: auto;
     max-width: 100%;
+    height: auto;
 }
 
 div[class^=learncpp-blocktext] {
+    margin: 1.5% 0%;
+    padding: 0% 14px;
     border-width: 2px 2px 5px 2px;
     border-style: solid;
     border-radius: 10px;
-    margin: 1.5% 0%;
-    padding: 0% 1.5%;
 }
 
 div.learncpp-blocktext-violet {
-    background-color: #dfe7ff;
     border-color: #9caad4;
+    background-color: #dfe7ff;
 }
 
 div.learncpp-blocktext-purple {
-    background-color: #e7dfff;
     border-color: #c1acff;
+    background-color: #e7dfff;
 }
 
 div.learncpp-blocktext-green {
-    background-color: #dfffdf;
     border-color: #9cd49c;
+    background-color: #dfffdf;
 }
 
 div.learncpp-blocktext-red {
-    background-color: #ffd6d6;
     border-color: #d89696;
+    background-color: #ffd6d6;
 }
 
 div.learncpp-blocktext-grey {
-    background-color: #f4f4f4;
     border-color: #c7c7c7;
+    background-color: #f4f4f4;
 }
 
 div.learncpp-blocktext-yellow {
-    background-color: #ffffdf;
     border-color: #dad591;
+    background-color: #ffffdf;
 }
 
 span.learncpp-translator-note {
@@ -90,4 +92,48 @@ span.learncpp-translator-note {
 .learncpp-block-title {
     font-size: large;
     font-weight: bold;
+}
+
+div.table-wrapper-scroll {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+table.content-nohead,
+table.content-withhead {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-width: 2px 2px 5px 2px;
+    border-style: solid;
+    border-color: #64A6F5;
+    border-radius: 10px;
+}
+
+table.content-nohead td {
+    padding: 4px 20px 4px 8px;
+    border-style: none;
+    border-color: transparent;
+    text-align: left;
+}
+
+table.content-nohead tr:nth-child(odd) {
+    background-color: #edf5ff;
+}
+
+table.content-nohead tr:first-child td:first-child,
+table.content-withhead th:first-child td:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+table.content-nohead tr:first-child td:last-child,
+table.content-withhead th:first-child td:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+table.content-nohead tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+
+table.content-nohead tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
 }
