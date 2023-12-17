@@ -13,273 +13,272 @@
 <h1>
     0.6 -- 安装集成开发环境（IDE）
 </h1>
-    <p>
-        集成开发环境（IDE）是个软件包，提供了开发、编译、链接、调试等功能。
-    </p>
-    <p>
-        典型的现代 IDE 应当具有以下特性：
-    </p>
-    <ul>
-        <li>方便加载保存代码文件。</li>
-        <li>代码编辑器具有一些编程友好的特性，例如行号、语法高亮、内置的帮助、名称补全和自动格式化。</li>
-        <li>基础的生成功能，把程序编译链接为可执行文件并运行。</li>
-        <li>内置调试器，更易定位并修复程序漏洞。</li>
-        <li>容易安装扩展，可修改 IDE 特性或添加功能，比如版本控制。</li>
-    </ul>
-    <p>
-        一些 IDE 还会安装并配置一个 C++ 编译器和链接器。而还有一些要让你添加编译器或链接器（也就是单独安装）。
-    </p>
-    <p>
-        尽管你可以把这些过程拆分单独处理，但安装一个可以在一个界面上一次性完成所有工作的 IDE 显然要方便许多。
-    </p>
-    <p>
-        所以我们安装一个吧！
-    </p>
+<p>
+    集成开发环境（IDE）是个软件包，提供了开发、编译、链接、调试等功能。
+</p>
+<p>
+    典型的现代 IDE 应当具有以下特性：
+</p>
+<ul>
+    <li>方便加载保存代码文件。</li>
+    <li>代码编辑器具有一些编程友好的特性，例如行号、语法高亮、内置的帮助、名称补全和自动格式化。</li>
+    <li>基础的生成功能，把程序编译链接为可执行文件并运行。</li>
+    <li>内置调试器，更易定位并修复程序漏洞。</li>
+    <li>容易安装扩展，可修改 IDE 特性或添加功能，比如版本控制。</li>
+</ul>
+<p>
+    一些 IDE 还会安装并配置一个 C++ 编译器和链接器。而还有一些要让你添加编译器或链接器（也就是单独安装）。
+</p>
+<p>
+    尽管你可以把这些过程拆分单独处理，但安装一个可以在一个界面上一次性完成所有工作的 IDE 显然要方便许多。
+</p>
+<p>
+    所以我们安装一个吧！
+</p>
 <h2>
     选择一个 IDE
 </h2>
-    <p>
-        显然下一个问题就是：安装哪个？许多 IDE 都是免费的，你可以多安装几个然后试出你最喜欢的，这里我们推荐几个。
+<p>
+    显然下一个问题就是：安装哪个？许多 IDE 都是免费的，你可以多安装几个然后试出你最喜欢的，这里我们推荐几个。
+</p>
+<p>
+    如果你有自己喜欢的其他 IDE 也可以，本教程所展示的这些概念在绝大部分现代 IDE 上应该是通用的。但不同的 IDE 可能会使用不同的名称、排版布局、快捷键映射等等，所以你可能需要额外付出一些精力找到你的 IDE 中对应的功能。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        小贴士
     </p>
     <p>
-        如果你有自己喜欢的其他 IDE 也可以，本教程所展示的这些概念在绝大部分现代 IDE 上应该是通用的。但不同的 IDE 可能会使用不同的名称、排版布局、快捷键映射等等，所以你可能需要额外付出一些精力找到你的 IDE 中对应的功能。
+        为了能够学习本教程提供的绝大部分知识，我们建议安装一个编译器兼容 C++17 标准的 IDE。
     </p>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            小贴士
-        </p>
-        <p>
-            为了能够学习本教程提供的绝大部分知识，我们建议安装一个编译器兼容 C++17 标准的 IDE。
-        </p>
-        <p>
-            如果你坚持使用仅支持 C++14 标准的编译器（可能是出于教育需要或者工作上的限制），大部分课程和例子仍然适用。但讲到 C++17（或更新的）内容时你还在使用较旧的编译器，你就不得不跳过这一部分，或者自己将其转换成你所用版本的代码，而这可能并不容易。
-        </p>
-        <p>
-            你不该使用比 C++11 更老的编译器，大家普遍认为这是现代 C++ 的最低标准。
-        </p>
-        <p>
-            我们推荐你安装编译器的最新版本。如果你不能使用最新版，这是支持 C++17 标准的编译器的最低版本：
-        </p>
-        <ul>
-            <li>GCC/G++ 7</li>
-            <li>Clang++ 8</li>
-            <li>Visual Studio 2017 15.7</li>
-        </ul>
-    </div>
+    <p>
+        如果你坚持使用仅支持 C++14 标准的编译器（可能是出于教育需要或者工作上的限制），大部分课程和例子仍然适用。但讲到 C++17（或更新的）内容时你还在使用较旧的编译器，你就不得不跳过这一部分，或者自己将其转换成你所用版本的代码，而这可能并不容易。
+    </p>
+    <p>
+        你不该使用比 C++11 更老的编译器，大家普遍认为这是现代 C++ 的最低标准。
+    </p>
+    <p>
+        我们推荐你安装编译器的最新版本。如果你不能使用最新版，这是支持 C++17 标准的编译器的最低版本：
+    </p>
+    <ul>
+        <li>GCC/G++ 7</li>
+        <li>Clang++ 8</li>
+        <li>Visual Studio 2017 15.7</li>
+    </ul>
+</div>
 <h2>
     Visual Studio（Windows 用户）
 </h2>
-    <p>
-        如果你在 Windows 10 系统上搞开发，我们强烈推荐下载使用 <a href="https://visualstudio.microsoft.com/downloads/" title="Microsoft" target="_blank">Visual Studio 2022 Community</a>。
+<p>
+    如果你在 Windows 10 系统上搞开发，我们强烈推荐下载使用 <a href="https://visualstudio.microsoft.com/downloads/" title="Microsoft" target="_blank">Visual Studio 2022 Community</a>。
+</p>
+<p>
+    运行安装程序后，会出现一个屏幕询问你要安装什么工作负载。选择 <em>使用 C++ 的桌面开发</em>（<em>Desktop development with C++</em>），否则无法使用 C++ 功能。
+</p>
+<p>
+    使用屏幕右侧的默认选项就可以，但要确保勾选了 <em>Windows 11 SDK</em>（或 <em>Windows 10 SDK</em>）。
+</p>
+<p>
+    <!-- 此处应有屏幕截图 -->
+</p>
+<p>
+    如果它的硬盘占用或网络下载大小你无法接受，微软还提供了 <a href="https://visualstudio.microsoft.com/vs/express/" title="Microsoft" target="_blank">Visual Studio Express 2017 for Windows Desktop</a> 作为替代，你可以在链接页面底部找到。微软不再对此产品提供支持，它没有多少对 C++ 最新特性的支持，所以我们只向无法安装 Visual Studio Community 的用户指出这一替代作为最后选择。
+</p>
+<h2>
+    Code::Blocks（Linux 和 Windows 用户）
+</h2>
+<p>
+    如果你使用 Linux 开发，或者在 Windows 上开发可迁移到 Linux 的程序，我们推荐 <a href="https://www.codeblocks.org/downloads/binaries/" target="_blank">Code::Blocks</a>。Code::Blocks 是个免费、开源、跨平台的 IDE，可以在 Linux 和 Windows 上运行。
+</p>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Windows 用户
     </p>
     <p>
-        运行安装程序后，会出现一个屏幕询问你要安装什么工作负载。选择 <em>使用 C++ 的桌面开发</em>（<em>Desktop development with C++</em>），否则无法使用 C++ 功能。
-    </p>
-    <p>
-        使用屏幕右侧的默认选项就可以，但要确保勾选了 <em>Windows 11 SDK</em>（或 <em>Windows 10 SDK</em>）。
+        要选择集成了 MinGW 的 Code::Blocks 版本（文件名以 <em>mingw-setup.exe</em> 结尾）。这会安装 MinGW，它包括了 GCC C++ 编译器的 Windows 接口。
     </p>
     <p>
         <!-- 此处应有屏幕截图 -->
     </p>
     <p>
-        如果它的硬盘占用或网络下载大小你无法接受，微软还提供了 <a href="https://visualstudio.microsoft.com/vs/express/" title="Microsoft" target="_blank">Visual Studio Express 2017 for Windows Desktop</a> 作为替代，你可以在链接页面底部找到。微软不再对此产品提供支持，它没有多少对 C++ 最新特性的支持，所以我们只向无法安装 Visual Studio Community 的用户指出这一替代作为最后选择。
+        Code::Blocks 20.03 的 MinGW 版本过老，只支持 C++17（比现有的最新版 C++ 落后了一个版本）。如果你想用最新版的 C++20，你就需要升级 MinGW：
     </p>
-<h2>
-    Code::Blocks（Linux 和 Windows 用户）
-</h2>
+    <ol>
+        <li>如上文所述安装 Code::Blocks。</li>
+        <li>如果它自动打开了就把它关掉。</li>
+        <li>打开 Windows 文件资源管理器（快捷键是 <em>Win-E</em>）。</li>
+        <li>打开 Code::Blocks 的安装目录（默认是 &quot;C:\Program Files (x86)\CodeBlocks&quot;）。</li>
+        <li>把 MinGW 文件夹重命名为 MinGW.bak（以防出错）。</li>
+        <li>在浏览器中打开网址 <a href="https://winlibs.com/" target="_blank">https://winlibs.com/</a>。</li>
+        <li>下载最新版 MinGW。一般来说你应该下载 <em>Release Versions -- UCRT Runtime -- LATEST -- Win64 -- without LLVM/Clang/LLD/LLDB -- Zip archive</em> 中的一个。</li>
+        <li>把 mingw64 文件夹解压到安装目录。</li>
+        <li>把 mingw64 重命名为 MinGW。</li>
+    </ol>
     <p>
-        如果你使用 Linux 开发，或者在 Windows 上开发可迁移到 Linux 的程序，我们推荐 <a href="https://www.codeblocks.org/downloads/binaries/" target="_blank">Code::Blocks</a>。Code::Blocks 是个免费、开源、跨平台的 IDE，可以在 Linux 和 Windows 上运行。
+        如果你确定正确地更新了编译器并能正常使用，就可以删掉以前的 &quot;MinGW.bak&quot; 文件夹。
     </p>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Windows 用户
-        </p>
-        <p>
-            要选择集成了 MinGW 的 Code::Blocks 版本（文件名以 <em>mingw-setup.exe</em> 结尾）。这会安装 MinGW，它包括了 GCC C++ 编译器的 Windows 接口。
-        </p>
-        <p>
-            <!-- 此处应有屏幕截图 -->
-        </p>
-        <p>
-            Code::Blocks 20.03 的 MinGW 版本过老，只支持 C++17（比现有的最新版 C++ 落后了一个版本）。如果你想用最新版的 C++20，你就需要升级 MinGW：
-        </p>
-        <ol>
-            <li>如上文所述安装 Code::Blocks。</li>
-            <li>如果它自动打开了就把它关掉。</li>
-            <li>打开 Windows 文件资源管理器（快捷键是 <em>Win-E</em>）。</li>
-            <li>打开 Code::Blocks 的安装目录（默认是 &quot;C:\Program Files (x86)\CodeBlocks&quot;）。</li>
-            <li>把 MinGW 文件夹重命名为 MinGW.bak（以防出错）。</li>
-            <li>在浏览器中打开网址 <a href="https://winlibs.com/" target="_blank">https://winlibs.com/</a>。</li>
-            <li>下载最新版 MinGW。一般来说你应该下载 <em>Release Versions -- UCRT Runtime -- LATEST -- Win64 -- without LLVM/Clang/LLD/LLDB -- Zip archive</em> 中的一个。</li>
-            <li>把 mingw64 文件夹解压到安装目录。</li>
-            <li>把 mingw64 重命名为 MinGW。</li>
-        </ol>
-        <p>
-            如果你确定正确地更新了编译器并能正常使用，就可以删掉以前的 &quot;MinGW.bak&quot; 文件夹。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Linux 用户
-        </p>
-        <p>
-            某些 Linux 安装可能缺少运行 Code::Blocks 或用它编译程序所需的依赖。
-        </p>
-        <p>
-            类 Debian 的 Linux 用户（例如 Mint 和 Ubuntu）可能会需要安装 <em>build-essential</em> 包。在终端命令行中运行 <code class="inline">sudo apt-get install build-essential</code>。
-        </p>
-        <p>
-            类 Arch 的 Linux 用户可能需要安装 <em>base-devel</em> 包。
-        </p>
-        <p>
-            Linux 其他变种的用户可能需要自行确认自己的包管理器和需要的包。
-        </p>
-    </div>
-    <p>
-        第一次运行 Code::Blocks 时，可能会出现 <em>Compilers auto-detection</em> 对话框。如果有，确保选择了 <em>GNU GCC Compiler</em> 作为默认编译器，按 <em>OK</em> 按钮。
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Linux 用户
     </p>
     <p>
-        <!-- 此处应有截图 -->
+        某些 Linux 安装可能缺少运行 Code::Blocks 或用它编译程序所需的依赖。
     </p>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q： 出现错误“在设置的搜索路径中找不到编译器可执行文件”怎么办？<br/>（Can't find compiler executable in your configured search paths for GNU GCC Compiler）
-        </p>
-        <p>
-            尝试以下方法：
-        </p>
-        <ol>
-            <li>如果你是 Windows 用户，确保你下载了带有 MinGW 的 Code::Blocks。</li>
-            <li>到 <em>Settings -- Compiler -- Reset to defaults</em>。</li>
-            <li>到 <em>Settings -- Compiler -- Toolchain executables</em>，确保 <em>Compiler's installation directory</em> 已经设置到 MinGW 的文件夹（默认是 &quot;C:\Program Files (x86)\CodeBlocks\MinGW&quot;）。</li>
-            <li>卸载重装。</li>
-            <li><a href="https://wiki.codeblocks.org/index.php/Installing_a_supported_compiler" target="_blank" title="Code::Blocks Wiki">换个编译器</a>。</li>
-        </ol>
-    </div>
-
+    <p>
+        类 Debian 的 Linux 用户（例如 Mint 和 Ubuntu）可能会需要安装 <em>build-essential</em> 包。在终端命令行中运行 <code class="inline">sudo apt-get install build-essential</code>。
+    </p>
+    <p>
+        类 Arch 的 Linux 用户可能需要安装 <em>base-devel</em> 包。
+    </p>
+    <p>
+        Linux 其他变种的用户可能需要自行确认自己的包管理器和需要的包。
+    </p>
+</div>
+<p>
+    第一次运行 Code::Blocks 时，可能会出现 <em>Compilers auto-detection</em> 对话框。如果有，确保选择了 <em>GNU GCC Compiler</em> 作为默认编译器，按 <em>OK</em> 按钮。
+</p>
+<p>
+    <!-- 此处应有截图 -->
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q： 出现错误“在设置的搜索路径中找不到编译器可执行文件”怎么办？<br/>（Can't find compiler executable in your configured search paths for GNU GCC Compiler）
+    </p>
+    <p>
+        尝试以下方法：
+    </p>
+    <ol>
+        <li>如果你是 Windows 用户，确保你下载了带有 MinGW 的 Code::Blocks。</li>
+        <li>到 <em>Settings -- Compiler -- Reset to defaults</em>。</li>
+        <li>到 <em>Settings -- Compiler -- Toolchain executables</em>，确保 <em>Compiler's installation directory</em> 已经设置到 MinGW 的文件夹（默认是 &quot;C:\Program Files (x86)\CodeBlocks\MinGW&quot;）。</li>
+        <li>卸载重装。</li>
+        <li><a href="https://wiki.codeblocks.org/index.php/Installing_a_supported_compiler" target="_blank" title="Code::Blocks Wiki">换个编译器</a>。</li>
+    </ol>
+</div>
 <h2>
     Visual Studio Code（Linux，macOS，Windows 进阶用户）
 </h2>
-    <p>
-        Visual Studio Code（也称 VS Code，不要和 Visual Studio Community 混淆）是个代码编辑器，在进阶开发者中较为流行，因为它快速、灵活、开源、可用于许多编程语言、多个平台上可用。
+<p>
+    Visual Studio Code（也称 VS Code，不要和 Visual Studio Community 混淆）是个代码编辑器，在进阶开发者中较为流行，因为它快速、灵活、开源、可用于许多编程语言、多个平台上可用。
+</p>
+<p>
+    VS Code 的缺点就是和其他推荐的软件相比较难正确配置（在 Windows 上还更难安装）。在继续之前，建议先阅读下面给出的安装、配置文档的链接，保证你能理解并能接受那些步骤。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-head-content">
+        作者的话
     </p>
     <p>
-        VS Code 的缺点就是和其他推荐的软件相比较难正确配置（在 Windows 上还更难安装）。在继续之前，建议先阅读下面给出的安装、配置文档的链接，保证你能理解并能接受那些步骤。
+        不少读者报告称在正确安装配置 Visual Studio Code 的过程中遇到了很多困难。我们不建议你选择它，除非你已经很熟悉 Visual Studio Code 了，或者有调试错误和修改 <em>.json</em> 配置文件的经验。本教程不提供安装配置的支持。
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-head-content">
-            作者的话
-        </p>
-        <p>
-            不少读者报告称在正确安装配置 Visual Studio Code 的过程中遇到了很多困难。我们不建议你选择它，除非你已经很熟悉 Visual Studio Code 了，或者有调试错误和修改 <em>.json</em> 配置文件的经验。本教程不提供安装配置的支持。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Linux 用户
-        </p>
-        <p>
-            VS Code 应当通过你的发行版的包管理器安装。<a href="https://code.visualstudio.com/docs/setup/linux" title="VS Code Docs" target="_blank">在 Linux 上使用 VS Code 的指导</a> 包括了在不同发行版上的指导。
-        </p>
-        <p>
-            VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/cpp/config-linux" title="VS Code Docs" target="_blank">如何在 Linux 上配置 C++</a>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Mac 用户
-        </p>
-        <p>
-            <a href="https://code.visualstudio.com/docs/setup/mac" title="VS Code Docs" target="_blank">在 Mac 上使用 VS Code 的指导</a> 包括了如何安装配置 VS Code 的细节。
-        </p>
-        <p>
-            VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/cpp/config-clang-mac" title="VS Code Docs" target="_blank">如何在 Mac 上配置 C++</a>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Windows 用户
-        </p>
-        <p>
-            <a href="https://code.visualstudio.com/docs/setup/windows" title="VS Code Docs" target="_blank">在 Windows 上使用 VS Code 的指导</a> 包括了如何安装配置 VS Code 的细节。
-        </p>
-        <p>
-            VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/setup/windows" title="VS Code Docs" target="_blank">如何在 Windows 上配置 C++</a>。
-        </p>
-    </div>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Linux 用户
+    </p>
+    <p>
+        VS Code 应当通过你的发行版的包管理器安装。<a href="https://code.visualstudio.com/docs/setup/linux" title="VS Code Docs" target="_blank">在 Linux 上使用 VS Code 的指导</a> 包括了在不同发行版上的指导。
+    </p>
+    <p>
+        VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/cpp/config-linux" title="VS Code Docs" target="_blank">如何在 Linux 上配置 C++</a>。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Mac 用户
+    </p>
+    <p>
+        <a href="https://code.visualstudio.com/docs/setup/mac" title="VS Code Docs" target="_blank">在 Mac 上使用 VS Code 的指导</a> 包括了如何安装配置 VS Code 的细节。
+    </p>
+    <p>
+        VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/cpp/config-clang-mac" title="VS Code Docs" target="_blank">如何在 Mac 上配置 C++</a>。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Windows 用户
+    </p>
+    <p>
+        <a href="https://code.visualstudio.com/docs/setup/windows" title="VS Code Docs" target="_blank">在 Windows 上使用 VS Code 的指导</a> 包括了如何安装配置 VS Code 的细节。
+    </p>
+    <p>
+        VS Code 安装后，遵循<a href="https://code.visualstudio.com/docs/setup/windows" title="VS Code Docs" target="_blank">如何在 Windows 上配置 C++</a>。
+    </p>
+</div>
 <h2>
     其他 macOS IDE
 </h2>
-    <p>
-        其他 Mac 上的流行选择还有 <a href="https://developer.apple.com/xcode/" title="Apple Developer" target="_blank">XCode</a>（如果你能用得到）和 <a href="https://www.eclipse.org/" target="_blank">Eclipse</a> 代码编辑器。Eclipse 默认没有配置 C++，你需要安装可选的 C++ 组件。
-    </p>
-    <p>
-        虽然 Visual Studio for Mac 已经发布，但它不支持 C++，而且 Microsoft 已经宣布即将停止支持。
-    </p>
+<p>
+    其他 Mac 上的流行选择还有 <a href="https://developer.apple.com/xcode/" title="Apple Developer" target="_blank">XCode</a>（如果你能用得到）和 <a href="https://www.eclipse.org/" target="_blank">Eclipse</a> 代码编辑器。Eclipse 默认没有配置 C++，你需要安装可选的 C++ 组件。
+</p>
+<p>
+    虽然 Visual Studio for Mac 已经发布，但它不支持 C++，而且 Microsoft 已经宣布即将停止支持。
+</p>
 <h2>
     其他编译器和平台
 </h2>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q： 可以使用在线编译器吗？
-        </p>
-        <p>
-            在某种程度上可以。你下载 IDE 的过程中（或者还没决定安装一个的时候），你可以先用在线编译器继续学习本教程。推荐下面几个：
-        </p>
-        <ul>
-            <li><a href="https://www.tutorialspoint.com/compile_cpp_online.php" target="_blank">TutorialsPoint</a></li>
-            <li><a href="https://wandbox.org/" target="_blank">Wandbox</a>（可以选择不同版本的 GCC 和 Clang）</li>
-            <li><a href="https://godbolt.org/" target="_blank">Godbolt</a>（可以看到汇编代码）</li>
-        </ul>
-        <p>
-            在线编译器用于尝试一下或者在一些简单的练习上还可以。但它们在功能上有很大限制，比如不能用多个文件或者无法调试程序。你可能还是会希望迁移到一个完整的 IDE 上。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q： 可以使用命令行编译器（比如 Linux 上的 g++）吗？
-        </p>
-        <p>
-            可以，但不推荐初学者这么做。你可能需要自己找编辑器再到别处查找怎么使用它。使用命令行调试器也不像集成调试器那么简单，会增大你调试的难度。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q： 可以使用别的代码编辑器吗，比如 Eclipse、Sublime 或 Notepad++？
-        </p>
-        <p>
-            可以，但不推荐初学者这么做。很多优秀的代码编辑器和 IDE 可配置支持的语言范围很广，也允许用户混合搭配插件以自定义使用体验。但这样的编辑器和 IDE 同时也要做很多设置才能编译 C++ 程序，这个过程中有很多步骤容易出错。对于初学者来说，我们还是建议使用开箱即用的产品，这样可以花更多时间来学习编程，而不是浪费在弄清楚为什么编辑器、编译器、调试器不能正常工作上。
-        </p>
-    </div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q： 可以使用在线编译器吗？
+    </p>
+    <p>
+        在某种程度上可以。你下载 IDE 的过程中（或者还没决定安装一个的时候），你可以先用在线编译器继续学习本教程。推荐下面几个：
+    </p>
+    <ul>
+        <li><a href="https://www.tutorialspoint.com/compile_cpp_online.php" target="_blank">TutorialsPoint</a></li>
+        <li><a href="https://wandbox.org/" target="_blank">Wandbox</a>（可以选择不同版本的 GCC 和 Clang）</li>
+        <li><a href="https://godbolt.org/" target="_blank">Godbolt</a>（可以看到汇编代码）</li>
+    </ul>
+    <p>
+        在线编译器用于尝试一下或者在一些简单的练习上还可以。但它们在功能上有很大限制，比如不能用多个文件或者无法调试程序。你可能还是会希望迁移到一个完整的 IDE 上。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q： 可以使用命令行编译器（比如 Linux 上的 g++）吗？
+    </p>
+    <p>
+        可以，但不推荐初学者这么做。你可能需要自己找编辑器再到别处查找怎么使用它。使用命令行调试器也不像集成调试器那么简单，会增大你调试的难度。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q： 可以使用别的代码编辑器吗，比如 Eclipse、Sublime 或 Notepad++？
+    </p>
+    <p>
+        可以，但不推荐初学者这么做。很多优秀的代码编辑器和 IDE 可配置支持的语言范围很广，也允许用户混合搭配插件以自定义使用体验。但这样的编辑器和 IDE 同时也要做很多设置才能编译 C++ 程序，这个过程中有很多步骤容易出错。对于初学者来说，我们还是建议使用开箱即用的产品，这样可以花更多时间来学习编程，而不是浪费在弄清楚为什么编辑器、编译器、调试器不能正常工作上。
+    </p>
+</div>
 <h2>
     不应选择的 IDE
 </h2>
-    <p>
-        支持的版本低于 C++11 的、根本不支持 C++ 的、不再更新维护的 IDE 都要避开：
-    </p>
-    <ul>
-        <li>Borland Turbo C++：不支持 C++11</li>
-        <li>Visual Studio for Mac：不支持 C++</li>
-        <li>Dev C++：不再更新维护</li>
-    </ul>
-    <p>
-        有轻量级、免费、支持现代 C++ 的替代品存在时，没理由选择过时的不再受支持的编译器。
-    </p>
+<p>
+    支持的版本低于 C++11 的、根本不支持 C++ 的、不再更新维护的 IDE 都要避开：
+</p>
+<ul>
+    <li>Borland Turbo C++：不支持 C++11</li>
+    <li>Visual Studio for Mac：不支持 C++</li>
+    <li>Dev C++：不再更新维护</li>
+</ul>
+<p>
+    有轻量级、免费、支持现代 C++ 的替代品存在时，没理由选择过时的不再受支持的编译器。
+</p>
 <h2>
     如果出错了……
 </h2>
-    <p>
-        安装 IDE 似乎造成了相当普遍的问题。安装可能彻底失败，或者安装成功但 IDE 由于配置原因使用起来有问题。如果遇到这种问题，可以尝试卸载重装、重启设备、暂时关闭杀毒软件重试安装。
-    </p>
-    <p>
-        如果还有问题，有两个选择。简单的就是换个 IDE，另一个就是尝试修复问题。不幸的是，这种安装和配置问题五花八门且与 IDE 软件本身紧密相关，所以我们也没法有效地给出解决问题的建议。这种时候，我们推荐你复制错误信息或者把你的问题拿到搜索引擎上查找，或者到一些论坛上找找帖子，看看有没有别的倒霉蛋和你遇到了相同的问题。一般你能找到修复问题的建议。
-    </p>
+<p>
+    安装 IDE 似乎造成了相当普遍的问题。安装可能彻底失败，或者安装成功但 IDE 由于配置原因使用起来有问题。如果遇到这种问题，可以尝试卸载重装、重启设备、暂时关闭杀毒软件重试安装。
+</p>
+<p>
+    如果还有问题，有两个选择。简单的就是换个 IDE，另一个就是尝试修复问题。不幸的是，这种安装和配置问题五花八门且与 IDE 软件本身紧密相关，所以我们也没法有效地给出解决问题的建议。这种时候，我们推荐你复制错误信息或者把你的问题拿到搜索引擎上查找，或者到一些论坛上找找帖子，看看有没有别的倒霉蛋和你遇到了相同的问题。一般你能找到修复问题的建议。
+</p>
 <h2>
     接下来
 </h2>
-    <p>
-        安装完 IDE（如果事情没按预期进行，这可能是相当难的一步），或者你选择暂时使用在线编译器，你就可以开始写第一个程序了！
-    </p>
+<p>
+    安装完 IDE（如果事情没按预期进行，这可能是相当难的一步），或者你选择暂时使用在线编译器，你就可以开始写第一个程序了！
+</p>
 <hr/>
 <nav>
     <a href="Chap00-07.html">[ 下一课：0.7 -- 编译第一个程序 ]</a><br/>

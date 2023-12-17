@@ -21,31 +21,31 @@
 <h1>
     1.5 -- <em>iostream</em> 简介：<code>cout</code>，<code>cin</code>，<code>endl</code>
 </h1>
-    <p>
-        本节会更详细地介绍在 <em>HelloWorld</em> 程序中用于把文本输出到屏幕上的 <code class="inline">std::cout</code>。同时也会介绍从用户获取输出的方法，这会让程序更易交互。
-    </p>
+<p>
+    本节会更详细地介绍在 <em>HelloWorld</em> 程序中用于把文本输出到屏幕上的 <code class="inline">std::cout</code>。同时也会介绍从用户获取输出的方法，这会让程序更易交互。
+</p>
 <h2>
     输入输出库
 </h2>
-    <p>
-        <strong>输入输出库</strong>（IO 库，<strong>input / output library</strong>，io library）是 C++ 标准库的一部分，用于处理基本的输入输出。我们利用这个库的功能来从键盘获取输入、把数据输出到控制台。<em>iostream</em> 里的 <em>io</em> 是 <em>input/output</em> 的缩写。
-    </p>
-    <p>
-        要使用 <em>iostream</em> 库中定义的功能，就要在使用了该库定义的内容的代码文件顶端写有 <code class="inline">#include &lt;iostream&gt;</code>，例如：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
+<p>
+    <strong>输入输出库</strong>（IO 库，<strong>input / output library</strong>，io library）是 C++ 标准库的一部分，用于处理基本的输入输出。我们利用这个库的功能来从键盘获取输入、把数据输出到控制台。<em>iostream</em> 里的 <em>io</em> 是 <em>input/output</em> 的缩写。
+</p>
+<p>
+    要使用 <em>iostream</em> 库中定义的功能，就要在使用了该库定义的内容的代码文件顶端写有 <code class="inline">#include &lt;iostream&gt;</code>，例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // 使用了 iostream 功能的代码</code></pre>
 <h2>
     <code>std::cout</code>
 </h2>
-    <p>
-        <em>iostream</em> 库包含了一些预定义的变量。其中最有用的一个就是 <strong>std::cout</strong>，它让我们能够向控制台发送要显示为文本的数据。<code>cout</code> 是 <em>character output</em> 的意思。
-    </p>
-    <p>
-        回顾一下 <em>HelloWorld</em> 程序：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    <em>iostream</em> 库包含了一些预定义的变量。其中最有用的一个就是 <strong>std::cout</strong>，它让我们能够向控制台发送要显示为文本的数据。<code>cout</code> 是 <em>character output</em> 的意思。
+</p>
+<p>
+    回顾一下 <em>HelloWorld</em> 程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -53,13 +53,13 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        在这段程序中，我们包含了 <em>iostream</em>，就可以使用 <code class="inline">std::cout</code> 和 <strong>插入运算符</strong>（<code class="inline">&lt;&lt;</code>），用于把文本 <code class="inline">Hello world!</code> 发送到控制台并显示。
-    </p>
-    <p>
-        <code class="inline">std::cout</code> 不仅可以显示文本，还可以显示数字：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    在这段程序中，我们包含了 <em>iostream</em>，就可以使用 <code class="inline">std::cout</code> 和 <strong>插入运算符</strong>（<code class="inline">&lt;&lt;</code>），用于把文本 <code class="inline">Hello world!</code> 发送到控制台并显示。
+</p>
+<p>
+    <code class="inline">std::cout</code> 不仅可以显示文本，还可以显示数字：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -67,14 +67,14 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">4</code></pre>
-    <p>
-        也可以显示变量的值：
-    </p>
-    <pre><code class="language-cpp">#include &ltiostream&gt; // 为了使用 std::cout
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">4</code></pre>
+<p>
+    也可以显示变量的值：
+</p>
+<pre><code class="language-cpp">#include &ltiostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -82,28 +82,28 @@ int main()
     std::cout &lt;&lt; x; // 把 x 的值 5 显示到控制台
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">5</code></pre>
-    <p>
-        想要在一行显示超过一个数据，可以在单个语句中多次使用插入运算符（<code class="inline">&lt;&lt;</code>）来把多段输出连接到一起。例如：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">5</code></pre>
+<p>
+    想要在一行显示超过一个数据，可以在单个语句中多次使用插入运算符（<code class="inline">&lt;&lt;</code>）来把多段输出连接到一起。例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
     std::cout &lt;&lt; &quot;Hello&quot; &lt;&lt; &quot; world!&quot;;
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Hello world!</code></pre>
-    <p>
-        这里还有个同一语句中既有文本又有变量值的例子：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Hello world!</code></pre>
+<p>
+    这里还有个同一语句中既有文本又有变量值的例子：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -111,25 +111,25 @@ int main()
     std::cout &lt;&lt; &quot;x is equal to: &quot; &lt;&lt; x;
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">x is equal to: 5</code></pre>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
     </p>
-    <pre><code class="language-plaintext nohljsln lighter">x is equal to: 5</code></pre>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            在 <a href="../Chap02/Chap02-09.html" target="_blank">2.9 -- 命名冲突与命名空间简介</a> 一节中会讨论 <code class="inline">std::</code> 前缀的含义。
-        </p>
-    </div>
+    <p>
+        在 <a href="../Chap02/Chap02-09.html" target="_blank">2.9 -- 命名冲突与命名空间简介</a> 一节中会讨论 <code class="inline">std::</code> 前缀的含义。
+    </p>
+</div>
 <h2>
     <code>std::endl</code>
 </h2>
-    <p>
-        你认为这段代码会输出什么？
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    你认为这段代码会输出什么？
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -137,20 +137,20 @@ int main()
     std::cout &lt;&lt; &quot;My name is Alex.&quot;;
     return 0;
 }</code></pre>
-    <p>
-        你可能会因结果而惊讶：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Hi!My name is Alex.</code></pre>
-    <p>
-        分离的输出语句不会让输出在控制台上换行。
-    </p>
-    <p>
-        解决办法之一是使用 <code class="inline">std::endl</code>。使用 <code class="inline">std::cout</code> 输出 <code class="inline">std::endl</code> 的时候，会在控制台显示换行符（让光标移到下一行开头）。在这种语境下，<code>endl</code> 意思是 <em>end line</em>。
-    </p>
-    <p>
-        例如：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout 与 std::endl
+<p>
+    你可能会因结果而惊讶：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Hi!My name is Alex.</code></pre>
+<p>
+    分离的输出语句不会让输出在控制台上换行。
+</p>
+<p>
+    解决办法之一是使用 <code class="inline">std::endl</code>。使用 <code class="inline">std::cout</code> 输出 <code class="inline">std::endl</code> 的时候，会在控制台显示换行符（让光标移到下一行开头）。在这种语境下，<code>endl</code> 意思是 <em>end line</em>。
+</p>
+<p>
+    例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout 与 std::endl
 
 int main()
 {
@@ -159,80 +159,80 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Hi!
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Hi!
 My name is Alex.</code></pre>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            提示
-        </p>
-        <p>
-            在上面的程序里，第二个 <code class="inline">std::endl</code> 从技术角度来说是不必要的，因为程序在此之后立即结束了。但它还有几个有用之处：
-        </p>
-        <p>
-            第一，它标志着这次输出结束了（对应于部分输出，还要等程序其他部分补全）。这种情况下，它的作用类似于自然语言里的句号。
-        </p>
-        <p>
-            第二，它把光标移到了下一行，即使以后添加了几行输出，这些行仍能正常显示，而不是接在之前输出的末尾。
-        </p>
-        <p>
-            第三，在命令行里运行完程序之后，某些操作系统不会在命令行里输出换行。如果程序的输出不以新行结尾，命令提示符可能会接在最后一行输出的后面，而不是按预期那样另起一行。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            一行输出结束时要输出换行符。
-        </p>
-    </div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        提示
+    </p>
+    <p>
+        在上面的程序里，第二个 <code class="inline">std::endl</code> 从技术角度来说是不必要的，因为程序在此之后立即结束了。但它还有几个有用之处：
+    </p>
+    <p>
+        第一，它标志着这次输出结束了（对应于部分输出，还要等程序其他部分补全）。这种情况下，它的作用类似于自然语言里的句号。
+    </p>
+    <p>
+        第二，它把光标移到了下一行，即使以后添加了几行输出，这些行仍能正常显示，而不是接在之前输出的末尾。
+    </p>
+    <p>
+        第三，在命令行里运行完程序之后，某些操作系统不会在命令行里输出换行。如果程序的输出不以新行结尾，命令提示符可能会接在最后一行输出的后面，而不是按预期那样另起一行。
+    </p>
+</div>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        一行输出结束时要输出换行符。
+    </p>
+</div>
 <h2>
     <code>std::cout</code> 缓冲区
 </h2>
-    <p>
-        想象游乐园里的过山车。乘客以某个不固定的速率出现，然后开始排队。周期性地，列车到站然后乘客上车（直到列车的最大载客量）。车满了，或者时间到了，列车就会带着车上的乘客发车，这一轮的游玩开始。所有未能登车的乘客要等下一趟。
+<p>
+    想象游乐园里的过山车。乘客以某个不固定的速率出现，然后开始排队。周期性地，列车到站然后乘客上车（直到列车的最大载客量）。车满了，或者时间到了，列车就会带着车上的乘客发车，这一轮的游玩开始。所有未能登车的乘客要等下一趟。
+</p>
+<p>
+    这个模拟场景很像 C++ 中 <code class="inline">std::cout</code> 的工作逻辑。程序语句要求把输出显示到控制台。但输出一般不会立即发送到控制台，而是存储在内存中某个区域内“排队”，这块区域叫做 <strong>缓冲区</strong>（<strong>buffer</strong>）。缓冲区会周期性地 <strong>刷新</strong>（<strong>flushed</strong>），把缓冲区中收集到的所有数据都发送到目的地（在这里就是控制台）。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        作者的话
     </p>
     <p>
-        这个模拟场景很像 C++ 中 <code class="inline">std::cout</code> 的工作逻辑。程序语句要求把输出显示到控制台。但输出一般不会立即发送到控制台，而是存储在内存中某个区域内“排队”，这块区域叫做 <strong>缓冲区</strong>（<strong>buffer</strong>）。缓冲区会周期性地 <strong>刷新</strong>（<strong>flushed</strong>），把缓冲区中收集到的所有数据都发送到目的地（在这里就是控制台）。
+        另一个模拟场景，刷新缓冲区就像冲水马桶。所有收集到的“输出”，都会送到……它该去的地方。口区。
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            作者的话
-        </p>
-        <p>
-            另一个模拟场景，刷新缓冲区就像冲水马桶。所有收集到的“输出”，都会送到……它该去的地方。口区。
-        </p>
-    </div>
+</div>
+<p>
+    这也意味着，当程序崩溃、中止、暂停（比如调试造成的）在缓冲区刷新之前，缓冲区中排队等待的输出不会被显示。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
     <p>
-        这也意味着，当程序崩溃、中止、暂停（比如调试造成的）在缓冲区刷新之前，缓冲区中排队等待的输出不会被显示。
+        与带缓冲区的输出相对的是无缓冲区的输出。使用后者，每个独立的输出请求都会直接发送到输出设备。
     </p>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-title">
-            知识重点
-        </p>
-        <p>
-            与带缓冲区的输出相对的是无缓冲区的输出。使用后者，每个独立的输出请求都会直接发送到输出设备。
-        </p>
-        <p>
-            向缓冲区写入数据很快，但把数据发给输出设备很慢。使用缓冲可以显著提升性能，因为它在有多个输出时减少了对输出设备缓慢发送数据的次数。
-        </p>
-    </div>
+    <p>
+        向缓冲区写入数据很快，但把数据发给输出设备很慢。使用缓冲可以显著提升性能，因为它在有多个输出时减少了对输出设备缓慢发送数据的次数。
+    </p>
+</div>
 <h2>
     <code>std::endl</code> 与 <code>&apos;\n&apos;</code>
 </h2>
-    <p>
-        使用 <code class="inline">std::endl</code> 可能效率要低一些，因为它实际上做了两件事：其一是把光标移动到控制台的下一行，其二是刷新缓冲区。向控制台输出时，一般不需要每行都刷新缓冲区。更高效的做法是让系统自己周期性地刷新（这被设计得很高效）。
-    </p>
-    <p>
-        因此，我们更偏向于使用 <code class="inline">&apos;\n&apos;</code> 字符。这一字符只把光标移到控制台的下一行，而不触发刷新，所以它一般性能表现更好。<code class="inline">&apos;\n&apos;</code> 也更优雅，因为它较短，又能嵌入到文本中。
-    </p>
-    <p>
-        下面的例子用两种方法使用 <code class="inline">&apos;\n&apos;</code>：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+<p>
+    使用 <code class="inline">std::endl</code> 可能效率要低一些，因为它实际上做了两件事：其一是把光标移动到控制台的下一行，其二是刷新缓冲区。向控制台输出时，一般不需要每行都刷新缓冲区。更高效的做法是让系统自己周期性地刷新（这被设计得很高效）。
+</p>
+<p>
+    因此，我们更偏向于使用 <code class="inline">&apos;\n&apos;</code> 字符。这一字符只把光标移到控制台的下一行，而不触发刷新，所以它一般性能表现更好。<code class="inline">&apos;\n&apos;</code> 也更优雅，因为它较短，又能嵌入到文本中。
+</p>
+<p>
+    下面的例子用两种方法使用 <code class="inline">&apos;\n&apos;</code>：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
 int main()
 {
@@ -241,40 +241,40 @@ int main()
     std::cout &lt;&lt; &quot;And that&apos;s all, folks!\n&quot;; // 把 &apos;\n&apos; 嵌入到双引号包围的文本中 (注意: 此时没有单引号)
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">x is equal to: 5
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">x is equal to: 5
 And that's all, folks!</code></pre>
-    <p>
-        <code class="inline">&apos;\n&apos;</code> 单独使用时要用单引号括起来，嵌入到文本中时，因为已经用双引号括起来了，就不需要额外的单引号了。
+<p>
+    <code class="inline">&apos;\n&apos;</code> 单独使用时要用单引号括起来，嵌入到文本中时，因为已经用双引号括起来了，就不需要额外的单引号了。
+</p>
+<p>
+    在 <a href="../Chap04/Chap04-11" target="_blank">4.11 -- 字符</a> 一节中讲到字符时，会更详细地讨论 <code class="inline">&apos;\n&apos;</code>。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
     <p>
-        在 <a href="../Chap04/Chap04-11" target="_blank">4.11 -- 字符</a> 一节中讲到字符时，会更详细地讨论 <code class="inline">&apos;\n&apos;</code>。
+        向控制台输出文本时，推荐使用 <code class="inline">&apos;\n&apos;</code> 而不是 <code class="inline">std::endl</code>。
     </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            向控制台输出文本时，推荐使用 <code class="inline">&apos;\n&apos;</code> 而不是 <code class="inline">std::endl</code>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-red">
-        <p class="learncpp-block-title">
-            警告
-        </p>
-        <p>
-            <code class="inline">&apos;\n&apos;</code> 用的是反斜杠而不是正斜杠（C++ 所有的特殊字符都是如此）。使用正斜杠可能会造成意外行为。
-        </p>
-    </div>
+</div>
+<div class="learncpp-blocktext-red">
+    <p class="learncpp-block-title">
+        警告
+    </p>
+    <p>
+        <code class="inline">&apos;\n&apos;</code> 用的是反斜杠而不是正斜杠（C++ 所有的特殊字符都是如此）。使用正斜杠可能会造成意外行为。
+    </p>
+</div>
 <h2>
     <code>std::cin</code>
 </h2>
-    <p>
-        <code class="inline">std::cin</code> 是 <em>iostream</em> 库里的另一个预定义变量。与 <code class="inline">std::cout</code> 使用插入运算符 <code class="inline">&lt;&lt;</code> 在控制台显示数据相对，<code class="inline">std::cin</code>（character input）使用 <strong>抽取运算符</strong>（<strong>extraction operator</strong>，<code class="inline">&gt;&gt;</code>）从键盘读取输入。输入必须要存储在一个变量里。
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;  // 为了使用 std::cout 和 std::cin
+<p>
+    <code class="inline">std::cin</code> 是 <em>iostream</em> 库里的另一个预定义变量。与 <code class="inline">std::cout</code> 使用插入运算符 <code class="inline">&lt;&lt;</code> 在控制台显示数据相对，<code class="inline">std::cin</code>（character input）使用 <strong>抽取运算符</strong>（<strong>extraction operator</strong>，<code class="inline">&gt;&gt;</code>）从键盘读取输入。输入必须要存储在一个变量里。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;  // 为了使用 std::cout 和 std::cin
 
 int main()
 {
@@ -286,24 +286,24 @@ int main()
     std::cout &lt;&lt; &quot;You entered &quot; &lt;&lt; x &lt;&lt; &apos;\n&apos;;
     return 0;
 }</code></pre>
-    <p>
-        尝试自己编译运行这个程序。运行这个程序时， 第 5 行显示 <code class="lighter">Enter a number: </code>。到第 8 行，程序会等待你的输入。输入一个数并回车之后，这个数就会赋给变量 <code class="inline">x</code>。最后，第 10 行会显示 <code class="lighter">You entered </code> 后接你刚输入的数字。
-    </p>
-    <p>
-        例如（这里输入了 <code class="inline">4</code>）：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Enter a number: 4
+<p>
+    尝试自己编译运行这个程序。运行这个程序时， 第 5 行显示 <code class="lighter">Enter a number: </code>。到第 8 行，程序会等待你的输入。输入一个数并回车之后，这个数就会赋给变量 <code class="inline">x</code>。最后，第 10 行会显示 <code class="lighter">You entered </code> 后接你刚输入的数字。
+</p>
+<p>
+    例如（这里输入了 <code class="inline">4</code>）：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Enter a number: 4
 You entered 4</code></pre>
-    <p>
-        这是得到用户键盘输入的简单方法，并会在教程以后的很多例子中使用。注意到接收输入的时候不需要使用换行符，因为用户需要按 <em>回车</em> 才能使输入被接受，而这就让光标移到了下一行。
-    </p>
-    <p>
-        如果控制台在输入数字之后立即关闭了，参考 <a href="../Chap00/Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>。
-    </p>
-    <p>
-        就像可以在一行里输出多段文本一样，也可以在一行里输入多个值：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;  // 为了使用 std::cout 和 std::cin
+<p>
+    这是得到用户键盘输入的简单方法，并会在教程以后的很多例子中使用。注意到接收输入的时候不需要使用换行符，因为用户需要按 <em>回车</em> 才能使输入被接受，而这就让光标移到了下一行。
+</p>
+<p>
+    如果控制台在输入数字之后立即关闭了，参考 <a href="../Chap00/Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>。
+</p>
+<p>
+    就像可以在一行里输出多段文本一样，也可以在一行里输入多个值：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;  // 为了使用 std::cout 和 std::cin
 
 int main()
 {
@@ -317,46 +317,46 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        获得输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Enter two numbers separated by a space: 5 6
+<p>
+    获得输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Enter two numbers separated by a space: 5 6
 You entered 5 and 6</code></pre>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            如果新定义的变量会立即被其他来源（比如 <code class="inline">std::cin</code>）的值覆盖，还有没有必要初始化它，这里存在一些争议。我们和之前的建议一致，认为应当先初始化。
-        </p>
-    </div>
-    <p>
-        在 <a href="../Chap08/Chap08-17.html" target="_blank">8.17 -- <code>std::cin</code> 与非法输入处理</a> 一节，会讨论 <code class="inline">std::cin</code> 如何处理非法输入。目前，只需要知道 <code class="inline">std::cin</code> 会尽可能多地抽取输入，而不能提取的部分会被保留以供以后抽取。
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            C++ 的输入输出库没提供不按回车就接收输入的功能。如果你希望使用这样的功能，需要使用第三方库。对于控制台程序，我们推荐 <a href="https://pdcurses.org/" title="pdcurses.org" target="_blank">pdcurses</a>，<a href="https://github.com/ArthurSonzogni/FTXUI" title="Github" target="_blank">FXTUI</a>，<a href="https://github.com/jupyter-xeus/cpp-terminal" title="Github" target="_blank">cpp-terminal</a>，<a href="https://github.com/dankamongmen/notcurses" title="Github" target="_blank">notcurses</a>。许多 GUI 库都有自己的函数来做类似的事情。
-        </p>
-    </div>
+    <p>
+        如果新定义的变量会立即被其他来源（比如 <code class="inline">std::cin</code>）的值覆盖，还有没有必要初始化它，这里存在一些争议。我们和之前的建议一致，认为应当先初始化。
+    </p>
+</div>
+<p>
+    在 <a href="../Chap08/Chap08-17.html" target="_blank">8.17 -- <code>std::cin</code> 与非法输入处理</a> 一节，会讨论 <code class="inline">std::cin</code> 如何处理非法输入。目前，只需要知道 <code class="inline">std::cin</code> 会尽可能多地抽取输入，而不能提取的部分会被保留以供以后抽取。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        C++ 的输入输出库没提供不按回车就接收输入的功能。如果你希望使用这样的功能，需要使用第三方库。对于控制台程序，我们推荐 <a href="https://pdcurses.org/" title="pdcurses.org" target="_blank">pdcurses</a>，<a href="https://github.com/ArthurSonzogni/FTXUI" title="Github" target="_blank">FXTUI</a>，<a href="https://github.com/jupyter-xeus/cpp-terminal" title="Github" target="_blank">cpp-terminal</a>，<a href="https://github.com/dankamongmen/notcurses" title="Github" target="_blank">notcurses</a>。许多 GUI 库都有自己的函数来做类似的事情。
+    </p>
+</div>
 <h2>
     小结
 </h2>
-    <p>
-        新程序员经常混淆 <code class="inline">std::cin</code>，<code class="inline">std::cout</code>，插入运算符（<code class="inline">&lt;&lt;</code>）和抽取运算符（<code class="inline">&gt;&gt;</code>）。有个简单方法记住：
-    </p>
-    <ul>
-        <li><code class="inline">std::cin</code> 和 <code class="inline">std::cout</code> 总在语句左侧出现。</li>
-        <li><code class="inline">std::cout</code> 用于输出值（<code>cout</code> = <em>character output</em>）</li>
-        <li><code class="inline">std::cin</code> 用于输入值（<code>cin</code> = <em>character input</em>）</li>
-        <li><code class="inline">&lt;&lt;</code> 和 <code class="inline">std::cout</code> 搭配使用，表示数据移动的方向。如果 <code class="inline">std::cout</code> 代表控制台，输出的数据从变量移向控制台。<code class="inline">std::cout &lt;&lt; 4</code> 表示把值 <code class="inline">4</code> 移向控制台。</li>
-        <li><code class="inline">&gt;&gt;</code> 和 <code class="inline">std::cin</code> 搭配使用，表示数据移动的方向。如果 <code class="inline">std::cin</code> 代表键盘，输入的数据从键盘移向变量。<code class="inline">std::cin &gt;&gt; x</code> 表示把用户从键盘输入的值移向 <code class="inline">x</code>。</li>
-    </ul>
-    <p>
-        我们会在 <a href="Chap01-09.html" target="_blank">1.9 -- 字面值与运算符</a> 一节讲解更多关于运算符的知识。
-    </p>
+<p>
+    新程序员经常混淆 <code class="inline">std::cin</code>，<code class="inline">std::cout</code>，插入运算符（<code class="inline">&lt;&lt;</code>）和抽取运算符（<code class="inline">&gt;&gt;</code>）。有个简单方法记住：
+</p>
+<ul>
+    <li><code class="inline">std::cin</code> 和 <code class="inline">std::cout</code> 总在语句左侧出现。</li>
+    <li><code class="inline">std::cout</code> 用于输出值（<code>cout</code> = <em>character output</em>）</li>
+    <li><code class="inline">std::cin</code> 用于输入值（<code>cin</code> = <em>character input</em>）</li>
+    <li><code class="inline">&lt;&lt;</code> 和 <code class="inline">std::cout</code> 搭配使用，表示数据移动的方向。如果 <code class="inline">std::cout</code> 代表控制台，输出的数据从变量移向控制台。<code class="inline">std::cout &lt;&lt; 4</code> 表示把值 <code class="inline">4</code> 移向控制台。</li>
+    <li><code class="inline">&gt;&gt;</code> 和 <code class="inline">std::cin</code> 搭配使用，表示数据移动的方向。如果 <code class="inline">std::cin</code> 代表键盘，输入的数据从键盘移向变量。<code class="inline">std::cin &gt;&gt; x</code> 表示把用户从键盘输入的值移向 <code class="inline">x</code>。</li>
+</ul>
+<p>
+    我们会在 <a href="Chap01-09.html" target="_blank">1.9 -- 字面值与运算符</a> 一节讲解更多关于运算符的知识。
+</p>
 <h2>
     <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
 </h2>

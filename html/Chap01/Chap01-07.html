@@ -24,54 +24,54 @@
 <h2>
     关键字
 </h2>
-    <p>
-        C++ 保留了 92 个词自用（截至 C++23）。这些词被称为 <strong>关键字</strong>（<strong>keywords</strong>），每个都有自己的特殊含义。关键字列表（直到 C++23）详见 <a href="https://zh.cppreference.com/w/cpp/keyword" target="_blank">CppReference</a> 或 <a href="https://www.learncpp.com/cpp-tutorial/keywords-and-naming-identifiers/" target="_blank">原文网站</a>。
-    </p>
-    <p>
-        C++ 也定义了一些特殊标识符： <code class="inline">override</code>、<code class="inline">final</code>、<code class="inline">import</code>、<code class="inline">module</code>。它们在特定的上下文里有特殊的含义，在其他情况下并没有被保留。
-    </p>
-    <p>
-        其中一些关键字已经遇到过了，比如 <code class="inline">int</code> 和 <code class="inline">return</code>。关键字、特殊标识符、还有一组运算符，它们定义了整个 C++（除了预编译指令）。因为关键字和特殊标识符有特别的含义，IDE 一般会更改它们的颜色以与其他标识符区分。
-    </p>
-    <p>
-        等到学完了这个教程，就会明白这里绝大多数词的含义。
-    </p>
+<p>
+    C++ 保留了 92 个词自用（截至 C++23）。这些词被称为 <strong>关键字</strong>（<strong>keywords</strong>），每个都有自己的特殊含义。关键字列表（直到 C++23）详见 <a href="https://zh.cppreference.com/w/cpp/keyword" target="_blank">CppReference</a> 或 <a href="https://www.learncpp.com/cpp-tutorial/keywords-and-naming-identifiers/" target="_blank">原文网站</a>。
+</p>
+<p>
+    C++ 也定义了一些特殊标识符： <code class="inline">override</code>、<code class="inline">final</code>、<code class="inline">import</code>、<code class="inline">module</code>。它们在特定的上下文里有特殊的含义，在其他情况下并没有被保留。
+</p>
+<p>
+    其中一些关键字已经遇到过了，比如 <code class="inline">int</code> 和 <code class="inline">return</code>。关键字、特殊标识符、还有一组运算符，它们定义了整个 C++（除了预编译指令）。因为关键字和特殊标识符有特别的含义，IDE 一般会更改它们的颜色以与其他标识符区分。
+</p>
+<p>
+    等到学完了这个教程，就会明白这里绝大多数词的含义。
+</p>
 <h2>
     标识符命名规则
 </h2>
-    <p>
-        回顾一下，变量（或函数、类型或其他种类的东西）的名字叫做标识符。C++ 命名有很大的自由度，但也有几条必须遵守的规定：
-    </p>
-    <ul>
-        <li>不能是关键字。关键字由语言保留。</li>
-        <li>只能由字母（大小写均可）、数字和下划线组成。不能包括符号（除了下划线）、空白符（空格和制表符）。</li>
-        <li>开头必须是字母或下划线，不能以数字开头。</li>
-        <li>C++ 对大小写敏感，使用大写和小写是不一样的。<code class="inline">nvalue</code>、<code class="inline">nValue</code>、<code class="inline">NVALUE</code> 都是不一样的。</li>
-    </ul>
+<p>
+    回顾一下，变量（或函数、类型或其他种类的东西）的名字叫做标识符。C++ 命名有很大的自由度，但也有几条必须遵守的规定：
+</p>
+<ul>
+    <li>不能是关键字。关键字由语言保留。</li>
+    <li>只能由字母（大小写均可）、数字和下划线组成。不能包括符号（除了下划线）、空白符（空格和制表符）。</li>
+    <li>开头必须是字母或下划线，不能以数字开头。</li>
+    <li>C++ 对大小写敏感，使用大写和小写是不一样的。<code class="inline">nvalue</code>、<code class="inline">nValue</code>、<code class="inline">NVALUE</code> 都是不一样的。</li>
+</ul>
 <h2>
     标识符命名的最佳实践
 </h2>
-    <p>
-        刚刚学过 <em>可以</em> 怎么命名，现在来看看 <em>应该</em> 怎么命名。
-    </p>
-    <p>
-        首先，C++ 的惯例是变量名以小写字母开头。如果变量名只有一个单词，整个标识符应该都是小写。
-    </p>
-    <pre><code class="language-cpp">int value; // 符合惯例
+<p>
+    刚刚学过 <em>可以</em> 怎么命名，现在来看看 <em>应该</em> 怎么命名。
+</p>
+<p>
+    首先，C++ 的惯例是变量名以小写字母开头。如果变量名只有一个单词，整个标识符应该都是小写。
+</p>
+<pre><code class="language-cpp">int value; // 符合惯例
 
 int Value; // 不符合惯例, 应该以小写字母开头
 int VALUE; // 不符合惯例, 应该以小写字母开头
 int VaLuE; // 不符合惯例, 去看看医生吧</code></pre>
-    <p>
-        函数名一般以小写字母开头（有一些争议）。我们遵循这一惯例，因为所有程序都有的 <code class="inline">main</code> 函数与 C++ 标准库的函数都是这样。
-    </p>
-    <p>
-        以大写字母开头的标识符一般用于自定义的类型（比如 <code class="inline">struct</code>、<code class="inline">class</code>、<code class="inline">enum</code>，这些以后会讲）。
-    </p>
-    <p>
-        如果变量或函数名是多个单词的，惯例上有两种风格：以下划线分隔（蛇形命名法，<em>snake_case</em>）、用大写字母分隔（驼峰命名法，<em>camelCase</em>）。
-    </p>
-    <pre><code class="language-cpp">int my_variable_name;   // 符合惯例, 蛇形命名法
+<p>
+    函数名一般以小写字母开头（有一些争议）。我们遵循这一惯例，因为所有程序都有的 <code class="inline">main</code> 函数与 C++ 标准库的函数都是这样。
+</p>
+<p>
+    以大写字母开头的标识符一般用于自定义的类型（比如 <code class="inline">struct</code>、<code class="inline">class</code>、<code class="inline">enum</code>，这些以后会讲）。
+</p>
+<p>
+    如果变量或函数名是多个单词的，惯例上有两种风格：以下划线分隔（蛇形命名法，<em>snake_case</em>）、用大写字母分隔（驼峰命名法，<em>camelCase</em>）。
+</p>
+<pre><code class="language-cpp">int my_variable_name;   // 符合惯例, 蛇形命名法
 int my_function_name(); // 符合惯例, 蛇形命名法
 
 int myVariableName;     // 符合惯例, 驼峰命名法
@@ -82,110 +82,110 @@ int my function name(); // 不合法, 不允许使用空格
 
 int MyVariableName;     // 不符合惯例, 应当以小写字母开头
 int MyFunctionName();   // 不符合惯例, 应当以小写字母开头</code></pre>
-    <p>
-        本教程里会使用驼峰命名法，因为更易读；在一大堆代码里，下划线很容易被误认成空格，但也很常见，C++ 标准库在变量和函数里都是用蛇形命名法。有时候也会两种混合，比如变量用蛇形，而函数用驼峰。
+<p>
+    本教程里会使用驼峰命名法，因为更易读；在一大堆代码里，下划线很容易被误认成空格，但也很常见，C++ 标准库在变量和函数里都是用蛇形命名法。有时候也会两种混合，比如变量用蛇形，而函数用驼峰。
+</p>
+<p>
+    值得注意的一点是，修改他人代码时，最好和原本的风格一致，而不是死板地遵守这里的惯例。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
     <p>
-        值得注意的一点是，修改他人代码时，最好和原本的风格一致，而不是死板地遵守这里的惯例。
+        基于已有的代码工作时，就用原程序的风格，不管是否符合现代编程惯例。写新程序时就遵守现代最佳实践。
     </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            基于已有的代码工作时，就用原程序的风格，不管是否符合现代编程惯例。写新程序时就遵守现代最佳实践。
-        </p>
-    </div>
-    <p>
-        第二，应当避免以下划线开头，这种标识符一般由操作系统、库、编译器保留使用。
-    </p>
-    <p>
-        第三，标识符应该写明它储存的值是什么意思，尤其是单位不明时。标识符命名应当可以帮助初次接触这段代码的人尽快搞清楚它的含义。三个月后自己看代码时，也会感谢自己选了一个好名字。
-    </p>
-    <p>
-        然而，给一个不重要的变量起过于复杂的名字，与给一个常用变量过于简陋的名字一样，会严重干扰对程序的理解。因此，一个简便的判断方法是让变量名的长度和它使用的范围大小成正比。一个用途很简单的变量命名很短，比如（<code class="inline">i</code>），到处都在用的名字（比如在程序多个位置都有调用的函数）可以命名更长、更有描述性（比如把 <code class="inline">open</code> 换成 <code class="inline">openFileOnDisk</code>）。
-    </p>
-    <div class="table-wrapper-scroll">
-        <table class="content-nohead">
-            <tr>
-                <td><code>int ccount</code></td>
-                <td>不好</td>
-                <td><em>count</em> 前面的 <em>c</em> 是什么？</td>
-            </tr>
-            <tr>
-                <td><code>int customerCount</code></td>
-                <td>好</td>
-                <td>要数什么很清晰</td>
-            </tr>
-            <tr>
-                <td><code>int i</code></td>
-                <td>一般</td>
-                <td>不重要的变量可以，否则就很糟糕</td>
-            </tr>
-            <tr>
-                <td><code>int index</code></td>
-                <td>一般</td>
-                <td>如果这里在数什么很明显，那就可以</td>
-            </tr>
-            <tr>
-                <td><code>int totalScore</code></td>
-                <td>一般</td>
-                <td>如果这里只有一个分数那就可以，否则就太模糊了</td>
-            </tr>
-            <tr>
-                <td><code>int _count</code></td>
-                <td>不好</td>
-                <td>不要以下划线开头</td>
-            </tr>
-            <tr>
-                <td><code>int count</code></td>
-                <td>一般</td>
-                <td>如果这里在数什么很明显，那就可以</td>
-            </tr>
-            <tr>
-                <td><code>int data</code></td>
-                <td>不好</td>
-                <td>什么数据？</td>
-            </tr>
-            <tr>
-                <td><code>int time</code></td>
-                <td>不好</td>
-                <td>单位是秒，分钟，还是小时？</td>
-            </tr>
-            <tr>
-                <td><code>int minutesElapsed</code></td>
-                <td>好</td>
-                <td>描述性的</td>
-            </tr>
-            <tr>
-                <td><code>int value1, value2</code></td>
-                <td>一般</td>
-                <td>可能会很难分清它们</td>
-            </tr>
-            <tr>
-                <td><code>int numApples</code></td>
-                <td>好</td>
-                <td>描述性的</td>
-            </tr>
-            <tr>
-                <td><code>int monstersKilled</code></td>
-                <td>好</td>
-                <td>描述性的</td>
-            </tr>
-            <tr>
-                <td><code>int x, y</code></td>
-                <td>一般</td>
-                <td>不重要的变量可以，否则就很糟糕</td>
-            </tr>
-        </table>
-    </div>
-    <p>
-        任何情况下都要避免使用缩写，除非太常见且没歧义。虽然缩短了写代码的时间，但牺牲了可读性。代码被读的次数一般多于被写的次数，写代码时节省的时间会转化成读代码时浪费的时间。如果想要加快写代码的速度，可以使用代码编辑器的自动补全功能。
-    </p>
-    <p>
-        声明变量时，一般会写个注释描述变量是做什么用的，或解释任何可能不是很清楚的事。例如，声明了变量 <code class="inline">numberOfChars</code>，它应该存储一段文本里字符的个数。文本 <code class="lighter">Hello world!</code> 包含几个字符？10 个，11 个， 还是 12 个？这取决于是否计算空格和标点。一般不会用特别长的变量名，比如 <code class="inline">numberOfCharsIncludingWhitespaceAndPunctuation</code>，而是通过在声明的上一行写注释来帮读者搞清楚。
-    </p>
-    <pre><code class="language-cpp">// 文本里字符的个数, 包括空格和标点
+</div>
+<p>
+    第二，应当避免以下划线开头，这种标识符一般由操作系统、库、编译器保留使用。
+</p>
+<p>
+    第三，标识符应该写明它储存的值是什么意思，尤其是单位不明时。标识符命名应当可以帮助初次接触这段代码的人尽快搞清楚它的含义。三个月后自己看代码时，也会感谢自己选了一个好名字。
+</p>
+<p>
+    然而，给一个不重要的变量起过于复杂的名字，与给一个常用变量过于简陋的名字一样，会严重干扰对程序的理解。因此，一个简便的判断方法是让变量名的长度和它使用的范围大小成正比。一个用途很简单的变量命名很短，比如（<code class="inline">i</code>），到处都在用的名字（比如在程序多个位置都有调用的函数）可以命名更长、更有描述性（比如把 <code class="inline">open</code> 换成 <code class="inline">openFileOnDisk</code>）。
+</p>
+<div class="table-wrapper-scroll">
+    <table class="content-nohead">
+        <tr>
+            <td><code>int ccount</code></td>
+            <td>不好</td>
+            <td><em>count</em> 前面的 <em>c</em> 是什么？</td>
+        </tr>
+        <tr>
+            <td><code>int customerCount</code></td>
+            <td>好</td>
+            <td>要数什么很清晰</td>
+        </tr>
+        <tr>
+            <td><code>int i</code></td>
+            <td>一般</td>
+            <td>不重要的变量可以，否则就很糟糕</td>
+        </tr>
+        <tr>
+            <td><code>int index</code></td>
+            <td>一般</td>
+            <td>如果这里在数什么很明显，那就可以</td>
+        </tr>
+        <tr>
+            <td><code>int totalScore</code></td>
+            <td>一般</td>
+            <td>如果这里只有一个分数那就可以，否则就太模糊了</td>
+        </tr>
+        <tr>
+            <td><code>int _count</code></td>
+            <td>不好</td>
+            <td>不要以下划线开头</td>
+        </tr>
+        <tr>
+            <td><code>int count</code></td>
+            <td>一般</td>
+            <td>如果这里在数什么很明显，那就可以</td>
+        </tr>
+        <tr>
+            <td><code>int data</code></td>
+            <td>不好</td>
+            <td>什么数据？</td>
+        </tr>
+        <tr>
+            <td><code>int time</code></td>
+            <td>不好</td>
+            <td>单位是秒，分钟，还是小时？</td>
+        </tr>
+        <tr>
+            <td><code>int minutesElapsed</code></td>
+            <td>好</td>
+            <td>描述性的</td>
+        </tr>
+        <tr>
+            <td><code>int value1, value2</code></td>
+            <td>一般</td>
+            <td>可能会很难分清它们</td>
+        </tr>
+        <tr>
+            <td><code>int numApples</code></td>
+            <td>好</td>
+            <td>描述性的</td>
+        </tr>
+        <tr>
+            <td><code>int monstersKilled</code></td>
+            <td>好</td>
+            <td>描述性的</td>
+        </tr>
+        <tr>
+            <td><code>int x, y</code></td>
+            <td>一般</td>
+            <td>不重要的变量可以，否则就很糟糕</td>
+        </tr>
+    </table>
+</div>
+<p>
+    任何情况下都要避免使用缩写，除非太常见且没歧义。虽然缩短了写代码的时间，但牺牲了可读性。代码被读的次数一般多于被写的次数，写代码时节省的时间会转化成读代码时浪费的时间。如果想要加快写代码的速度，可以使用代码编辑器的自动补全功能。
+</p>
+<p>
+    声明变量时，一般会写个注释描述变量是做什么用的，或解释任何可能不是很清楚的事。例如，声明了变量 <code class="inline">numberOfChars</code>，它应该存储一段文本里字符的个数。文本 <code class="lighter">Hello world!</code> 包含几个字符？10 个，11 个， 还是 12 个？这取决于是否计算空格和标点。一般不会用特别长的变量名，比如 <code class="inline">numberOfCharsIncludingWhitespaceAndPunctuation</code>，而是通过在声明的上一行写注释来帮读者搞清楚。
+</p>
+<pre><code class="language-cpp">// 文本里字符的个数, 包括空格和标点
 int numberOfChars;</code></pre>
 <h2>
     <a href="https://www.learncpp.com/cpp-tutorial/keywords-and-naming-identifiers/#:~:text=Quiz%20time" target="_blank">随堂小测</a>

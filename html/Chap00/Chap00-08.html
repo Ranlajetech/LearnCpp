@@ -21,174 +21,173 @@
 <h1>
     0.8 -- C++ 常见问题
 </h1>
-
-    <p>
-        本节会列举新程序员很可能遇到的常见问题。这不是编译或执行问题的全解清单，而是基础问题解决方案的实用清单。如果你想列入其他问题，请在下面的评论区发表。<span class="learncpp-translator-note">（译者注：评论区请到 <a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a> 的对应课程章节查看 ）</span>
-    </p>
+<p>
+    本节会列举新程序员很可能遇到的常见问题。这不是编译或执行问题的全解清单，而是基础问题解决方案的实用清单。如果你想列入其他问题，请在下面的评论区发表。<span class="learncpp-translator-note">（译者注：评论区请到 <a href="https://www.learncpp.com" title="LearnCpp" target="_blank">原文网站</a> 的对应课程章节查看 ）</span>
+</p>
 <h2>
     一般的运行时问题
 </h2>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：执行程序时，控制台窗口闪退。
-        </p>
-        <p>
-            首先，在程序顶部附近确保存在以下几行（至于 Visual Studio 用户，如果存在 <code class="inline">#include &quot;pch.h&quot;</code> 或 <code class="inline">#include &quot;stdafx.h&quot;</code>，那就放在它们之后）：
-        </p>
-        <pre><code class="language-cpp">#include &lt;iostream&gt;
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：执行程序时，控制台窗口闪退。
+    </p>
+    <p>
+        首先，在程序顶部附近确保存在以下几行（至于 Visual Studio 用户，如果存在 <code class="inline">#include &quot;pch.h&quot;</code> 或 <code class="inline">#include &quot;stdafx.h&quot;</code>，那就放在它们之后）：
+    </p>
+    <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;limits&gt;</code></pre>
-        <p>
-            然后，在 <code class="inline">main()</code> 函数的末尾（紧贴 <code class="inline">return</code> 语句之前）加入如下代码：
-        </p>
-        <pre><code class="language-cpp">std::cin.clear(); // reset any error flags
+    <p>
+        然后，在 <code class="inline">main()</code> 函数的末尾（紧贴 <code class="inline">return</code> 语句之前）加入如下代码：
+    </p>
+    <pre><code class="language-cpp">std::cin.clear(); // reset any error flags
 std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), &apos;\n&apos;); // ignore any characters in the input buffer until we find an enter character
 std::cin.get(); // get one more char from the user</code></pre>
-        <p>
-            这将使程序等用户按键后再继续运行，这样就有时间在操作系统关闭控制台窗口前检查程序的输出。
-        </p>
-        <p>
-            其他解决方案，如通常建议的 <code class="inline">system(&quot;pause&quot;);</code>，可能只适用于某些操作系统，应避免使用。
-        </p>
-        <p>
-            旧版 Visual Studio 在 <em>Start With Debugging</em>（<em>F5</em>）模式下运行程序后可能不会暂停。试试 <em>Start Without Debugging</em>（<em>Ctrl-F5</em>）模式。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：程序运行了，有窗口，但没输出。
-        </p>
-        <p>
-            可能是杀毒软件阻止了运行。尝试关闭杀毒软件看看能不能解决。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：成功编译，但运行不正确。
-        </p>
-        <p>
-            这需要调试。在第三章会教怎么诊断并调试程序。
-        </p>
-    </div>
+    <p>
+        这将使程序等用户按键后再继续运行，这样就有时间在操作系统关闭控制台窗口前检查程序的输出。
+    </p>
+    <p>
+        其他解决方案，如通常建议的 <code class="inline">system(&quot;pause&quot;);</code>，可能只适用于某些操作系统，应避免使用。
+    </p>
+    <p>
+        旧版 Visual Studio 在 <em>Start With Debugging</em>（<em>F5</em>）模式下运行程序后可能不会暂停。试试 <em>Start Without Debugging</em>（<em>Ctrl-F5</em>）模式。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：程序运行了，有窗口，但没输出。
+    </p>
+    <p>
+        可能是杀毒软件阻止了运行。尝试关闭杀毒软件看看能不能解决。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：成功编译，但运行不正确。
+    </p>
+    <p>
+        这需要调试。在第三章会教怎么诊断并调试程序。
+    </p>
+</div>
 <h2>
     一般的编译时问题
 </h2>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：编译时遇到错误：<code class="lighter">unresolved external symbol _main or _WinMain@16</code>
-        </p>
-        <p>
-            可能是编译器没找到 <code class="inline">main()</code> 函数。所有程序都必须包含一个 <code class="inline">main()</code> 函数。
-        </p>
-        <p>
-            检查以下事项：
-        </p>
-        <ul>
-            <li>代码包含 <code class="inline">main()</code> 函数了吗？</li>
-            <li>拼写正确吗？</li>
-            <li>编译程序时，包含函数 <code class="inline">main()</code> 的文件被编译了吗？如果没有，要么将 <code class="inline">main()</code> 函数移到会被编译的文件中，要么将该文件添加到项目中（详见 <a href="../Chap02/Chap02-08.html" target="_blank">2.8 -- 有多个代码文件的程序</a>）</li>
-            <li>有没有创建控制台程序？试试新建一个控制台程序。</li>
-        </ul>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：我想用 C++11/14/17/XX 的功能，但是不行。
-        </p>
-        <p>
-            如果是老版编译器，它可能不支持最近几个版本新加入语言的特性。请升级编译器。
-        </p>
-        <p>
-            对于现代 IDE / 编译器来说，编译器可能默认使用较早的语言标准。详见 <a href="Chap00-12.html" target="_blank">0.12 -- 编译器设置：选择语言标准</a>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：用 <code>cin</code>，<code>cout</code>，<code>endl</code> 时，编译器说是未声明的标识符。
-        </p>
-        <p>
-            首先，确保文件顶部附近有：
-        </p>
-        <pre><code class="language-cpp">#include &lt;iostream&gt;</code></pre>
-        <p>
-            然后，确保每次使用 <code class="inline">cin</code>，<code class="inline">cout</code>，<code class="inline">endl</code> 时都加了前缀 <code class="inline">std::</code>。例如：
-        </p>
-        <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!&quot; &lt;&lt; std::endl;</code></pre>
-        <p>
-            要是这还没解决问题，可能是你的编译器过时了，或者安装出问题了。试试重装或升级编译器。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：想用 <code>endl</code> 结束输出行，但编译器说 <code>end1</code> 是未声明的标识符。
-        </p>
-        <p>
-            确保不要将 <code class="inline">endl</code> 中的字母 <code>l</code>（小写 <code>L</code>）误认为数字 <code>1</code>。确保您的编辑器使用的字体能清楚区分小写字母 <code>L</code>、大写字母 <code>i</code> 和数字 <code>1</code>。在许多非编程字体中，大写字母 <code>o</code> 和数字 <code>0</code> 也很容易混淆。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：编译程序时，遇到错误：<code class="lighter">no newline at end of file</code>
-        </p>
-        <p>
-            C++ 标准要求所有源代码（<em>.cpp</em>）文件以换行符结束。很离谱，但这是真的。到源文件底部，回车，保存，然后重新编译。
-        </p>
-    </div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：编译时遇到错误：<code class="lighter">unresolved external symbol _main or _WinMain@16</code>
+    </p>
+    <p>
+        可能是编译器没找到 <code class="inline">main()</code> 函数。所有程序都必须包含一个 <code class="inline">main()</code> 函数。
+    </p>
+    <p>
+        检查以下事项：
+    </p>
+    <ul>
+        <li>代码包含 <code class="inline">main()</code> 函数了吗？</li>
+        <li>拼写正确吗？</li>
+        <li>编译程序时，包含函数 <code class="inline">main()</code> 的文件被编译了吗？如果没有，要么将 <code class="inline">main()</code> 函数移到会被编译的文件中，要么将该文件添加到项目中（详见 <a href="../Chap02/Chap02-08.html" target="_blank">2.8 -- 有多个代码文件的程序</a>）</li>
+        <li>有没有创建控制台程序？试试新建一个控制台程序。</li>
+    </ul>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：我想用 C++11/14/17/XX 的功能，但是不行。
+    </p>
+    <p>
+        如果是老版编译器，它可能不支持最近几个版本新加入语言的特性。请升级编译器。
+    </p>
+    <p>
+        对于现代 IDE / 编译器来说，编译器可能默认使用较早的语言标准。详见 <a href="Chap00-12.html" target="_blank">0.12 -- 编译器设置：选择语言标准</a>。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：用 <code>cin</code>，<code>cout</code>，<code>endl</code> 时，编译器说是未声明的标识符。
+    </p>
+    <p>
+        首先，确保文件顶部附近有：
+    </p>
+    <pre><code class="language-cpp">#include &lt;iostream&gt;</code></pre>
+    <p>
+        然后，确保每次使用 <code class="inline">cin</code>，<code class="inline">cout</code>，<code class="inline">endl</code> 时都加了前缀 <code class="inline">std::</code>。例如：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!&quot; &lt;&lt; std::endl;</code></pre>
+    <p>
+        要是这还没解决问题，可能是你的编译器过时了，或者安装出问题了。试试重装或升级编译器。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：想用 <code>endl</code> 结束输出行，但编译器说 <code>end1</code> 是未声明的标识符。
+    </p>
+    <p>
+        确保不要将 <code class="inline">endl</code> 中的字母 <code>l</code>（小写 <code>L</code>）误认为数字 <code>1</code>。确保您的编辑器使用的字体能清楚区分小写字母 <code>L</code>、大写字母 <code>i</code> 和数字 <code>1</code>。在许多非编程字体中，大写字母 <code>o</code> 和数字 <code>0</code> 也很容易混淆。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：编译程序时，遇到错误：<code class="lighter">no newline at end of file</code>
+    </p>
+    <p>
+        C++ 标准要求所有源代码（<em>.cpp</em>）文件以换行符结束。很离谱，但这是真的。到源文件底部，回车，保存，然后重新编译。
+    </p>
+</div>
 <h2>
     Visual Studio 问题
 </h2>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：用 Microsoft Visual C++ 编译时，报 C1010 fetal error，错误信息类似于 <code class="lighter">C:\vcprojects\test.cpp(263) :fatal error C1010: unexpected end of file while looking for precompiled header directive</code>
-        </p>
-        <p>
-            Microsoft Visual C++ 编译器设置里打开了预编译头文件功能，但一个（或多个） C++ 源文件的第一行没有 <code class="inline">#include &quot;stdafx.h&quot;</code> 或 <code class="inline">#include &quot;pch.h&quot;</code> 时，就会出现此错误。
-        </p>
-        <p>
-            建议关闭预编译头文件，详见 <a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>。
-        </p>
-        <p>
-            如果你想保持开启预编译头文件功能，只需找到造成错误的文件（在上述错误信息中是 <em>test.cpp</em>），然后在文件的最顶端添加：
-        </p>
-        <pre><code class="language-cpp">#include &quot;pch.h&quot;</code></pre>
-        <p>
-            老版本 Visual Studio 用的是 <em>stdafx.h</em> 而不是 <em>pch.h</em>，要是上面的方法没解决，试试 <em>stdafx.h</em>。
-        </p>
-        <p>
-            注意，多文件的情况下，每个 C++ 源代码文件都要以它开头。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：Visual Studio 报错：<code class="lighter">1MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function &quot;int __cdecl invoke_main(void)&quot; (?invoke_main@@YAHXZ)</code>
-        </p>
-        <p>
-            可能创建的是 Windows 图形应用程序，而不是控制台应用程序。重新创建项目，确保创建的是 Windows（或 Win32）控制台项目。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：编译时有个警告：<code class="lighter">Cannot find or open the PDB file</code>
-        </p>
-        <p>
-            这是警告而不是错误，因此不会影响程序，但它很烦。解决办法：<em>Debug -- Options and Settings -- Symbols</em>，勾选 <em>Microsoft Symbol Server</em>。
-        </p>
-    </div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：用 Microsoft Visual C++ 编译时，报 C1010 fetal error，错误信息类似于 <code class="lighter">C:\vcprojects\test.cpp(263) :fatal error C1010: unexpected end of file while looking for precompiled header directive</code>
+    </p>
+    <p>
+        Microsoft Visual C++ 编译器设置里打开了预编译头文件功能，但一个（或多个） C++ 源文件的第一行没有 <code class="inline">#include &quot;stdafx.h&quot;</code> 或 <code class="inline">#include &quot;pch.h&quot;</code> 时，就会出现此错误。
+    </p>
+    <p>
+        建议关闭预编译头文件，详见 <a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>。
+    </p>
+    <p>
+        如果你想保持开启预编译头文件功能，只需找到造成错误的文件（在上述错误信息中是 <em>test.cpp</em>），然后在文件的最顶端添加：
+    </p>
+    <pre><code class="language-cpp">#include &quot;pch.h&quot;</code></pre>
+    <p>
+        老版本 Visual Studio 用的是 <em>stdafx.h</em> 而不是 <em>pch.h</em>，要是上面的方法没解决，试试 <em>stdafx.h</em>。
+    </p>
+    <p>
+        注意，多文件的情况下，每个 C++ 源代码文件都要以它开头。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：Visual Studio 报错：<code class="lighter">1MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function &quot;int __cdecl invoke_main(void)&quot; (?invoke_main@@YAHXZ)</code>
+    </p>
+    <p>
+        可能创建的是 Windows 图形应用程序，而不是控制台应用程序。重新创建项目，确保创建的是 Windows（或 Win32）控制台项目。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：编译时有个警告：<code class="lighter">Cannot find or open the PDB file</code>
+    </p>
+    <p>
+        这是警告而不是错误，因此不会影响程序，但它很烦。解决办法：<em>Debug -- Options and Settings -- Symbols</em>，勾选 <em>Microsoft Symbol Server</em>。
+    </p>
+</div>
 <h2>
     其他
 </h2>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            Q：有搞不懂的其他问题，怎么快速得到解决？
-        </p>
-        <p>
-            学习教程的过程中，你无疑会遇到问题或意想不到的困难。怎么解决取决于你的问题。但总的来说，你可以尝试以下几种方法。
-        </p>
-        <p>
-            首先，在搜索引擎上找。清晰表述你的问题，然后搜索。如果您搜索的是错误信息，请使用引号并粘贴准确的错误信息（不包括文件名或行号）。很可能已经有人提过同样的问题并得到解决。
-        </p>
-        <p>
-            如果还是不行，可以在论坛上提问。有些专门的编程问答网站，如 <a href="https://stackoverflow.com" title="StackOverflow" target="_blank">Stack Overflow</a>。在那发帖询问。要详细说明问题，并包含所有相关信息，比如使用的操作系统和 IDE。
-        </p>
-    </div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：有搞不懂的其他问题，怎么快速得到解决？
+    </p>
+    <p>
+        学习教程的过程中，你无疑会遇到问题或意想不到的困难。怎么解决取决于你的问题。但总的来说，你可以尝试以下几种方法。
+    </p>
+    <p>
+        首先，在搜索引擎上找。清晰表述你的问题，然后搜索。如果您搜索的是错误信息，请使用引号并粘贴准确的错误信息（不包括文件名或行号）。很可能已经有人提过同样的问题并得到解决。
+    </p>
+    <p>
+        如果还是不行，可以在论坛上提问。有些专门的编程问答网站，如 <a href="https://stackoverflow.com" title="StackOverflow" target="_blank">Stack Overflow</a>。在那发帖询问。要详细说明问题，并包含所有相关信息，比如使用的操作系统和 IDE。
+    </p>
+</div>
 <hr/>
 <nav>
     <a href="Chap00-09.html">[ 下一课：0.9 -- 编译器设置：程序编译配置 ]</a><br/>

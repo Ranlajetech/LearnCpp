@@ -21,132 +21,132 @@
 <h1>
     0.4 -- C++ 开发简介
 </h1>
-    <p>
-        在编写运行我们的第一个 C++ 程序之前，要先了解一些 C++ 程序的开发细节。下图给出了一个简化的流程图。
-    </p>
-    <p>
-        <img src="../../assets/img/00-04-developing.png"
-             alt="编程流程图"
-             title="编程流程图"/>
-    </p>
+<p>
+    在编写运行我们的第一个 C++ 程序之前，要先了解一些 C++ 程序的开发细节。下图给出了一个简化的流程图。
+</p>
+<p>
+    <img src="../../assets/img/00-04-developing.png"
+            alt="编程流程图"
+            title="编程流程图"/>
+</p>
 <h2>
     第 1 步：定义要解决的问题
 </h2>
-    <p>
-        这一步决定“做什么”，先确定好你要解决的问题。搞清楚你的程序要做什么可能是最简单的一步，也可能是最难的一步。但从概念上来说，应该是最简单的。你只需要一个良定义的想法，然后你就做完可以进行下一步了。
-    </p>
-    <p>
-        这有一些例子：
-    </p>
-    <ul>
-        <li><p>
-            “我想输入一些数字，让程序计算它们的平均值。”
-        </p></li>
-        <li><p>
-            “我想写个程序生成一个二维迷宫让用户来走，走通了就算赢。”
-        </p></li>
-        <li><p>
-            “我想让程序根据记录了股票历史价格的一份文件预测股票涨跌。”
-        </p></li>
-    </ul>
+<p>
+    这一步决定“做什么”，先确定好你要解决的问题。搞清楚你的程序要做什么可能是最简单的一步，也可能是最难的一步。但从概念上来说，应该是最简单的。你只需要一个良定义的想法，然后你就做完可以进行下一步了。
+</p>
+<p>
+    这有一些例子：
+</p>
+<ul>
+    <li><p>
+        “我想输入一些数字，让程序计算它们的平均值。”
+    </p></li>
+    <li><p>
+        “我想写个程序生成一个二维迷宫让用户来走，走通了就算赢。”
+    </p></li>
+    <li><p>
+        “我想让程序根据记录了股票历史价格的一份文件预测股票涨跌。”
+    </p></li>
+</ul>
 <h2>
     第 2 步：决定怎么解决这个问题
 </h2>
-    <p>
-        这一步决定“怎么做”，要考虑如何完成你在第 1 步中划定的目标。这也是在软件开发中最容易被忽视的一步。关键在于解决问题的方法有很多，但方案之间有优劣之分。一种很常见的情况是：程序员有了个主意，马上就坐下来开始写代码，最后发现这个解决方案很糟糕。
+<p>
+    这一步决定“怎么做”，要考虑如何完成你在第 1 步中划定的目标。这也是在软件开发中最容易被忽视的一步。关键在于解决问题的方法有很多，但方案之间有优劣之分。一种很常见的情况是：程序员有了个主意，马上就坐下来开始写代码，最后发现这个解决方案很糟糕。
+</p>
+<p>
+    一般来说，一个好解决方案具有如下特征：
+</p>
+<ul>
+    <li>很直白，不复杂，不会让人困惑。</li>
+    <li>有详细的文档，尤其是标明了所作的假设和程序的限制。</li>
+    <li>模块化编译，方便以后复用或更改，同时不影响程序的其他部分。</li>
+    <li>程序稳定，在出现意外情况的时候能给出有用的报错信息。</li>
+</ul>
+<p>
+    当你立即开始写代码的时候，一般都是想着“我想做xxx”，然后会去编写能让你最快达到目的的解决方案。但这样写出来的程序很脆弱、难以作更改、不好拓展功能，还有一堆 bug（技术缺陷）。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
     </p>
     <p>
-        一般来说，一个好解决方案具有如下特征：
+        <em>bug</em> 一词于 1870 年代由 Thomas Edison（爱迪生）首次使用。这个词真正开始流行源于 1940 年代工程师发现了一只真正的蛾子卡在早期计算机的硬件上造成了短路。当时的错误日志和那只蛾子现在陈列在 Smithsonian Museum of American History（史密森尼美国历史博物馆）。可以在<a href="https://americanhistory.si.edu/collections/search/object/nmah_334663" title="AmericanHistory.si.edu" target="_blank">这里</a>查看。
     </p>
-    <ul>
-        <li>很直白，不复杂，不会让人困惑。</li>
-        <li>有详细的文档，尤其是标明了所作的假设和程序的限制。</li>
-        <li>模块化编译，方便以后复用或更改，同时不影响程序的其他部分。</li>
-        <li>程序稳定，在出现意外情况的时候能给出有用的报错信息。</li>
-    </ul>
-    <p>
-        当你立即开始写代码的时候，一般都是想着“我想做xxx”，然后会去编写能让你最快达到目的的解决方案。但这样写出来的程序很脆弱、难以作更改、不好拓展功能，还有一堆 bug（技术缺陷）。
-    </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            <em>bug</em> 一词于 1870 年代由 Thomas Edison（爱迪生）首次使用。这个词真正开始流行源于 1940 年代工程师发现了一只真正的蛾子卡在早期计算机的硬件上造成了短路。当时的错误日志和那只蛾子现在陈列在 Smithsonian Museum of American History（史密森尼美国历史博物馆）。可以在<a href="https://americanhistory.si.edu/collections/search/object/nmah_334663" title="AmericanHistory.si.edu" target="_blank">这里</a>查看。
-        </p>
-    </div>
-    <p>
-        研究表明，程序员写初始代码的时间只占到总时间的 20%，其余的 80% 都用在了维护上，这包括 <strong>debug</strong>（移除 bug）、更新程序以与环境变化相适应（比如运行在新操作系统上）、改进程序（为提高可用性或增强功能而作的小更改）或者是内部优化（提高可靠性和可维护性）。
-    </p>
-    <p>
-        因此，在真正开始写代码之前，值得多花点时间想清楚解决问题的最优方案，要做哪些假设，然后为未来的工作做些计划，这样能为以后节省很多时间，扫除很多问题。
-    </p>
-    <p>
-        以后的课程中还会继续深入讨论如何高效设计问题解决方案。
-    </p>
+</div>
+<p>
+    研究表明，程序员写初始代码的时间只占到总时间的 20%，其余的 80% 都用在了维护上，这包括 <strong>debug</strong>（移除 bug）、更新程序以与环境变化相适应（比如运行在新操作系统上）、改进程序（为提高可用性或增强功能而作的小更改）或者是内部优化（提高可靠性和可维护性）。
+</p>
+<p>
+    因此，在真正开始写代码之前，值得多花点时间想清楚解决问题的最优方案，要做哪些假设，然后为未来的工作做些计划，这样能为以后节省很多时间，扫除很多问题。
+</p>
+<p>
+    以后的课程中还会继续深入讨论如何高效设计问题解决方案。
+</p>
 <h2>
     第 3 步：编写程序
 </h2>
-    <p>
-        为了编写程序，需要两样东西：一是掌握一种编程语言——这也是这部教程的目标，二是用来编写并保存程序的文本编辑器。使用 C++ 指令编写的程序被称作<strong>源代码</strong>（简称<strong>代码</strong>）。原则上你可以使用任何文本编辑器来写代码，甚至可以用 Windows 的记事本或者 Unix 上的 vi 或 pico。然而，我们强烈建议你使用专为编程设计的编辑器（也称<strong>代码编辑器</strong>）。如果你还没有，也不用担心，稍后我们会教你怎么安装一个代码编辑器。
-    </p>
-    <p>
-        典型的专为编程设计的编辑器有一些方便写代码的特性，包括：
-    </p>
-    <ul>
-        <li>行号显示。编译器给出的错误信息包含行号，比如：<code class="lighter">some error code/message, line 64</code>。如果编辑器不显示行号，想要找到第 64 行会很困难。</li>
-        <li>语法高亮和颜色。这能让程序的各部分更易辨别。</li>
-        <li>无歧义的等宽字体。非编程用的字体大多难以分辨数字 <code>0</code> 和字母 <code>O</code>，数字 <code>1</code>、字母 <code>l</code>（小写 <code>L</code>）和字母 <code>I</code>（大写 <code>i</code>）。好的编程字体保证它们能被一眼分辨出来以防混用。所有代码编辑器都会默认开启这一功能，但一般的文本编辑器可能不会。使用等宽字体（即所有字符符号数字的宽度都相同）使代码更易格式化和对齐。</li>
-    </ul>
-    <p>
-        以下是带有行号、语法高亮和等宽字体的 C++ 程序示例：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
+<p>
+    为了编写程序，需要两样东西：一是掌握一种编程语言——这也是这部教程的目标，二是用来编写并保存程序的文本编辑器。使用 C++ 指令编写的程序被称作<strong>源代码</strong>（简称<strong>代码</strong>）。原则上你可以使用任何文本编辑器来写代码，甚至可以用 Windows 的记事本或者 Unix 上的 vi 或 pico。然而，我们强烈建议你使用专为编程设计的编辑器（也称<strong>代码编辑器</strong>）。如果你还没有，也不用担心，稍后我们会教你怎么安装一个代码编辑器。
+</p>
+<p>
+    典型的专为编程设计的编辑器有一些方便写代码的特性，包括：
+</p>
+<ul>
+    <li>行号显示。编译器给出的错误信息包含行号，比如：<code class="lighter">some error code/message, line 64</code>。如果编辑器不显示行号，想要找到第 64 行会很困难。</li>
+    <li>语法高亮和颜色。这能让程序的各部分更易辨别。</li>
+    <li>无歧义的等宽字体。非编程用的字体大多难以分辨数字 <code>0</code> 和字母 <code>O</code>，数字 <code>1</code>、字母 <code>l</code>（小写 <code>L</code>）和字母 <code>I</code>（大写 <code>i</code>）。好的编程字体保证它们能被一眼分辨出来以防混用。所有代码编辑器都会默认开启这一功能，但一般的文本编辑器可能不会。使用等宽字体（即所有字符符号数字的宽度都相同）使代码更易格式化和对齐。</li>
+</ul>
+<p>
+    以下是带有行号、语法高亮和等宽字体的 C++ 程序示例：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main()
 {
     std::cout &lt;&lt; &quot;Colored text!&quot;;
     return 0;
 }</code></pre>
-    <p>
-        本教程中展示的例子都会包括行号和语法高亮，方便学习。
-    </p>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            提示
-        </p>
-        <p>
-            <a href="https://www.codingfont.com" title="CodingFont" target="_blank">Coding Font</a> 网站上有个简洁的工具帮你对比不同编程字体间的差异，以挑选你最喜欢的。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            由于源代码是使用 ASCII 字符编写的，因此编程语言使用一定量的 ASCII 艺术来表示数学概念。例如，<code class="inline">≠</code> 不属于 ASCII 字符集，因此编程语言通常使用 <code class="inline">!=</code> 来表示数学上的不等号。
-        </p>
-        <p>
-            一些编程字体（如 Fira Code）会把这些“艺术”连成一个字符。例如，Fira Code 不显示 <code class="inline">!=</code>，而是显示 <code class="inline">≠</code>（和两个字符等宽）。有些人认为这样更易阅读，有些人则更喜欢使用前者这种字面字符。
-        </p>
-    </div>
-    <p>
-        自己写的程序一般都会命名为 <em>something.cpp</em> 这样，其中 <em>something</em> 可以替换为你为你的程序挑选的名称（比如 <em>calculator</em>，<em>hi-lo</em> 等等）。后缀 <em>.cpp</em> 告诉编译器（和你）这是一个包含 C++ 指令的 C++ 源代码文件。有些人会用 <em>.cc</em> 后缀，但我们这推荐使用 <em>.cpp</em>。
-    </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            把你的代码文件命名为 <em>something.cpp</em>，其中 <em>something</em> 是你挑选的名称，<em>.cpp</em> 是后缀名，表示这是一个 C++ 源文件。
-        </p>
-    </div>
-    <p>
-        另外还要注意，许多复杂的 C++ 程序具有多个 <em>.cpp</em> 文件。虽然最开始我们创建的程序只有一个 <em>.cpp</em> 文件，但也可以写那种包含几十甚至上百个 <em>.cpp</em> 文件的程序。
+<p>
+    本教程中展示的例子都会包括行号和语法高亮，方便学习。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        提示
     </p>
     <p>
-        写完自己的程序，下一步就是把源代码转换成某种可以运行的东西，看看它能不能工作！我们将在下一课中讨论这些步骤（第 4 - 7 步）。
+        <a href="https://www.codingfont.com" title="CodingFont" target="_blank">Coding Font</a> 网站上有个简洁的工具帮你对比不同编程字体间的差异，以挑选你最喜欢的。
     </p>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        由于源代码是使用 ASCII 字符编写的，因此编程语言使用一定量的 ASCII 艺术来表示数学概念。例如，<code class="inline">≠</code> 不属于 ASCII 字符集，因此编程语言通常使用 <code class="inline">!=</code> 来表示数学上的不等号。
+    </p>
+    <p>
+        一些编程字体（如 Fira Code）会把这些“艺术”连成一个字符。例如，Fira Code 不显示 <code class="inline">!=</code>，而是显示 <code class="inline">≠</code>（和两个字符等宽）。有些人认为这样更易阅读，有些人则更喜欢使用前者这种字面字符。
+    </p>
+</div>
+<p>
+    自己写的程序一般都会命名为 <em>something.cpp</em> 这样，其中 <em>something</em> 可以替换为你为你的程序挑选的名称（比如 <em>calculator</em>，<em>hi-lo</em> 等等）。后缀 <em>.cpp</em> 告诉编译器（和你）这是一个包含 C++ 指令的 C++ 源代码文件。有些人会用 <em>.cc</em> 后缀，但我们这推荐使用 <em>.cpp</em>。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        把你的代码文件命名为 <em>something.cpp</em>，其中 <em>something</em> 是你挑选的名称，<em>.cpp</em> 是后缀名，表示这是一个 C++ 源文件。
+    </p>
+</div>
+<p>
+    另外还要注意，许多复杂的 C++ 程序具有多个 <em>.cpp</em> 文件。虽然最开始我们创建的程序只有一个 <em>.cpp</em> 文件，但也可以写那种包含几十甚至上百个 <em>.cpp</em> 文件的程序。
+</p>
+<p>
+    写完自己的程序，下一步就是把源代码转换成某种可以运行的东西，看看它能不能工作！我们将在下一课中讨论这些步骤（第 4 - 7 步）。
+</p>
 <hr/>
 <nav>
     <a href="Chap00-05.html">[ 下一课：0.5 -- 编译器 / 链接器 / 库 简介 ]</a><br/>

@@ -13,101 +13,101 @@
 <h1>
     0.9 -- 编译器设置：程序编译配置
 </h1>
-    <p>
-        编译配置（也称为编译目标）是一组项目设置，决定了 IDE 将如何编译项目。编译配置通常包括以下内容：可执行文件的名称、在哪些目录中查找其他代码和库文件、保不保留调试信息、编译器在多大程度上优化程序等……一般来说，除非有特殊原因要改，这些设置保持默认就行。
+<p>
+    编译配置（也称为编译目标）是一组项目设置，决定了 IDE 将如何编译项目。编译配置通常包括以下内容：可执行文件的名称、在哪些目录中查找其他代码和库文件、保不保留调试信息、编译器在多大程度上优化程序等……一般来说，除非有特殊原因要改，这些设置保持默认就行。
+</p>
+<p>
+    在 IDE 中创建新项目时，大多数集成开发环境都会设置两种不同的编译配置：发布（<em>Release</em>）配置和调试（<em>Debug</em>）配置。
+</p>
+<p>
+    调试配置用于帮助调试程序，编写程序时一般用的是这个。该配置关闭了所有优化功能，并包含调试信息，因此程序会变大变慢，但调试起来却容易得多。默认情况下，调试配置通常被选为活动配置。以后会详细介绍调试技术。
+</p>
+<p>
+    发布配置用于发布程序。该版本通常对大小和性能做了优化，且不包含额外的调试信息。由于发布配置包含所有优化，因此该配置也可用于测试代码性能（以后会演示如何进行测试）。
+</p>
+<p>
+    使用 Visual Studio 编译 <em>HelloWorld</em> 程序时（<a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>），调试配置生成的可执行文件有 65KB，而在发布配置下只有 12KB。造成差异的主要原因是调试配置时保留了额外的调试信息。
+</p>
+<p>
+    虽然可以创建自己的自定义编译配置，但除非你想比较使用不同编译配置的结果，一般情况下没理由这样做。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
     <p>
-        在 IDE 中创建新项目时，大多数集成开发环境都会设置两种不同的编译配置：发布（<em>Release</em>）配置和调试（<em>Debug</em>）配置。
+        开发程序时，使用调试配置。准备发布可执行文件或想测试性能时，使用发布配置。
     </p>
-    <p>
-        调试配置用于帮助调试程序，编写程序时一般用的是这个。该配置关闭了所有优化功能，并包含调试信息，因此程序会变大变慢，但调试起来却容易得多。默认情况下，调试配置通常被选为活动配置。以后会详细介绍调试技术。
-    </p>
-    <p>
-        发布配置用于发布程序。该版本通常对大小和性能做了优化，且不包含额外的调试信息。由于发布配置包含所有优化，因此该配置也可用于测试代码性能（以后会演示如何进行测试）。
-    </p>
-    <p>
-        使用 Visual Studio 编译 <em>HelloWorld</em> 程序时（<a href="Chap00-07.html" target="_blank">0.7 -- 编译第一个程序</a>），调试配置生成的可执行文件有 65KB，而在发布配置下只有 12KB。造成差异的主要原因是调试配置时保留了额外的调试信息。
-    </p>
-    <p>
-        虽然可以创建自己的自定义编译配置，但除非你想比较使用不同编译配置的结果，一般情况下没理由这样做。
-    </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            开发程序时，使用调试配置。准备发布可执行文件或想测试性能时，使用发布配置。
-        </p>
-    </div>
-    <p>
-        某些 IDE（如 Visual Studio）还会为不同平台创建单独的编译配置。例如，Visual Studio 会为 x86（32 位）和 x64（64 位）平台创建不同的编译配置。
-    </p>
+</div>
+<p>
+    某些 IDE（如 Visual Studio）还会为不同平台创建单独的编译配置。例如，Visual Studio 会为 x86（32 位）和 x64（64 位）平台创建不同的编译配置。
+</p>
 <h2>
     切换编译配置
 </h2>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Visual 用户
-        </p>
-        <p>
-            在 Visual Studio 中切换调试和发布有多种方法。最简单的是直接在 <em>Standard Toolbar Options</em> 中的 <em>Solution Configurations</em> 下拉菜单中选择。这里先设为 <em>Debug</em>。
-        </p>
-        <!-- 此处应有截图 -->
-        <p>
-            也可以在 <em>Build -- Configuration Manager</em> 中更改 <em>active solution configuration</em>。
-        </p>
-        <p>
-            在 <em>Solution Configurations</em> 下拉菜单右边还有 <em>Solution Platform</em> 下拉菜单，用于在 x86/x64（32/64 位）平台间切换。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Code::Blocks 用户
-        </p>
-        <p>
-            在 <em>Compiler toolbar</em> 中，有个 <em>Build Target</em> 选项，这里先设为 <em>Debug</em>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            GCC/G++ 用户
-        </p>
-        <p>
-            调试时在命令行添加 <code class="inline">-ggdb</code>，发布时添加 <code class="inline">-O2 -DNDEBUG</code>。现在先用前者。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            VSCode 用户
-        </p>
-        <p>
-            第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <code class="inline">&quot;args&quot;</code>，定位到该部分的 <code class="inline">&quot;${file}&quot;</code> 行。
-        </p>
-        <p>
-            在这行上面添加一行，编译时写 <br/>
-            <code class="inline">&quot;-ggdb&quot;,</code>，<br/>
-            发布时写（一行一条） <br/>
-            <code class="inline">&quot;-O2&quot;,</code><br/>
-            <code class="inline">&quot;-DNDEBUG&quot;,</code>
-        </p>
-    </div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Visual 用户
+    </p>
+    <p>
+        在 Visual Studio 中切换调试和发布有多种方法。最简单的是直接在 <em>Standard Toolbar Options</em> 中的 <em>Solution Configurations</em> 下拉菜单中选择。这里先设为 <em>Debug</em>。
+    </p>
+    <!-- 此处应有截图 -->
+    <p>
+        也可以在 <em>Build -- Configuration Manager</em> 中更改 <em>active solution configuration</em>。
+    </p>
+    <p>
+        在 <em>Solution Configurations</em> 下拉菜单右边还有 <em>Solution Platform</em> 下拉菜单，用于在 x86/x64（32/64 位）平台间切换。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Code::Blocks 用户
+    </p>
+    <p>
+        在 <em>Compiler toolbar</em> 中，有个 <em>Build Target</em> 选项，这里先设为 <em>Debug</em>。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        GCC/G++ 用户
+    </p>
+    <p>
+        调试时在命令行添加 <code class="inline">-ggdb</code>，发布时添加 <code class="inline">-O2 -DNDEBUG</code>。现在先用前者。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        VSCode 用户
+    </p>
+    <p>
+        第一次运行程序的时，在 <em>Explorer</em> 面板中 <em>.vscode</em> 文件夹里会新建一个 <em>task.json</em> 文件。打开它，找到 <code class="inline">&quot;args&quot;</code>，定位到该部分的 <code class="inline">&quot;${file}&quot;</code> 行。
+    </p>
+    <p>
+        在这行上面添加一行，编译时写 <br/>
+        <code class="inline">&quot;-ggdb&quot;,</code>，<br/>
+        发布时写（一行一条） <br/>
+        <code class="inline">&quot;-O2&quot;,</code><br/>
+        <code class="inline">&quot;-DNDEBUG&quot;,</code>
+    </p>
+</div>
 <h2>
     修改编译配置
 </h2>
-    <p>
-        接下来几节里会展示怎么修改编译配置。修改时推荐在所有编译配置中做更改。
+<p>
+    接下来几节里会展示怎么修改编译配置。修改时推荐在所有编译配置中做更改。
+</p>
+<p>
+    这有助于防止改了别的编译配置，并确保在以后切换编译配置时仍能应用更改。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        小贴士
     </p>
     <p>
-        这有助于防止改了别的编译配置，并确保在以后切换编译配置时仍能应用更改。
+        每次修改项目设置时，选择更改所有编译配置（除非有理由不这么做）。
     </p>
-    <div class="learncpp-blocktext-violet">
-        <p class="learncpp-block-head-content">
-            小贴士
-        </p>
-        <p>
-            每次修改项目设置时，选择更改所有编译配置（除非有理由不这么做）。
-        </p>
-    </div>
+</div>
 <hr/>
 <nav>
     <a href="Chap00-10.html">[ 下一课：0.10 -- 编译器设置：编译器扩展 ]</a><br/>

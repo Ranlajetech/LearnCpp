@@ -13,151 +13,151 @@
 <h1>
     0.11 -- 编译器设置：警告与错误等级
 </h1>
-    <p>
-        编译器会检查你写的程序是否符合 C++ 规则（假设你已按 <a href="Chap00-10.html" target="_blank">0.10 -- 编译器设置：编译器扩展</a> 一节所述，关闭了编译器扩展）。
+<p>
+    编译器会检查你写的程序是否符合 C++ 规则（假设你已按 <a href="Chap00-10.html" target="_blank">0.10 -- 编译器设置：编译器扩展</a> 一节所述，关闭了编译器扩展）。
+</p>
+<p>
+    如果你的程序肯定不符合语言规则，编译器就会抛出一个 <strong>错误</strong>（<strong>error</strong>），提供错误所在的行号，并给出一段文本对比编译器的期望与实际找到的东西。错误实际上可能就在这一行，或者上下一行。找到错误并修正后，可以尝试再次编译。
+</p>
+<p>
+    某些情况下，编译器可能会认为一些代码可能有问题，但并不确定（记住，C++“信任程序员”）。此时，编译器可能会抛出一个 <strong>警告</strong>（<strong>warning</strong>）。触发警告不会中止编译过程，但程序员应当留意有没有漏洞。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
     <p>
-        如果你的程序肯定不符合语言规则，编译器就会抛出一个 <strong>错误</strong>（<strong>error</strong>），提供错误所在的行号，并给出一段文本对比编译器的期望与实际找到的东西。错误实际上可能就在这一行，或者上下一行。找到错误并修正后，可以尝试再次编译。
+        不要把大量的警告放在那不管。遇到了就解决它们（就当它们是错误）。可能有一个会引发大问题的警告被淹没在大量无关紧要的警告里。
     </p>
-    <p>
-        某些情况下，编译器可能会认为一些代码可能有问题，但并不确定（记住，C++“信任程序员”）。此时，编译器可能会抛出一个 <strong>警告</strong>（<strong>warning</strong>）。触发警告不会中止编译过程，但程序员应当留意有没有漏洞。
-    </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            不要把大量的警告放在那不管。遇到了就解决它们（就当它们是错误）。可能有一个会引发大问题的警告被淹没在大量无关紧要的警告里。
-        </p>
-    </div>
-    <p>
-        大多数情况下，可以修改警告指出的代码问题来消除警告，也可以用不会触发警告的方式重写那一部分代码。
-    </p>
-    <p>
-        某些少见的情况下，需要明确告知编译器不要在这行代码上抛出警告。C++ 官方支持并不支持直接做到这点，但许多编译器（包括 Visual Studio 和 GCC）提供了暂时禁用警告的方法（通过不可移植的 <code>#pragma</code> 指令）。
-    </p>
+</div>
+<p>
+    大多数情况下，可以修改警告指出的代码问题来消除警告，也可以用不会触发警告的方式重写那一部分代码。
+</p>
+<p>
+    某些少见的情况下，需要明确告知编译器不要在这行代码上抛出警告。C++ 官方支持并不支持直接做到这点，但许多编译器（包括 Visual Studio 和 GCC）提供了暂时禁用警告的方法（通过不可移植的 <code>#pragma</code> 指令）。
+</p>
 <h2>
     提高警告等级
 </h2>
-    <p>
-        绝大多数编译器默认只在最明显的问题上抛出警告。但也可以要求编译器更为挑剔地在所有可能有问题的地方抛出警告。
+<p>
+    绝大多数编译器默认只在最明显的问题上抛出警告。但也可以要求编译器更为挑剔地在所有可能有问题的地方抛出警告。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            把警告等级开到最大，尤其是在学习的阶段。这会帮你识别可能存在的问题。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Visual Studio 用户
-        </p>
-        <p>
-            右键单击 <em>Solution Explorer</em> 窗口上的项目名，选择 <em>Properties</em>。
-        </p>
-        <p>
-            在 <em>Project Property Pages</em> 对话框里，确保上方 <em>Configuration</em> 值是 <em>All Configurations</em>。选择 <em>C/C++ -- General</em> 选项卡，把 <em>Warning level</em> 设为 <em>Level4 (/W4)</em>。
-        </p>
-        <p>
-            注意：不要选择 <em>EnableAllWarnings (/Wall)</em>，否则可能会被 C++ 标准库产生的大量警告淹没。
-        </p>
-        <p>
-            Visual Studio 默认关闭了 有符号/无符号 转换警告，但它是有用的。如果你使用的是 2019 版或更新版，可以打开它：
-        </p>
-        <ul>
-            <li>在 <em>C/C++ -- Command Line</em> 标签页中，在 <em>Additional Options</em> 下面添加 <code class="inline">/w44365</code>。这把 有符号/无符号 转换警告提到了等级 4（也就是上面设置的那样）。</li>
-            <li>在 <em>C/C++ > External Includes</em> 选项卡中，把<em>External Header Warning Level</em> 设为 <em>Level3 (/external:W3)</em>。这告诉编译器在编译标准库头文件时把警告等级设为 3（而不是 4），这样就不会在编译这些头文件时触发警告了。</li>
-        </ul>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Code::Blocks 用户
-        </p>
-        <p>
-            在 <em>Settings menu -- Compiler -- Compiler settings</em> 里，勾选 <em>-Wall</em>，<em>-Weffc++</em>，<em>-Wextra</em> 相关的选项。
-        </p>
-        <p>
-            然后到 <em>Other compiler options</em> 标签页，在下面的文本编辑区里添加<br/>
-            <code class="inline">-Wconversion -Wsign-conversion</code>
-        </p>
-        <p>
-            注意：<em>-Werror</em> 参数稍后会解释。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            GCC/G++ 用户
-        </p>
-        <p>
-            在命令行后面添加：<br/>
-            <code class="inline">-Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion</code>
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            VS Code 用户
-        </p>
-        <p>
-            打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面，添加以下行（一行一条）：<br/>
-            <code class="inline">&quot;-Wall&quot;,</code><br/>
-            <code class="inline">&quot;-Weffc++&quot;,</code><br/>
-            <code class="inline">&quot;-Wextra&quot;,</code><br/>
-            <code class="inline">&quot;-Wconversion&quot;,</code><br/>
-            <code class="inline">&quot;-Wsign-conversion&quot;,</code>
-        </p>
-    </div>
+    <p>
+        把警告等级开到最大，尤其是在学习的阶段。这会帮你识别可能存在的问题。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Visual Studio 用户
+    </p>
+    <p>
+        右键单击 <em>Solution Explorer</em> 窗口上的项目名，选择 <em>Properties</em>。
+    </p>
+    <p>
+        在 <em>Project Property Pages</em> 对话框里，确保上方 <em>Configuration</em> 值是 <em>All Configurations</em>。选择 <em>C/C++ -- General</em> 选项卡，把 <em>Warning level</em> 设为 <em>Level4 (/W4)</em>。
+    </p>
+    <p>
+        注意：不要选择 <em>EnableAllWarnings (/Wall)</em>，否则可能会被 C++ 标准库产生的大量警告淹没。
+    </p>
+    <p>
+        Visual Studio 默认关闭了 有符号/无符号 转换警告，但它是有用的。如果你使用的是 2019 版或更新版，可以打开它：
+    </p>
+    <ul>
+        <li>在 <em>C/C++ -- Command Line</em> 标签页中，在 <em>Additional Options</em> 下面添加 <code class="inline">/w44365</code>。这把 有符号/无符号 转换警告提到了等级 4（也就是上面设置的那样）。</li>
+        <li>在 <em>C/C++ > External Includes</em> 选项卡中，把<em>External Header Warning Level</em> 设为 <em>Level3 (/external:W3)</em>。这告诉编译器在编译标准库头文件时把警告等级设为 3（而不是 4），这样就不会在编译这些头文件时触发警告了。</li>
+    </ul>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Code::Blocks 用户
+    </p>
+    <p>
+        在 <em>Settings menu -- Compiler -- Compiler settings</em> 里，勾选 <em>-Wall</em>，<em>-Weffc++</em>，<em>-Wextra</em> 相关的选项。
+    </p>
+    <p>
+        然后到 <em>Other compiler options</em> 标签页，在下面的文本编辑区里添加<br/>
+        <code class="inline">-Wconversion -Wsign-conversion</code>
+    </p>
+    <p>
+        注意：<em>-Werror</em> 参数稍后会解释。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        GCC/G++ 用户
+    </p>
+    <p>
+        在命令行后面添加：<br/>
+        <code class="inline">-Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion</code>
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        VS Code 用户
+    </p>
+    <p>
+        打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面，添加以下行（一行一条）：<br/>
+        <code class="inline">&quot;-Wall&quot;,</code><br/>
+        <code class="inline">&quot;-Weffc++&quot;,</code><br/>
+        <code class="inline">&quot;-Wextra&quot;,</code><br/>
+        <code class="inline">&quot;-Wconversion&quot;,</code><br/>
+        <code class="inline">&quot;-Wsign-conversion&quot;,</code>
+    </p>
+</div>
 <h2>
     把警告当作错误
 </h2>
-    <p>
-        可以让编译器把所有的警告当作错误，这样就会在发现警告时中止编译。如果你缺乏自觉（其实大多数人都一样），这是强迫自己解决所有警告的好办法。
+<p>
+    可以让编译器把所有的警告当作错误，这样就会在发现警告时中止编译。如果你缺乏自觉（其实大多数人都一样），这是强迫自己解决所有警告的好办法。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
     </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            开启“把警告当作错误”。这会强迫自己解决所有警告。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Visual Studio 用户
-        </p>
-        <p>
-            右键单击 <em>Solution Explorer</em> 窗口上的项目名，选择 <em>Properties</em>。
-        </p>
-        <p>
-            在 <em>Project Property Pages</em> 对话框里，确保上方 <em>Configuration</em> 值是 <em>All Configurations</em>。选择 <em>C/C++ -- General</em> 选项卡，把 <em>Treat Warnings As Errors</em> 设为 <em>Yes (/WX)</em>。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            Code::Blocks 用户
-        </p>
-        <p>
-            在 <em>Settings menu -- Compiler -- Other compiler options</em> 下面的文本编辑区里添加 <code class="inline">-Werror</code>
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            GCC/G++ 用户
-        </p>
-        <p>
-            在命令行后面添加 <code class="inline">-Werror</code>
-        </p>
-    </div>
-    <div class="learncpp-blocktext-yellow">
-        <p class="learncpp-block-head-content">
-            VS Code 用户
-        </p>
-        <p>
-            打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面写（一行一条）：<br/>
-            <code class="inline">&quot;-Werror&quot;,</code>
-        </p>
-    </div>
+    <p>
+        开启“把警告当作错误”。这会强迫自己解决所有警告。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Visual Studio 用户
+    </p>
+    <p>
+        右键单击 <em>Solution Explorer</em> 窗口上的项目名，选择 <em>Properties</em>。
+    </p>
+    <p>
+        在 <em>Project Property Pages</em> 对话框里，确保上方 <em>Configuration</em> 值是 <em>All Configurations</em>。选择 <em>C/C++ -- General</em> 选项卡，把 <em>Treat Warnings As Errors</em> 设为 <em>Yes (/WX)</em>。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Code::Blocks 用户
+    </p>
+    <p>
+        在 <em>Settings menu -- Compiler -- Other compiler options</em> 下面的文本编辑区里添加 <code class="inline">-Werror</code>
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        GCC/G++ 用户
+    </p>
+    <p>
+        在命令行后面添加 <code class="inline">-Werror</code>
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        VS Code 用户
+    </p>
+    <p>
+        打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;args&quot;</code>，定位到这一段的 <code class="inline">&quot;${file}&quot;</code> 行。在这一行上面写（一行一条）：<br/>
+        <code class="inline">&quot;-Werror&quot;,</code>
+    </p>
+</div>
 <hr/>
 <nav>
     <a href="Chap00-12.html">[ 下一课：0.12 -- 编译器设置：选择语言标准 ]</a><br/>

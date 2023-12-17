@@ -21,12 +21,301 @@
 <h1>
     1.8 -- 空白符与基础格式化
 </h1>
+<p>
+    <strong>空白符</strong>（<strong>whtespace</strong>）是指用于格式化的字符。在 C++ 里，主要指空格、制表符和换行符。空白符在 C++ 主要有三个作用：分隔语言元素、文本内的应用、代码格式化。
+</p>
+<h2>
+    某些语言元素必须由空白符分隔
+</h2>
+<p>
+    语言语法要求某些元素要用空白符分隔。这主要发生在两个关键字或标识符必须连续放置时，这样编译器才能将它们区分开。
+</p>
+<p>
+    比如，变量声明必须用空白符分隔：
+</p>
+<pre><code class="language-cpp">int x; // int 与 x 必须用空白符分隔</code></pre>
+<p>
+    如果输入 <code class="inline">intx</code>，编译器会认为这是标识符，然后就会报错：不知道 <code class="inline">intx</code> 是什么。
+</p>
+<p>
+    另一个例子，函数的返回类型和名称必须由空白符分隔：
+</p>
+<pre><code class="language-cpp">int main(); // int 与 main 必须用空白符分隔</code></pre>
+<p>
+    当空白符用作分隔符时，编译器不在乎使用了多少个，只要有就可以。
+</p>
+<p>
+    以下的变量定义都是合法的：
+</p>
+<pre><code class="language-cpp">int x;
+int                y;
+            int
+z;</code></pre>
+<p>
+    在特定的情况下，换行符也会用作分隔符。单行注释以换行符结束。
+</p>
+<p>
+    例如，这么做就会出错：
+</p>
+<pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!&quot;; // 这是注释的一部分
+这里不是注释</code></pre>
+<p>
+    预编译器指令（比如 <code class="inline">#include &lt;iostream&gt;</code>）必须放在不同的行里：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;</code></pre>
+<h2>
+    引号内的文本按字面保留空白符数量
+</h2>
+<p>
+    引号内的文本里的空白符的数量和字面上保持一致。以下两个例子是不同的：
+</p>
+<pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!&quot;;</code></pre>
+<pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello          world!&quot;;</code></pre>
+<p>
+    不允许在引号内的文本里使用换行符：
+</p>
+<pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello
+    world!&quot;; // 不允许!</code></pre>
+<p>
+    仅以空白符（空格（spaces）、制表符（tabs）、换行符
+    （newlines））分隔的多段引号内文本会被连接起来：
+</p>
+<pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello &quot;
+    &quot;world!&quot;; // 输出 &quot;Hello world!&quot;</code></pre>
+<h2>
+    用空白符格式化代码
+</h2>
+<p>
+    空白符在除此之外的绝大多数情况下都会被忽略。所以可以任意使用空白符来让格式化代码以使之更易阅读。
+</p>
+<p>
+    比如，下面的代码就很难读：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+int main(){std::cout&lt;&lt;&quot;Hello world&quot;;return 0;}</code></pre>
+<p>
+    而这就好多了（但还是太密集）：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+int main() {
+std::cout &lt;&lt; &quot;Hello world&quot;;
+return 0;
+}</code></pre>
+<p>
+    这样就更好了：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+int main()
+{
+    std::cout &lt;&lt; &quot;Hello world&quot;;
+
+    return 0;
+}</code></pre>
+<p>
+    需要的时候还可以把语句分散到多行：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout
+        &lt;&lt; &quot;Hello world&quot;; // 正常运行
+    return 0;
+}</code></pre>
+<p>
+    这在语句特别长时就很有用。
+</p>
+<h2>
+    基础格式化
+</h2>
+<p>
+    和其他语言不同，C++ 并不给程序员强制施加格式限制。因此，我们称 C++ 是个空白符无关的语言。
+</p>
+<p>
+    这是双刃剑。一方面，你可以自由地做任何想做的事。但另一方面，多年以来很多 C++ 程序格式化方法被开发出来，关于哪个方法最好的争论分歧很大，令人无所适从。我们的基本原则是要产生最易读的代码，并拥有最强的一致性。
+</p>
+<p>
+    以下是我们对基础格式化的推荐：
+</p>
+<ol>
+    <li>用空格还是制表符都可以（绝大多数 IDE 都能把制表符和合适数量的空格互相转换）。更喜欢空格的程序员是因为能保证无论编辑器采用什么设置，代码都能精确对齐。而支持使用制表符的程序员质疑称为什么不使用本来就是用来缩进的字符来缩进，而且还能自定义缩进宽度。这里没有正确答案，这种争论就像蛋糕和派哪个更好吃。最终还是归结于个人喜好。</li>
+    <p>
+        无论如何，推荐把制表符设置为 4 个字符宽来缩进。某些 IDE 会默认为 3 个字符宽，这也可以。
+    </p>
+    <li>函数的花括号有两种可接受的风格。</li>
+    <p>
+        Google 的 C++ 风格规范是把前花括号放到函数声明同一行的后面：
+    </p>
+    <pre><code class="language-cpp">int main() {
+}</code></pre>
+    <p>
+        这么做的理由是减少了垂直空白（无需把一整行只用来放一个前花括号），屏幕里就能放下更多的代码。屏幕里的代码越多，程序理解起来就更容易。
+    </p>
+    <p>
+        但是我们更喜欢另一种，就是前花括号独占一行：
+    </p>
+    <pre><code class="language-cpp">int main()
+{
+}</code></pre>
+    <p>
+        这提升了可读性，也减少了潜在的问题，因为每一对花括号的缩进距离都是一样的。如果编译器因花括号匹配而报错，会很容易找到位置。
+    </p>
+    <li>花括号里的每行语句都应当比花括号多缩进一个制表符的距离。比如：</li>
+    <pre><code class="language-cpp">int main()
+{
+    std::cout &lt;&lt; &quot;Hello world!\n&quot;; // 缩进一个制表符宽 (4 空格宽)
+    std::cout &lt;&lt; &quot;Nice to meet you.\n&quot;; // 缩进一个制表符宽 (4 空格宽)
+}</code></pre>
+    <p>
+        一行不要太长。一般一行代码的最长长度的事实标准是 80 字符宽。如果一行超出这个长度，那就该在合适的位置拆成多行。每一个接续行都该多缩进一个制表符宽，如果每行都很类似，就和上一行的对应位置对齐，这样更易阅读。
+    </p>
+    <pre><code class="language-cpp">int main()
+{
+    std::cout &lt;&lt; &quot;This is a really, really, really, really, really, really, really, &quot;
+        &quot;really long line\n&quot;; // 接续行多缩进一个制表符宽
+
+    std::cout &lt;&lt; &quot;This is another really, really, really, really, really, really, really, &quot;
+                 &quot;really long line\n&quot;; // 接续行和上一行的文本对齐
+
+    std::cout &lt;&lt; &quot;This one is short\n&quot;;
+}</code></pre>
+    <p>
+        这会让每一行更易阅读。现代的宽屏显示器允许把两个显示相似代码的两个窗口并排放置，对比起来更容易。
+    </p>
+    <div class="learncpp-blocktext-green">
+        <p class="learncpp-block-title">
+            最佳实践
+        </p>
+        <p>
+            保持每行长度不超过 80 字符宽。
+        </p>
+    </div>
+    <div class="learncpp-blocktext-violet">
+        <p class="learncpp-block-head-content">
+            提示
+        </p>
+        <p>
+            许多编辑器都有个内置（或插件）特性，可以在指定的列宽处（比如 80 字符宽处）显示一条竖线（列参考线），这样就可以方便地看到一行是否太长了。可以搜索代码编辑器的名字加上列参考线看看你的编辑器是否支持这一功能。
+        </p>
+    </div>
+    <li>如果长行在运算符处断开，运算符应该放在下一行的开头，而不是留在这一行的结尾。</li>
+    <pre><code class="language-cpp">std::cout &lt;&lt; 3 + 4
+    + 5 + 6
+    * 7 * 8;</code></pre>
+    <p>
+        这很清晰地表示了接续行是上一行的接续，也可以让运算符在左侧对齐，增加可读性。
+    </p>
+    <li>用空白符隔开一大块代码、对齐值或者注释等，可以增加代码可读性。</li>
+    <p>
+        难读：
+    </p>
+    <pre><code class="language-cpp">cost = 57;
+pricePerItem = 24;
+value = 5;
+numberOfItems = 17;</code></pre>
+    <p>
+        易读：
+    </p>
+    <pre><code class="language-cpp">cost          = 57;
+pricePerItem  = 24;
+value         = 5;
+numberOfItems = 17;</code></pre>
+    <p>
+        难读：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!\n&quot;; // cout 在 iostream 库中
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;; // 这些注释使代码难以阅读
+std::cout &lt;&lt; &quot;Yeah!\n&quot;; // 每行不一样长</code></pre>
+    <p>
+        易读：
+    </p>
+    <pre><code class="language-cpp">std::cout &lt;&lt; &quot;Hello world!\n&quot;;                  // cout 在 iostream 库中
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;;  // 这些注释读起来容易多了
+std::cout &lt;&lt; &quot;Yeah!\n&quot;;                         // 所有行对齐</code></pre>
+    <p>
+        难读：
+    </p>
+    <pre><code class="language-cpp">// cout 在 iostream 库中
+std::cout &lt;&lt; &quot;Hello world!\n&quot;;
+// 这些注释使代码难以阅读
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;;
+// 所有东西都挤在一起
+std::cout &lt;&lt; &quot;Yeah!\n&quot;;</code></pre>
+    <p>
+        易读：
+    </p>
+    <pre><code class="language-cpp">// cout 在 iostream 库中
+std::cout &lt;&lt; &quot;Hello world!\n&quot;;
+
+// 这些注释读起来容易多了
+std::cout &lt;&lt; &quot;It is very nice to meet you!\n&quot;;
+
+// 当用空行分隔开之后
+std::cout &lt;&lt; &quot;Yeah!\n&quot;;</code></pre>
+</ol>
+<p>
+    整个教程都会遵循这里的惯例，这会逐渐成为你的习惯。当介绍新主题时，会一起提供适用于新特性的新风格推荐。
+</p>
+<p>
+    最终，C++ 还是给了你选择最喜欢的风格或认为最优的风格的权力。但是我们强烈推荐你使用例子里的风格。成千上万的程序员对其进行了数十亿行代码的实战测试，并做了优化以确保成功。
+</p>
+<p>
+    有一个例外：如果在别人的代码基础上工作，请采用他们原来的风格。一致性比喜好更重要。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        在一个已存在的项目中工作时，请和原有的风格保持一致。
+    </p>
+</div>
+<h2>
+    自动格式化
+</h2>
+<p>
+    绝大多数现代 IDE 会帮你在输入的时候就格式化（比如创建一个函数时，IDE 会自动缩进函数体内的语句）。
+</p>
+<p>
+    但是，添加或删除一段代码时，或者更改了 IDE 的默认格式化设置，或者粘贴了一段使用了不同风格的代码块，修复整个文件或一部分的格式会很令人头疼。幸运的是，现代 IDE 拥有自动格式化的功能，可以重新格式化选中的（用鼠标高亮的）代码或者整个文件。
+</p>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Visual Studio 用户
+    </p>
+    <p>
+        自动格式化选项在 <em>Edit -- Advanced -- Format Document</em> 与 <em>Edit -- Advanced -- Format Selection</em>。 
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Code::Blocks 用户
+    </p>
+    <p>
+        自动格式化选项在 <em>右键单击 -- Format use A Style</em>。 
+    </p>
+</div>
+<p>
+    为了方便，推荐给自动格式化文件添加键盘快捷方式。
+</p>
+<p>
+    也有很多外部工具可以自动格式化代码，<a href="https://clang.llvm.org/docs/ClangFormat.html" title="LLVM.org" target="_blank">clangFormat</a> 就很流行。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        强烈推荐使用自动格式化功能，以保持代码格式化风格统一。
+    </p>
+</div>
 <hr/>
 <nav>
     <a href="Chap01-09.html">[ 下一课：1.9 -- 字面值与运算符简介 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/whitespace-and-basic-formatting/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap01-07.html">[ 上一课：1.7 -- 关键字与标识符命名 ]</a>
 </nav>
 </body>

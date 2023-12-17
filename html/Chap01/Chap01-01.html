@@ -24,155 +24,155 @@
 <h2>
     本章介绍
 </h2>
-    <p>
-        欢迎阅读本 C++ 教程的第一章！
-    </p>
-    <p>
-        在本章中，我们将初步了解对每个 C++ 程序都至关重要的一些主题。由于要涉及的主题很多，我们将在相当浅的层次上介绍大部分内容，仅仅是了解一下的程度。本章的目的是帮助你理解基本的 C++ 程序结构。在本章结束时，你将能够编写自己的简单程序。
-    </p>
-    <p>
-        在以后的章节中，我们将重温并更详细的探讨大部分主题。我们还将在此基础上引入新的概念。
-    </p>
-    <p>
-        为了使课程长度便于管理，主题可能会有一部分被放到后面的几课里了。如果你觉得某节课没有涉及某些重要概念，那么下节课可能会涉及。
-    </p>
+<p>
+    欢迎阅读本 C++ 教程的第一章！
+</p>
+<p>
+    在本章中，我们将初步了解对每个 C++ 程序都至关重要的一些主题。由于要涉及的主题很多，我们将在相当浅的层次上介绍大部分内容，仅仅是了解一下的程度。本章的目的是帮助你理解基本的 C++ 程序结构。在本章结束时，你将能够编写自己的简单程序。
+</p>
+<p>
+    在以后的章节中，我们将重温并更详细的探讨大部分主题。我们还将在此基础上引入新的概念。
+</p>
+<p>
+    为了使课程长度便于管理，主题可能会有一部分被放到后面的几课里了。如果你觉得某节课没有涉及某些重要概念，那么下节课可能会涉及。
+</p>
 <h2>
     语句（Statements）
 </h2>
-    <p>
-        计算机程序是告诉计算机要做什么的一系列指令。<strong>语句</strong>（<strong>statement</strong>）是指令的一种，它会让程序做出一些动作。
+<p>
+    计算机程序是告诉计算机要做什么的一系列指令。<strong>语句</strong>（<strong>statement</strong>）是指令的一种，它会让程序做出一些动作。
+</p>
+<p>
+    语句目前是 C++ 程序中最常见的指令，因为它是 C++ 语言中最小的独立运算单位。在这一点上，它更像是自然语言中的句子。和别人交流一般都会使用句子，而不是随机的单词或语音。在 C++ 中，要让程序做某件事时，一般会用语句。
+</p>
+<p>
+    C++ 的绝大多数（但不是全部）语句都以分号结尾。如果你看到一行以分号收尾，那么它可能就是一条语句。
+</p>
+<p>
+    像 C++ 这样的高级语言，单个 C++ 语句可能会被编译成多条机器语言指令。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
     </p>
     <p>
-        语句目前是 C++ 程序中最常见的指令，因为它是 C++ 语言中最小的独立运算单位。在这一点上，它更像是自然语言中的句子。和别人交流一般都会使用句子，而不是随机的单词或语音。在 C++ 中，要让程序做某件事时，一般会用语句。
+        C++ 中有很多种语句：
     </p>
+    <ul>
+        <li>声明语句</li>
+        <li>跳转语句</li>
+        <li>表达式语句</li>
+        <li>复合语句</li>
+        <li>条件语句（选择）</li>
+        <li>循环语句（迭代）</li>
+        <li>try 语句</li>
+    </ul>
     <p>
-        C++ 的绝大多数（但不是全部）语句都以分号结尾。如果你看到一行以分号收尾，那么它可能就是一条语句。
+        在逐步学习本教程的过程中，你会理解所有的语句。
     </p>
-    <p>
-        像 C++ 这样的高级语言，单个 C++ 语句可能会被编译成多条机器语言指令。
-    </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            C++ 中有很多种语句：
-        </p>
-        <ul>
-            <li>声明语句</li>
-            <li>跳转语句</li>
-            <li>表达式语句</li>
-            <li>复合语句</li>
-            <li>条件语句（选择）</li>
-            <li>循环语句（迭代）</li>
-            <li>try 语句</li>
-        </ul>
-        <p>
-            在逐步学习本教程的过程中，你会理解所有的语句。
-        </p>
-    </div>
+</div>
 <h2>
     函数（Function）和 <code>main</code> 函数
 </h2>
-    <p>
-        在 C++ 中，语句一般会集合成称作函数的单位。<strong>函数</strong>（<strong>function</strong>）是是一组按顺序执行的语句。在学习写自己的程序时，你将能够创造自己的函数，并按自己所想来组合排列语句。
-    </p>
-    <div class="learncpp-blocktext-purple">
-        <p class="learncpp-block-title">
-            规则
-        </p>
-        <p>
-            每个 C++ 程序都有一个特殊的函数叫做 <strong>main</strong>（都是小写字母）。程序运行时，<code class="inline">main</code> 函数中的语句开始按顺序执行。
-        </p>
-    </div>
-    <p>
-        程序一般在 <code class="inline">main</code> 函数最后一个语句执行完毕后结束，但有时也会提前结束，或者在那之后再执行一些清理工作。
+<p>
+    在 C++ 中，语句一般会集合成称作函数的单位。<strong>函数</strong>（<strong>function</strong>）是是一组按顺序执行的语句。在学习写自己的程序时，你将能够创造自己的函数，并按自己所想来组合排列语句。
+</p>
+<div class="learncpp-blocktext-purple">
+    <p class="learncpp-block-title">
+        规则
     </p>
     <p>
-        函数一般是为了完成特定的任务或做一些有用的动作而写。例如，名为 <code class="inline">max</code> 的函数可能包含找出两个数间哪个更大的语句。名为 <code class="inline">calculateGrade</code> 的函数可能是从一组测试成绩中算出学生的得分。名为 <code class="inline">printEmployee</code> 的函数可能会把员工信息显示到控制台中。稍后会更进一步讨论函数，因为它是程序里最常用的组织语句的工具。
+        每个 C++ 程序都有一个特殊的函数叫做 <strong>main</strong>（都是小写字母）。程序运行时，<code class="inline">main</code> 函数中的语句开始按顺序执行。
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            术语
-        </p>
-        <p>
-            当提到函数时，经常在函数名后面加上一对括号。例如，<code class="inline">main()</code> 就直接表示了“名为 main 的函数”。利用这种方式能很容易地把函数和其他标识符区分开，而不用每次都使用“函数”一词。
-        </p>
-    </div>
+</div>
+<p>
+    程序一般在 <code class="inline">main</code> 函数最后一个语句执行完毕后结束，但有时也会提前结束，或者在那之后再执行一些清理工作。
+</p>
+<p>
+    函数一般是为了完成特定的任务或做一些有用的动作而写。例如，名为 <code class="inline">max</code> 的函数可能包含找出两个数间哪个更大的语句。名为 <code class="inline">calculateGrade</code> 的函数可能是从一组测试成绩中算出学生的得分。名为 <code class="inline">printEmployee</code> 的函数可能会把员工信息显示到控制台中。稍后会更进一步讨论函数，因为它是程序里最常用的组织语句的工具。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        术语
+    </p>
     <p>
-        在编程领域，函数（对象、类型、模板等）的名字叫做 <strong>标识符</strong>（<strong>identifier</strong>）。
+        当提到函数时，经常在函数名后面加上一对圆括号。例如，<code class="inline">main()</code> 就直接表示了“名为 main 的函数”。利用这种方式能很容易地把函数和其他标识符区分开，而不用每次都使用“函数”一词。
     </p>
+</div>
+<p>
+    在编程领域，函数（对象、类型、模板等）的名字叫做 <strong>标识符</strong>（<strong>identifier</strong>）。
+</p>
 <h2>
     剖析 <em>HelloWorld</em>
 </h2>
-    <p>
-        我们现在有了对语句和函数的基本认识，再回到之前的 <em>HelloWorld</em> 程序，用更高级的视角深入了解每一行都是做什么的。
-    </p>
-    <pre><code class="language-cpp">#include <iostream>
+<p>
+    我们现在有了对语句和函数的基本认识，再回到之前的 <em>HelloWorld</em> 程序，用更高级的视角深入了解每一行都是做什么的。
+</p>
+<pre><code class="language-cpp">#include <iostream>
 
 int main()
 {
    std::cout &lt;&lt; &quot;Hello world!&quot;;
    return 0;
 }</code></pre>
-    <p>
-        第 1 行是称作预处理器指令的特殊行。这个预处理器指令表示想要使用 C++ 标准库中完成在控制台上完成输入输出的 <code class="inline">iostream</code> 库的内容。在第 5 行中使用 <code class="inline">std::cout</code> 就需要这一行。如果没有这一行，编译器就会因为不知道 <code class="inline">std::cout</code> 是什么而导致编译错误。
+<p>
+    第 1 行是称作预处理器指令的特殊行。这个预处理器指令表示想要使用 C++ 标准库中完成在控制台上完成输入输出的 <code class="inline">iostream</code> 库的内容。在第 5 行中使用 <code class="inline">std::cout</code> 就需要这一行。如果没有这一行，编译器就会因为不知道 <code class="inline">std::cout</code> 是什么而导致编译错误。
+</p>
+<p>
+    第 2 行是空行，会被编译器忽略。这一行只是为了让程序更易被人类阅读，它把 <code class="inline">#include</code> 预处理器指令和程序接下来的内容分隔开。
+</p>
+<p>
+    第 3 行告诉编译器我们要定义一个名（标识符）为 <code class="inline">main</code> 的函数。之前说过，每个 C++ 程序必须有一个 <code class="inline">main</code> 函数，否则就会链接失败。
+</p>
+<p>
+    第 4 和 7 行告诉编译器 <code class="inline">main</code> 函数的范围。在前后两个花括号之间的所有内容都是 <code class="inline">main</code> 函数的一部分。这一段叫做函数体。
+</p>
+<p>
+    第 5 行是 <code class="inline">main</code> 函数的第一条语句，也是程序运行时执行的第一条语句。<code class="inline">std::cout</code>（字符输出，character output） 和 <code class="inline">&lt;&lt;</code> 运算符让我们在控制台显示信息。在这里，我们显示的是文本 <code class="inline">Hello world!</code>。这条语句产生了程序的可见输出。
+</p>
+<p>
+    第 6 行是返回语句。程序运行结束后会向操作系统返回一个值来指示它有没有正常运行。这里向操作系统返回了 <code class="inline">0</code> 以表示一切顺利。这是程序运行时执行的最后一条语句。
+</p>
+<p>
+    我们写的所有程序都会遵循这种模式，或者它的变体。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        作者的话
     </p>
     <p>
-        第 2 行是空行，会被编译器忽略。这一行只是为了让程序更易被人类阅读，它把 <code class="inline">#include</code> 预处理器指令和程序接下来的内容分隔开。
+        如果上面的某些解释还看不懂，在这个阶段也是很正常的。这里只是提供一个粗略的框架。接下来的课程会对每个主题作深入讨论，并附有大量解释和示例。
     </p>
-    <p>
-        第 3 行告诉编译器我们要定义一个名（标识符）为 <code class="inline">main</code> 的函数。之前说过，每个 C++ 程序必须有一个 <code class="inline">main</code> 函数，否则就会链接失败。
-    </p>
-    <p>
-        第 4 和 7 行告诉编译器 <code class="inline">main</code> 函数的范围。在前后两个大括号之间的所有内容都是 <code class="inline">main</code> 函数的一部分。这一段叫做函数体。
-    </p>
-    <p>
-        第 5 行是 <code class="inline">main</code> 函数的第一条语句，也是程序运行时执行的第一条语句。<code class="inline">std::cout</code>（字符输出，character output） 和 <code class="inline">&lt;&lt;</code> 运算符让我们在控制台显示信息。在这里，我们显示的是文本 <code class="inline">Hello world!</code>。这条语句产生了程序的可见输出。
-    </p>
-    <p>
-        第 6 行是返回语句。程序运行结束后会向操作系统返回一个值来指示它有没有正常运行。这里向操作系统返回了 <code class="inline">0</code> 以表示一切顺利。这是程序运行时执行的最后一条语句。
-    </p>
-    <p>
-        我们写的所有程序都会遵循这种模式，或者它的变体。
-    </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            作者的话
-        </p>
-        <p>
-            如果上面的某些解释还看不懂，在这个阶段也是很正常的。这里只是提供一个粗略的框架。接下来的课程会对每个主题作深入讨论，并附有大量解释和示例。
-        </p>
-    </div>
-    <p>
-        你可以自己编译运行程序，可以在控制台看到输出：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">Hello world!</code></pre>
-    <p>
-        如果编译运行过程中出现问题，参见 <a href="../Chap00/Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>。
-    </p>
+</div>
+<p>
+    你可以自己编译运行程序，可以在控制台看到输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Hello world!</code></pre>
+<p>
+    如果编译运行过程中出现问题，参见 <a href="../Chap00/Chap00-08.html" target="_blank">0.8 -- C++ 常见问题</a>。
+</p>
 <h2>
     语法和语法错误
 </h2>
-    <p>
-        句子是由特定的语法规则组织起来的，比如句子一般以句号结尾。语言中决定如何组织句子的规则称为 <strong>语法</strong>（<strong>syntax</strong>）。如果忘记加句号而让两句话连在了一起，这就违反了语法。
-    </p>
-    <p>
-        C++ 也有语法来规定程序应当如何组织才是有效的。编译器会在编译时负责确认你的程序是否满足 C++ 的基本语法。如果违反了规则，编译器会停止编译并抛出 <strong>语法错误</strong>（<strong>syntax error</strong>）。
-    </p>
-    <p>
-        看看把第 5 行末尾的分号删掉会发生什么。编译这个有问题的程序，Visual Studio 会给出如下错误（其他编译器可能会有一些用词上的差别）：
-    </p>
-    <pre><code class="language-plaintext nohljsln lighter">c:\vcprojects\HelloWorld.cpp(6): error C2143: syntax error : missing &apos;;&apos; before &apos;return&apos;</code></pre>
-    <p>
-        这告诉你在第 6 行有语法错误：编译器期望在返回语句之前要有分号，但没有找到。尽管编译器告诉了你它在哪遇到的语法错误，但实际的问题在前一行。这个例子里，错误实际上发生在第 5 行末尾，而编译器直到第 6 行才能发现问题。
-    </p>
-    <p>
-        语法错误在编程时很常见。幸运的是，编译器会直接告诉你出错的地方，所以找到问题修正还是很容易的。编译过程在所有语法错误都被纠正之后才能完成。
-    </p>
-    <p>
-        你可以在 Hello world 程序中删掉各种东西甚至整行来观察产生的各种错误。比如补回第 5 行的分号，再删掉第 1、3、4 行，看看会发生什么。
-    </p>
+<p>
+    句子是由特定的语法规则组织起来的，比如句子一般以句号结尾。语言中决定如何组织句子的规则称为 <strong>语法</strong>（<strong>syntax</strong>）。如果忘记加句号而让两句话连在了一起，这就违反了语法。
+</p>
+<p>
+    C++ 也有语法来规定程序应当如何组织才是有效的。编译器会在编译时负责确认你的程序是否满足 C++ 的基本语法。如果违反了规则，编译器会停止编译并抛出 <strong>语法错误</strong>（<strong>syntax error</strong>）。
+</p>
+<p>
+    看看把第 5 行末尾的分号删掉会发生什么。编译这个有问题的程序，Visual Studio 会给出如下错误（其他编译器可能会有一些用词上的差别）：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">c:\vcprojects\HelloWorld.cpp(6): error C2143: syntax error : missing &apos;;&apos; before &apos;return&apos;</code></pre>
+<p>
+    这告诉你在第 6 行有语法错误：编译器期望在返回语句之前要有分号，但没有找到。尽管编译器告诉了你它在哪遇到的语法错误，但实际的问题在前一行。这个例子里，错误实际上发生在第 5 行末尾，而编译器直到第 6 行才能发现问题。
+</p>
+<p>
+    语法错误在编程时很常见。幸运的是，编译器会直接告诉你出错的地方，所以找到问题修正还是很容易的。编译过程在所有语法错误都被纠正之后才能完成。
+</p>
+<p>
+    你可以在 Hello world 程序中删掉各种东西甚至整行来观察产生的各种错误。比如补回第 5 行的分号，再删掉第 1、3、4 行，看看会发生什么。
+</p>
 <h2>
     <a href="https://www.learncpp.com/cpp-tutorial/statements-and-the-structure-of-a-program/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
 </h2>

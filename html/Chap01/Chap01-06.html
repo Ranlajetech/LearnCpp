@@ -24,43 +24,43 @@
 <h2>
     未初始化的变量
 </h2>
-    <p>
-        与其他一些编程语言不同，绝大多数变量都不会被 C / C++ 自动初始化为像 0 这样的给定值。因此，给变量分配内存地址后，变量的默认值就是那块内存里原有的随机垃圾值。变量在没被明确赋值时被称为 <strong>未初始化的变量</strong>（<strong>uninitialized variable</strong>）。
+<p>
+    与其他一些编程语言不同，绝大多数变量都不会被 C / C++ 自动初始化为像 0 这样的给定值。因此，给变量分配内存地址后，变量的默认值就是那块内存里原有的随机垃圾值。变量在没被明确赋值时被称为 <strong>未初始化的变量</strong>（<strong>uninitialized variable</strong>）。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        作者的话
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            作者的话
-        </p>
-        <p>
-            许多读者认为 <em>初始化了</em> 和 <em>未初始化</em>（<em>initialized</em>，<em>uninitialized</em>）应该正好相反，但实际并非如此。<em>初始化了</em> 指对象在定义时就给了一个初始值；而 <em>未初始化</em> 指还没给对象一个已知的值（无论通过什么方式，包括赋值）。因此，没有初始化但后续有赋值的对象不再处于 <em>未初始化</em> 状态，因为它已经被赋给了一个已知的值。
-        </p>
-        <p>
-            总结一下：
-        </p>
-        <ul>
-            <li>初始化了： 定义时就有了初始值。</li>
-            <li>赋值：定义之后赋给一个值。</li>
-            <li>未初始化：对象还没被赋予一个已知的值。</li>
-        </ul>
-    </div>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            没有默认初始化是继承自 C 的一种性能优化，那时计算机还很慢。考虑要从文件读取 100000 个值的情况，这可能要创建 100000 个变量，然后再用文件里的数据填充。
-        </p>
-        <p>
-            如果 C++ 在创建这些变量时就用默认值初始化（可能很慢），这就造成了 100000 次初始化，但这几乎没有好处，因为初始值马上就被覆盖了。
-        </p>
-        <p>
-            目前，应当总是把变量初始化，因为弊远大于利。对语言更熟悉之后，可能有某些特定的情况下要为了优化而省略初始化，但总是应当有选择地这么做。
-        </p>
-    </div>
     <p>
-        使用未初始化的变量的值可能会导致意外的结果。考虑下面的程序：
+        许多读者认为 <em>初始化了</em> 和 <em>未初始化</em>（<em>initialized</em>，<em>uninitialized</em>）应该正好相反，但实际并非如此。<em>初始化了</em> 指对象在定义时就给了一个初始值；而 <em>未初始化</em> 指还没给对象一个已知的值（无论通过什么方式，包括赋值）。因此，没有初始化但后续有赋值的对象不再处于 <em>未初始化</em> 状态，因为它已经被赋给了一个已知的值。
     </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
+    <p>
+        总结一下：
+    </p>
+    <ul>
+        <li>初始化了： 定义时就有了初始值。</li>
+        <li>赋值：定义之后赋给一个值。</li>
+        <li>未初始化：对象还没被赋予一个已知的值。</li>
+    </ul>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        没有默认初始化是继承自 C 的一种性能优化，那时计算机还很慢。考虑要从文件读取 100000 个值的情况，这可能要创建 100000 个变量，然后再用文件里的数据填充。
+    </p>
+    <p>
+        如果 C++ 在创建这些变量时就用默认值初始化（可能很慢），这就造成了 100000 次初始化，但这几乎没有好处，因为初始值马上就被覆盖了。
+    </p>
+    <p>
+        目前，应当总是把变量初始化，因为弊远大于利。对语言更熟悉之后，可能有某些特定的情况下要为了优化而省略初始化，但总是应当有选择地这么做。
+    </p>
+</div>
+<p>
+    使用未初始化的变量的值可能会导致意外的结果。考虑下面的程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main()
 {
@@ -72,25 +72,25 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        在这种情况下，计算机会把一些未使用的内存分配给 <code class="inline">x</code>，再把那块内存中的值传给 <code class="inline">std::cout</code>， 然后显示这个值（解释为整数）。但它会显示出什么值呢？谁也不知道，而且可能每次运行结果都不一样。作者在 Visual Studio 中运行这个程序时，<code class="inline">std::cout</code> 一次显示的值是 <code class="inline">7177728</code>，而下一次是 <code class="inline">5277592</code>。你可以编译并运行这个程序（电脑不会炸）。
+<p>
+    在这种情况下，计算机会把一些未使用的内存分配给 <code class="inline">x</code>，再把那块内存中的值传给 <code class="inline">std::cout</code>， 然后显示这个值（解释为整数）。但它会显示出什么值呢？谁也不知道，而且可能每次运行结果都不一样。作者在 Visual Studio 中运行这个程序时，<code class="inline">std::cout</code> 一次显示的值是 <code class="inline">7177728</code>，而下一次是 <code class="inline">5277592</code>。你可以编译并运行这个程序（电脑不会炸）。
+</p>
+<div class="learncpp-blocktext-red">
+    <p class="learncpp-block-title">
+        警告
     </p>
-    <div class="learncpp-blocktext-red">
-        <p class="learncpp-block-title">
-            警告
-        </p>
-        <p>
-            某些编译器，比如 Visual Studio，会在 <em>debug</em> 编译配置下自动把内存里的内容初始化为某个预设的值，而在 <em>release</em> 编译配置下不会。因此，如果想要运行上面这个程序，确保使用了 <em>release</em> 编译配置（参见 <a href="../Chap00/Chap00-09.html" target="_blank">0.9 -- 编译器设置：程序编译配置</a>）。如果在 Visual Studio 的 <em>debug</em> 编译配置下运行，它会持续性输出 <code class="inline">-858993460</code>，这是 Visual Studio 在 <em>debug</em> 编译配置下给内存的初始化值（解释为整数）。
-        </p>
-    </div>
     <p>
-        绝大多数现代编译器会检查变量是否未赋值就使用。如果编译器有检查功能，就会抛出编译警告或错误。例如，在 Visual Studio 编译上述程序会产生如下警告：
+        某些编译器，比如 Visual Studio，会在 <em>debug</em> 编译配置下自动把内存里的内容初始化为某个预设的值，而在 <em>release</em> 编译配置下不会。因此，如果想要运行上面这个程序，确保使用了 <em>release</em> 编译配置（参见 <a href="../Chap00/Chap00-09.html" target="_blank">0.9 -- 编译器设置：程序编译配置</a>）。如果在 Visual Studio 的 <em>debug</em> 编译配置下运行，它会持续性输出 <code class="inline">-858993460</code>，这是 Visual Studio 在 <em>debug</em> 编译配置下给内存的初始化值（解释为整数）。
     </p>
-    <pre><code class="language-plaintext nohljsln lighter">c:\VCprojects\test\test.cpp(11) : warning C4700: uninitialized local variable &apos;x&apos; used</code></pre>
-    <p>
-        如果上面的程序无法通过编译（比如编译器认为这是个错误），有办法来绕过这个问题：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
+</div>
+<p>
+    绝大多数现代编译器会检查变量是否未赋值就使用。如果编译器有检查功能，就会抛出编译警告或错误。例如，在 Visual Studio 编译上述程序会产生如下警告：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">c:\VCprojects\test\test.cpp(11) : warning C4700: uninitialized local variable &apos;x&apos; used</code></pre>
+<p>
+    如果上面的程序无法通过编译（比如编译器认为这是个错误），有办法来绕过这个问题：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 void doNothing(int&amp;) // 不知道这里的 &amp; 是什么也没关系, 这里只是用来让编译器以为变量 x 使用过了
 {
@@ -108,76 +108,76 @@ int main()
 
     return 0;
 }</code></pre>
-    <p>
-        未初始化变量是新手最常犯的错误之一，但很不幸，这也是最难找到的问题之一（因为如果未初始化的变量的内存位置恰巧有个合理的值，比如 0，程序有可能会正常运行）。
-    </p>
-    <p>
-        这是 <em>总是把变量初始化</em> 的基本原因。
-    </p>
+<p>
+    未初始化变量是新手最常犯的错误之一，但很不幸，这也是最难找到的问题之一（因为如果未初始化的变量的内存位置恰巧有个合理的值，比如 0，程序有可能会正常运行）。
+</p>
+<p>
+    这是 <em>总是把变量初始化</em> 的基本原因。
+</p>
 <h2>
     未定义行为
 </h2>
-    <p>
-        使用未初始化的变量的值是未定义行为的第一个例子。<strong>未定义行为</strong>（<strong>undefined behavior</strong>，<strong>UB</strong>）是执行 C++ 语言未明确定义的代码的结果。在这里就是 C++ 语言没有任何规则来决定如果使用一个未初始化的变量的值会发生什么。因此，这么做就会造成未定义行为。
+<p>
+    使用未初始化的变量的值是未定义行为的第一个例子。<strong>未定义行为</strong>（<strong>undefined behavior</strong>，<strong>UB</strong>）是执行 C++ 语言未明确定义的代码的结果。在这里就是 C++ 语言没有任何规则来决定如果使用一个未初始化的变量的值会发生什么。因此，这么做就会造成未定义行为。
+</p>
+<p>
+    使用未定义行为的代码可能会造成下列现象：
+</p>
+<ul>
+    <li>每次运行结果都不同</li>
+    <li>持续产生相同的错误结果</li>
+    <li>运行结果不稳定（有时候正常有时候错误）</li>
+    <li>前面貌似运行正常，但后面产生了错误的结果</li>
+    <li>程序崩了，可能是立即崩溃，也可能是过一段时间后崩溃</li>
+    <li>有些编译器上没问题，但别的编译器上就有问题</li>
+    <li>程序运行正常，但改了别的看起来没关系的地方就出错了</li>
+</ul>
+<p>
+    也有可能，程序会一直产生正确结果。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        作者的话
     </p>
     <p>
-        使用未定义行为的代码可能会造成下列现象：
+        未定义行为就像盲盒，永远不知道会开出来什么。
     </p>
-    <ul>
-        <li>每次运行结果都不同</li>
-        <li>持续产生相同的错误结果</li>
-        <li>运行结果不稳定（有时候正常有时候错误）</li>
-        <li>前面貌似运行正常，但后面产生了错误的结果</li>
-        <li>程序崩了，可能是立即崩溃，也可能是过一段时间后崩溃</li>
-        <li>有些编译器上没问题，但别的编译器上就有问题</li>
-        <li>程序运行正常，但改了别的看起来没关系的地方就出错了</li>
-    </ul>
+</div>
+<p>
+    C++ 包含很多一不小心就会造成未定义行为的情形。以后的课程中会随时指出这些问题。注意这些情况，并尽力避免。
+</p>
+<div class="learncpp-blocktext-purple">
+    <p class="learncpp-block-title">
+        规则
+    </p>
     <p>
-        也有可能，程序会一直产生正确结果。
+        避开所有会造成未定义行为的情况，比如使用未初始化的变量。
     </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            作者的话
-        </p>
-        <p>
-            未定义行为就像盲盒，永远不知道会开出来什么。
-        </p>
-    </div>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        作者的话
+    </p>
     <p>
-        C++ 包含很多一不小心就会造成未定义行为的情形。以后的课程中会随时指出这些问题。注意这些情况，并尽力避免。
+        读者经常留下这样的评论：“你说不能做 XXX，但实际上没问题啊，为什么？”
     </p>
-    <div class="learncpp-blocktext-purple">
-        <p class="learncpp-block-title">
-            规则
-        </p>
-        <p>
-            避开所有会造成未定义行为的情况，比如使用未初始化的变量。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            作者的话
-        </p>
-        <p>
-            读者经常留下这样的评论：“你说不能做 XXX，但实际上没问题啊，为什么？”
-        </p>
-        <p>
-            有两个一般性的回答。最常见的原因是程序实质上发生了未定义行为，但恰巧产生了正确的结果。但这是暂时的，可能明天（换个编译器或换台机器）就出错了。
-        </p>
-        <p>
-            另外，某些编译器作者对语言规定做了灵活的实现，尤其是那些过于严格的规定。例如，标准规定：“必须先做 X 再做 Y”，但编译器作者认为没必要，然后允许在没做 X 时就能做 Y。这对正确的程序没有影响，但会让错误的程序同样能运行。所以第二个原因就是你的编译器没严格遵守语言标准的规定！这也是有可能的。可以通过关掉编译器扩展来避免（参见 <a href="../Chap00/Chap00-10.html" target="_blank">0.10 -- 编译器设置：编译器扩展</a>）。
-        </p>
-    </div>
+    <p>
+        有两个一般性的回答。最常见的原因是程序实质上发生了未定义行为，但恰巧产生了正确的结果。但这是暂时的，可能明天（换个编译器或换台机器）就出错了。
+    </p>
+    <p>
+        另外，某些编译器作者对语言规定做了灵活的实现，尤其是那些过于严格的规定。例如，标准规定：“必须先做 X 再做 Y”，但编译器作者认为没必要，然后允许在没做 X 时就能做 Y。这对正确的程序没有影响，但会让错误的程序同样能运行。所以第二个原因就是你的编译器没严格遵守语言标准的规定！这也是有可能的。可以通过关掉编译器扩展来避免（参见 <a href="../Chap00/Chap00-10.html" target="_blank">0.10 -- 编译器设置：编译器扩展</a>）。
+    </p>
+</div>
 <h2>
     实现定义的行为和未指定的行为
 </h2>
-    <p>
-        <strong>实现定义的行为</strong>（<strong>implementation-defined behavior</strong>） 是某些语法的行为留给了实现（编译器）来定义。这样的行为必须有一致性并作详细文档，但不同的编译器可能会得出不同结果。
-    </p>
-    <p>
-        来看下面这个简单的实现定义的行为：
-    </p>
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
+<p>
+    <strong>实现定义的行为</strong>（<strong>implementation-defined behavior</strong>） 是某些语法的行为留给了实现（编译器）来定义。这样的行为必须有一致性并作详细文档，但不同的编译器可能会得出不同结果。
+</p>
+<p>
+    来看下面这个简单的实现定义的行为：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main()
 {
@@ -185,39 +185,39 @@ int main()
 
 	return 0;
 }</code></pre>
-    <p>
-        在绝大多数平台都是 <code class="inline">4</code>，但也有显示 <code class="inline">2</code> 的。
-    </p>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            在 <a href="../Chap04/Chap04-03.html" target="_blank">4.3 -- 对象大小与 <code>sizeof</code> 操作符</a> 一节会讨论 <code class="inline">sizeof()</code>。
-        </p>
-    </div>
-    <p>
-        <strong>未指定的行为</strong>（<strong>unspecified behavior</strong>） 和实现定义的行为几乎相同，也是由实现来定义，但不需要做详细文档。
+<p>
+    在绝大多数平台都是 <code class="inline">4</code>，但也有显示 <code class="inline">2</code> 的。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
     </p>
     <p>
-        一般会避免使用实现定义的行为和未指定的行为，因为程序换个编译器（甚至同一个编译器使用不同的设置）可能就不会按预期运行了。
+        在 <a href="../Chap04/Chap04-03.html" target="_blank">4.3 -- 对象大小与 <code>sizeof</code> 操作符</a> 一节会讨论 <code class="inline">sizeof()</code>。
     </p>
-    <div class="learncpp-blocktext-green">
-        <p class="learncpp-block-title">
-            最佳实践
-        </p>
-        <p>
-            尽力避免实现定义行为和未指定的行为，因为不同的实现可能会导致程序运行异常。
-        </p>
-    </div>
-    <div class="learncpp-blocktext-grey">
-        <p class="learncpp-block-title">
-            延申阅读
-        </p>
-        <p>
-            在 <a href="../Chap06/Chap06-01.html" target="_blank">6.1 -- 运算符优先级与结合性</a> 一节会展示未指定行为的例子。
-        </p>
-    </div>
+</div>
+<p>
+    <strong>未指定的行为</strong>（<strong>unspecified behavior</strong>） 和实现定义的行为几乎相同，也是由实现来定义，但不需要做详细文档。
+</p>
+<p>
+    一般会避免使用实现定义的行为和未指定的行为，因为程序换个编译器（甚至同一个编译器使用不同的设置）可能就不会按预期运行了。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        尽力避免实现定义行为和未指定的行为，因为不同的实现可能会导致程序运行异常。
+    </p>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        在 <a href="../Chap06/Chap06-01.html" target="_blank">6.1 -- 运算符优先级与结合性</a> 一节会展示未指定行为的例子。
+    </p>
+</div>
 <h2>
     <a href="https://www.learncpp.com/cpp-tutorial/uninitialized-variables-and-undefined-behavior/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
 </h2>

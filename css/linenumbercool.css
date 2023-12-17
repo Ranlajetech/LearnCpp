@@ -7,11 +7,12 @@
 }
 
 .hljs-ln-numbers {
-    text-align: right;
-    color: #a0a0a0;
+    width: 30px;
+    padding-right: 5px;
     border-right: 1px solid #CCC;
     vertical-align: top;
-    padding-right: 5px;
+    text-align: right;
+    color: #a0a0a0;
 }
 
 .hljs-ln-code {

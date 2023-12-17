@@ -1,4 +1,4 @@
 *.bkp
 desktop.ini
 .gitignore
-highlight/*
+.tmp/*
