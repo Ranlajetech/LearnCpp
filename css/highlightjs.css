@@ -6,7 +6,7 @@
     Website: https://highlightjs.org/
     License: see project LICENSE
     Touched: 2021
-*/
+*//*
 pre code.hljs {
     display: block;
     overflow-x: auto;
@@ -98,4 +98,53 @@ code.hljs {
 
 .hljs-strong {
     font-weight: 700
+} */
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em
+}
+
+code.hljs {
+    padding: 3px 5px
+}
+
+.hljs {
+    background: #f3f3f3;
+    color: #444
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword {
+    color: #c586c0
+}
+
+.hljs-meta .hljs-string {
+    color: #c39178
+}
+
+.hljs-comment {
+    color: #6a9955
+}
+
+.hljs-keyword {
+    color: #569cd6
+}
+
+.hljs-string {
+    color: #964848
+}
+
+.hljs-number {
+    color: #c2bb32
+}
+
+.hljs-type {
+    color: #569cd6
+}
+
+.hljs-section,
+.hljs-title {
+    color: #800
 }

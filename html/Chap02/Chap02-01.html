@@ -21,12 +21,212 @@
 <h1>
     2.1 -- 函数简介
 </h1>
+<p>
+    上一章里，我们定义函数是按顺序执行的一组语句。这当然是对的，但并不能体现函数的用途。现更新定义：<strong>函数</strong>（<strong>function</strong>）是设计为做某项特定工作的可复用的一系列语句。
+</p>
+<p>
+    你已经知道每个可执行程序都必须有一个 <code class="inline">main</code> 函数，程序运行时从这里开始执行。但当程序越来越长时，把所有的代码全塞到 <code class="inline">main()</code> 里就会变得越来越难以维护。函数提供了可以把程序分割成更小的模块的方法，后者更容易组织、测试和使用。绝大多数程序都使用了许多函数。C++ 标准库提供了大量的已写好的函数供你使用，但通常也会自己写新函数。自己写的函数又叫 <strong>用户自定义函数</strong>（<strong>user-defined functions</strong>）。
+</p>
+<p>
+    考虑现实生活种可能遇到的情形：你正在读书，想起来要打一通电话。你在书里夹了个书签去打电话，打完之后回到刚刚放书签的地方，从停下来的位置继续阅读。
+</p>
+<p>
+    C++ 程序以同样的方式运行。程序按顺序执行一个函数里的语句，直到遇到函数调用。<strong>函数调用</strong>（<strong>function call</strong>）是个表达式，它告诉 CPU 中断执行当前函数，跳转执行另一个函数。CPU 会在当前执行位置“放个书签”，然后 <strong>调用</strong>（<strong>call</strong>，执行）被调用的函数。被调用的函数结束执行结束后，CPU 回到刚刚标记的位置，继续执行。
+</p>
+<p>
+    提出函数调用的函数叫做 <strong>调用者</strong>（<strong>caller</strong>），被调用的函数叫做 <strong>被调函数</strong>（<strong>callee</strong>，<strong>called function</strong>）。
+</p>
+<h2>
+    用户定义的函数举例
+</h2>
+<p>
+    首先从自定义函数的基础语法开始。在接下来的课程中，所有自定义函数都会使用以下形式：
+</p>
+<pre><code class="language-cpp">returnType functionName() // 这是函数头 (告诉编译器这个函数的存在)
+{
+    // 这是函数体 (告诉编译器这个函数做什么)
+}</code></pre>
+<p>
+    第一行叫做 <strong>函数头</strong>（<strong>function header</strong>），告诉编译器这个函数的存在、函数名、以及其他一些接下来的几课会讲的信息（比如返回类型和参数类型）。
+</p>
+<ul>
+    <li>本节会令 <code>returnType</code> 为 <code class="inline">int</code>（<code class="inline">main</code> 函数） 或 <code class="inline">void</code>（其他函数）。下一课（<a href="Chap02-02.html" target="_blank">2.2 -- 有返回值的函数</a>）会讨论返回类型与返回值。目前可以暂时忽略。</li>
+    <li>与变量类似，自定义函数也有名字。<code>functionName</code> 就是自定义函数的名字（标识符）。</li>
+    <li>标识符后的圆括号告诉编译器这是在定义函数。</li>
+</ul>
+<p>
+    花括号和里面的语句叫做 <strong>函数体</strong>（<strong>function body</strong>）。这一部分是定义函数做什么的语句。
+</p>
+<p>
+    下面是如何定义新函数并调用的例子：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
 
+// 自定义函数 doPrint() 的定义
+void doPrint() // doPrint() 是本例中被调用的函数
+{
+    std::cout &lt;&lt; &quot;In doPrint()\n&quot;;
+}
+
+// 定义函数 main()
+int main()
+{
+    std::cout &lt;&lt; &quot;Starting main()\n&quot;;
+    doPrint(); // 通过调用 doPrint() 中断 main(). main() 是调用者
+    std::cout &lt;&lt; &quot;Ending main()\n&quot;; // 在 doPrint() 执行完毕后执行这条语句
+
+    return 0;
+}</code></pre>
+<p>
+    程序产生如下输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Starting main()
+In doPrint()
+Ending main()</code></pre>
+<p>
+    程序从 <code class="inline">main</code> 函数顶部开始执行，第一行执行产生输出 <code class="lighter">Starting main()</code>。
+</p>
+<p>
+    <code class="inline">main</code> 函数的第二行是调用 <code class="inline">doPrint</code>。调用方式是在函数名后加圆括号，像这样：<code class="inline">doPrint()</code>。注意，如果没加圆括号，程序可能会无法通过编译（就算通过了也不会调用这个函数）。
+</p>
+<div class="learncpp-blocktext-red">
+    <p class="learncpp-block-title">
+        警告
+    </p>
+    <p>
+        调用函数时不要忘记在函数名后加上圆括号。
+    </p>
+</div>
+<p>
+    因为调用了函数，<code class="inline">main</code> 函数中的语句执行被挂起，跳转到被调函数 <code class="inline">doPrint</code> 的顶部开始执行。<code class="inline">doPrint</code> 的第一行（也是唯一一行）显示 <code class="lighter">In doPrint()</code>。<code class="inline">doPrint</code> 结束之后，会返回到调用者处（这里就是 <code class="inline">main</code> 函数）恢复原状态继续执行。接下来执行 <code class="inline">main</code> 函数的下一条语句，显示 <code class="lighter">Ending main()</code>。
+</p>
+<h2>
+    多次调用函数
+</h2>
+<p>
+    函数的很有用的一点就是能被多次调用。举例说明：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+
+void doPrint()
+{
+    std::cout &lt;&lt; &quot;In doPrint()\n&quot;;
+}
+
+// 定义函数 main()
+int main()
+{
+    std::cout &lt;&lt; &quot;Starting main()\n&quot;;
+    doPrint(); // doPrint() 第一次被调用
+    doPrint(); // doPrint() 第二次被调用
+    std::cout &lt;&lt; &quot;Ending main()\n&quot;;
+
+    return 0;
+}</code></pre>
+<p>
+    程序产生如下输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Starting main()
+In doPrint()
+In doPrint()
+Ending main()</code></pre>
+<p>
+    因为 <code class="inline">doPrint</code> 被 <code class="inline">main</code> 调用了两次，<code class="inline">doPrint</code> 执行了两次，<code class="lighter">In doPrint()</code> 也就被显示了两次（每次调用都显示一次）。
+</p>
+<h2>
+    调用调用函数的函数
+</h2>
+<p>
+    刚刚看到函数 <code class="inline">main</code> 调用了另一个函数 <code class="inline">doPrint</code>。任何函数都可以调用其他函数。下面的程序里，函数 <code class="inline">main</code> 调用了函数 <code class="inline">doA</code>，而函数 <code class="inline">doA</code> 又调用了函数 <code class="inline">doB</code>：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 为了使用 std::cout
+
+void doB()
+{
+    std::cout &lt;&lt; &quot;In doB()\n&quot;;
+}
+
+
+void doA()
+{
+    std::cout &lt;&lt; &quot;Starting doA()\n&quot;;
+
+    doB();
+
+    std::cout &lt;&lt; &quot;Ending doA()\n&quot;;
+}
+
+// 定义函数 main()
+int main()
+{
+    std::cout &lt;&lt; &quot;Starting main()\n&quot;;
+
+    doA();
+
+    std::cout &lt;&lt; &quot;Ending main()\n&quot;;
+
+    return 0;
+}</code></pre>
+<p>
+    程序产生如下输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Starting main()
+Starting doA()
+In doB()
+Ending doA()
+Ending main()</code></pre>
+<h2>
+    不允许函数嵌套
+</h2>
+<p>
+    和许多其他编程语言不同，C++ 不允许在函数内定义其他函数。下面的程序是非法的：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    void foo() // 不合法: 这个函数定义在函数 main() 里面
+    {
+        std::cout &lt;&lt; &quot;foo!\n&quot;;
+    }
+
+    foo(); // 调用函数 foo()
+    return 0;
+}</code></pre>
+<p>
+    正确的写法应该是：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void foo() // 不在函数 main() 里
+{
+    std::cout &lt;&lt; &quot;foo!\n&quot;;
+}
+
+int main()
+{
+    foo();
+    return 0;
+}</code></pre>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        <code>foo</code> 是个无意义的词汇，一般用作占位符。解释某个概念时，如果函数或者变量的名字不重要，就会使用它。这种词汇叫做 <a href="https://en.wikipedia.org/wiki/Metasyntactic_variable" title="Wikipedia" target="_blank">元语法变量</a>（metasyntactic variables）（日常语言就叫占位符，没人能记住这个词）。在 C++ 里，其他一些常见的占位符还有 <code>bar</code>、<code>baz</code>，以及以 <code>oo</code> 结尾的三字母词汇，比如 <code>goo</code>、<code>moo</code>、<code>boo</code>。
+    </p>
+    <p>
+        对词源感兴趣的读者可以看看 <a href="https://datatracker.ietf.org/doc/html/rfc3092" title="Internet Engineering Task Force" target="_blank">RFC 3092</a>。
+    </p>
+</div>
+<h2>
+    <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-functions/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
+</h2>
 <hr/>
 <nav>
     <a href="Chap02-02.html">[ 下一课：2.2 -- 有返回值的函数 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-functions/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="../Chap01/Chap01-12.html">[ 上一课：1.x -- 第 1 章总结 ]</a>
 </nav>
 </body>

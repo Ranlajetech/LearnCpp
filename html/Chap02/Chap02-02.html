@@ -21,12 +21,406 @@
 <h1>
     2.2 -- 有返回值的函数
 </h1>
+<p>
+    看如下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+int main()
+{
+    // 从用户获取值
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int num{};
+    std::cin &gt;&gt; num;
+
+    // 显示值的两倍
+    std::cout &lt;&lt; num &lt;&lt; &quot; doubled is: &quot; &lt;&lt; num * 2 &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    程序由两部分组成：一是从用户获取值，二是告诉用户它的两倍是多少。
+</p>
+<p>
+    尽管程序已经足够简单了，实际没有必要把它拆成多个函数，但这里我们拆拆看。从用户获取一个整数值是一个定义良好的任务，先拿函数做这个事。
+</p>
+<p>
+    程序写成这样：
+</p>
+<pre><code class="language-cpp">// 此程序不能正确运行
+#include &lt;iostream&gt;
+
+void getValueFromUser()
+{
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+}
+
+int main()
+{
+    getValueFromUser(); // 要求用户输入
+
+    int num{}; // 怎么从 getValueFromUser() 获得值然后用它来初始化这个变量呢?
+
+    std::cout &lt;&lt; num &lt;&lt; &quot; doubled is: &quot; &lt;&lt; num * 2 &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    这个程序是解决问题的一次好尝试，可惜不能正常运行。
+</p>
+<p>
+    当调用 <code class="inline">getValueFromUser</code> 时，用户按预期被要求输入一个整数值。但这个值在 <code class="inline">getValueFromUser</code> 结束并把控制权交还给 <code class="inline">main</code> 时就丢失了。变量 <code class="inline">num</code> 无法被用户输入的值初始化，程序会持续输出 <code class="inline">0</code>。
+</p>
+<p>
+    现在缺少的是让 <code class="inline">getValueFromUser</code> 把值返回给 <code class="inline">main</code>，并让后者使用该数据的方法。
+</p>
+<h2>
+    返回值
+</h2>
+<p>
+    写自定义函数时，需要确定这个函数是否要向调用者返回值。为了返回值，需要做两件事。
+</p>
+<p>
+    第一，函数需要注明返回值的类型。这可以通过指定函数的 <strong>返回类型</strong>（<strong>return type</strong>）来实现，就是函数定义里在名字之前的那个类型。在上面的例子里，<code class="inline">getValueFromUser</code> 函数的返回类型是 <code class="inline">void</code>（不向调用者返回值），<code class="inline">main</code> 函数的返回类型是 <code class="inline">int</code>（向调用者返回一个 <code class="inline">int</code> 类型的值）。注意，这并不会决定返回的值具体是多少，只决定了返回值的类型。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        下一课 <a href="Chap02-03.html" target="_blank">2.3 -- 无返回值的函数（空函数）</a> 会介绍返回 <code class="inline">void</code> 的函数。
+    </p>
+</div>
+<p>
+    第二，在需要返回值的函数里，用 <strong>返回语句</strong>（<strong>return statement</strong>）指定返回给调用者的值。这个指定的值叫做函数的 <strong>返回值</strong>（<strong>return value</strong>）。执行返回语句后，函数立即停止执行，返回值被从函数复制给调用者。这个过程叫 <strong>按值返回</strong>（<strong>return by value</strong>）。
+</p>
+<p>
+    来看一个返回整数值的简单函数，一个简单的程序调用了它。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+// int 是返回类型
+// 返回类型是 int 的意思是函数将向调用者返回整数值 (这里没有指定具体的值)
+int returnFive()
+{
+    // 返回语句指定返回的值
+    return 5; // 向调用者返回特定值 5
+}
+
+int main()
+{
+    std::cout &lt;&lt; returnFive() &lt;&lt; &apos;\n&apos;; // 显示 5
+    std::cout &lt;&lt; returnFive() + 2 &lt;&lt; &apos;\n&apos;; // 显示 7
+
+    returnFive(); // 可以: 返回了值 5, 但因为 main() 函数没有用它做任何事, 所以被忽略
+
+    return 0;
+}</code></pre>
+<p>
+    程序运行得到输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">5
+7
+</code></pre>
+<p>
+    从 <code class="inline">main</code> 函数顶部开始执行。第一个语句中，调用了 <code class="inline">returnFive</code> 函数，<code class="inline">returnFive</code> 函数向调用者返回了特定的值 5，然后通过 <code class="inline">std::cout</code> 显示到控制台。
+</p>
+<p>
+    第二个函数调用中，再次调用了 <code class="inline">returnFive</code> 函数。<code class="inline">returnFive</code> 函数向调用者返回了值 <code class="inline">5</code>。表达式 <code class="inline">5 + 2</code> 的执行结果是 <code class="inline">7</code>，然后通过 <code class="inline">std::cout</code> 显示到控制台。
+</p>
+<p>
+    第三个语句中，<code class="inline">returnFive</code> 函数再次被调用，值 <code class="inline">5</code> 被返回给调用者。然而，<code class="inline">main</code> 函数没有对它做任何处理，所以什么都没发生（返回值被忽略）。
+</p>
+<p>
+    注意：返回值不会自动显示出来，除非用户用 <code class="inline">std::cout</code> 把它显示到控制台。在上面的最后一种情况里，返回值没有被发送给 <code class="inline">std::cout</code>，所以什么都不显示。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        提示
+    </p>
+    <p>
+        调用者可以决定把函数的返回值用在表达式或语句中（比如赋值给一个变量，或发送到 <code class="inline">std::cout</code>），还是忽略它（什么都不做）。
+    </p>
+</div>
+<h2>
+    修复上面的程序
+</h2>
+<p>
+    有了这些知识，就可以修复本节一开始的那个程序了。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int getValueFromUser() // 此函数返回整数值
+{
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+
+    return input; // 把用户输入的值返回给调用者。
+}
+
+int main()
+{
+    int num { getValueFromUser() }; // 用 getValueFromUser() 的返回值来初始化 num
+
+    std::cout &lt;&lt; num &lt;&lt; &quot; doubled is: &quot; &lt;&lt; num * 2 &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    程序运行时，<code class="inline">main</code> 函数的第一条语句创建一个 <code class="inline">int</code> 类型变量 <code class="inline">num</code>。程序初始化 <code class="inline">num</code> 时，看到调用了函数 <code class="inline">getValueFromUser</code>，于是去执行这个函数。<code class="inline">getValueFromUser</code> 函数要求用户输入一个整数值，返回给调用者（<code class="inline">main</code> 函数）。然后返回值再用作 <code class="inline">num</code> 的初始值。
+</p>
+<p>
+    自己编译这个程序再运行几次，向自己证明它能正常运行。
+</p>
+<h2>
+    再探 <code class="inline">main()</code>
+</h2>
+<p>
+    现在我们已经掌握了一些概念上的工具来理解 <code class="inline">main</code> 函数是如何运行的了。执行程序时，操作系统调用 <code class="inline">main</code> 函数，跳转到 <code class="inline">main</code> 函数开头执行，然后 <code class="inline">main</code> 函数的语句按顺序执行。最后，<code class="inline">main</code> 返回一个整数值（一般是 <code class="inline">0</code>），程序结束。<code class="inline">main</code> 的返回值有时也称为 <strong>状态码</strong>（<strong>status code</strong>）（<strong>退出码</strong>（<strong>exit code</strong>）、<strong>返回码</strong>（<strong>return code</strong>）），用于指示程序是否成功运行。
+</p>
+<p>
+    按照定义，状态码是 <code class="inline">0</code> 就意味着程序运行成功。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        <code class="inline">main</code> 函数应当在程序运行正常时返回 <code class="inline">0</code>。
+    </p>
+</div>
+<p>
+    非零的状态码一般用于指示错误（虽然在绝大多数操作系统上此功能可以发挥作用，但严格来说，并不能保证一定可移植）。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        C++ 只定义了三个状态码的含义：<code class="inline">0</code>、<code class="inline">EXIT_SUCCESS</code>、<code class="inline">EXIT_FAILURE</code>。<code class="inline">0</code> 与 <code class="inline">EXIT_SUCCESS</code> 都代表运行正常，<code class="inline">EXIT_FAILURE</code> 表示程序执行有问题。
+    </p>
+    <p>
+        <code class="inline">EXIT_SUCCESS</code> 与 <code class="inline">EXIT_FAILURE</code> 是定义在 <em>&lt;cstdlib&gt;</em> 头文件的预处理器宏：
+    </p>
+    <pre><code class="language-cpp">#include &lt;cstdlib&gt; // 为了使用 EXIT_SUCCESS 与 EXIT_FAILURE
+
+int main()
+{
+    return EXIT_SUCCESS;
+}</code></pre>
+    <p>
+        如果希望最大化可移植性，应当使用 <code class="inline">0</code> 或 <code class="inline">EXIT_SUCCESS</code> 指示运行正常，用 <code class="inline">EXIT_FAILURE</code> 指示执行失败。
+    </p>
+    <p>
+        在 <a href="Chap02-10.html" target="_blank">2.10 -- 预处理器简介</a> 一节会介绍预处理器与预处理器宏。
+    </p>
+</div>
+<p>
+    C++ 不允许显式调用 <code class="inline">main</code> 函数。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        C 确实允许显式调用 <code class="inline">main</code> 函数，所以某些 C++ 编译器会因为考虑兼容性而允许这么做。
+    </p>
+</div>
+<p>
+    目前，应当在程序文件底部定义 <code class="inline">main</code> 函数，放在其他函数之下。不要显式调用它。
+</p>
+<h2>
+    有返回值的函数不返回值会产生未定义行为
+</h2>
+<p>
+    返回了值的函数叫做 <strong>有返回值的函数</strong>（<strong>value-returning function</strong>）。只要返回类型不是 <code class="inline">void</code>，那它就是有返回值的函数。
+</p>
+<p>
+    有返回值的函数 <strong>必须</strong> 返回对应类型的值（用返回语句），否则就会产生未定义行为。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        在 <a href="../Chap01/Chap01-06.html" target="_blank">1.6 -- 未初始化的变量与未定义行为</a> 一节中讨论过未定义行为。
+    </p>
+</div>
+<p>
+    下面是一段会产生未定义行为的代码：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int getValueFromUserUB() // 这个函数返回整数值
+{
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+
+    //注意: 没有返回语句
+}
+
+int main()
+{
+    int num { getValueFromUserUB() }; // 用 getValueFromUserUB() 的返回值初始化 num
+
+    std::cout &lt;&lt; num &lt;&lt; &quot; doubled is: &quot; &lt;&lt; num * 2 &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    现代编译器会因为 <code class="inline">getValueFromUserUB</code> 定义为返回 <code class="inline">int</code> 的函数但没有返回语句而抛出警告。运行这样的程序会产生未定义行为，因为 <code class="inline">getValueFromUserUB</code> 定义为有返回值的函数但没有返回值。
+</p>
+<p>
+    在绝大多数情况下，编译器会检测你是否忘记了返回值。但在一些复杂的情形下，编译器可能并不能正确地判断你的函数是否在所有情况下都返回了值，所以不应当依赖它。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        要保证所有有返回值的函数在所有情况下都有返回值。
+    </p>
+    <p>
+        有返回值的函数不返回值会产生未定义行为。
+    </p>
+</div>
+<h2>
+    <code class="inline">main</code> 函数在没有明确给出返回值时返回 <code class="inline">0</code>
+</h2>
+<p>
+    上面规则的唯一例外就是 <code class="inline">main()</code>，它会在没有明确给出返回语句时隐式返回 <code class="inline">0</code>。但最好还是从 <code class="inline">main()</code> 明确返回一个值，既表明了自己的意图，又和其他函数保持一致（因为别的函数不这样做会造成未定义行为）。
+</p>
+<h2>
+    函数只能返回一个值
+</h2>
+<p>
+    有返回值的函数每次被调用只能向调用者返回一个值。
+</p>
+<p>
+    注意到返回语句提供的值并不必须是字面值，它还可以是任何合法表达式的结果，包括变量甚至对另一个有返回值的函数的调用。上面例子中的 <code class="inline">getValueFromUser</code> 返回保存了用户输入的变量 <code class="inline">input</code>。
+</p>
+<p>
+    有多种方法绕过函数只能返回一个值的限制，以后的课程中会介绍。
+</p>
+<h2>
+    函数的作者可以决定返回值的含义
+</h2>
+<p>
+    函数返回值的含义由函数作者决定。某些函数把返回值当作状态码，指示运行成功还是失败；某些函数返回计算出的或挑选出的值；某些函数不返回值（下一课会看到这样的例子）。
+</p>
+<p>
+    由于这里相当多的可能性，最好注释好函数的返回值是什么意思。例如：
+</p>
+<pre><code class="language-cpp">// 函数要求用户输入一个整数值
+// 返回值是用户从键盘输入的值
+int getValueFromUser()
+{
+     std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+
+    return input; // 把用户输入的值返回给调用者
+}</code></pre>
+<h2>
+    复用函数
+</h2>
+<p>
+    现在可以展示一个复用函数的好例子。看下面的程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    int x{};
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    std::cin &gt;&gt; x;
+
+    int y{};
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    std::cin &gt;&gt; y;
+
+    std::cout &lt;&lt; x &lt;&lt; &quot; + &quot; &lt;&lt; y &lt;&lt; &quot; = &quot; &lt;&lt; x + y &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    尽管程序能正确运行，但有点啰嗦。事实上，这段程序违反了好的编程实践的原则之一：<strong>不要重复</strong>（Don't Repeat Yourself，DRY）。
+</p>
+<p>
+    为什么重复的代码很烂？如果想更改 <code>Enter an integer</code> 这段文本，就需要在两个位置更新。如果想初始化 10 个变量而不是 2 个，那就会造成大量冗长的代码（程序变长难以理解），也会容易打错字。
+</p>
+<p>
+    把这段程序用上面写的 <code class="inline">getValueFromUser</code> 函数更新一下：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int getValueFromUser()
+{
+     std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+
+       return input;
+}
+
+int main()
+{
+    int x{ getValueFromUser() }; // 第一次调用 getValueFromUser
+    int y{ getValueFromUser() }; // 第二次调用 getValueFromUser
+
+    std::cout &lt;&lt; x &lt;&lt; &quot; + &quot; &lt;&lt; y &lt;&lt; &quot; = &quot; &lt;&lt; x + y &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    程序产生如下输出：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Enter an integer: 5
+Enter an integer: 7
+5 + 7 = 12</code></pre>
+<p>
+    在上面的程序中调用了两次 <code class="inline">getValueFromUser</code>，第一次初始化 <code class="inline">x</code>，第二次初始化 <code class="inline">y</code>。这就不用重复获取用户输入的代码了，减少了犯错的机会。一旦 <code class="inline">getValueFromUser</code> 能正确运行，我们就可以调用它任意多次。
+</p>
+<p>
+    这就是模块化编程的精髓：编写一个函数，测试保证能正确运行，然后就可以任意次复用并保持正确（只要不改动这个函数，否则就必须重新测试）。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        遵守 DRY 规则（不要重复）。如果需要不止一次做某事，考虑一下怎么更改程序设计以最大化减少重复。可以用变量存储要多次使用的计算结果（就不用重复计算了）。可以用函数来记录一系列运行不止一次的语句。可以用循环（以后的章节里会讲）多次执行一条语句。
+    </p>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        DRY（Don't Repeat Yourself，不要重复）的反义是 WET（Write everything twice，写两遍）。
+    </p>
+</div>
+<h2>
+    小结
+</h2>
+<p>
+    返回值为函数提供了向调用者返回单个值的方法。
+</p>
+<p>
+    函数可以减少程序中的重复。
+</p>
+<h2>
+    <a href="https://www.learncpp.com/cpp-tutorial/function-return-values-value-returning-functions/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
+</h2>
 <hr/>
 <nav>
     <a href="Chap02-03.html">[ 下一课：2.3 -- 无返回值的函数（空函数） ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/function-return-values-value-returning-functions/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap02-01.html">[ 上一课：2.1 -- 函数简介 ]</a>
 </nav>
 </body>
