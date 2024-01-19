@@ -10,7 +10,7 @@
 
 [首页/目录](./index.html)
 
-[原文地址: https://www.learncpp.com/](https://www.learncpp.com/)
+原文地址: [https://www.learncpp.com/](https://www.learncpp.com/)
 
 ## 使用的库和工具
 

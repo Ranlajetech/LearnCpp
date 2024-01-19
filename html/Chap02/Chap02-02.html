@@ -125,13 +125,13 @@ int main()
 7
 </code></pre>
 <p>
-    从 <code class="inline">main</code> 函数顶部开始执行。第一个语句中，调用了 <code class="inline">returnFive</code> 函数，<code class="inline">returnFive</code> 函数向调用者返回了特定的值 5，然后通过 <code class="inline">std::cout</code> 显示到控制台。
+    从 <code class="inline">main</code> 函数顶部开始执行。第一条语句中，调用了 <code class="inline">returnFive</code> 函数，<code class="inline">returnFive</code> 函数向调用者返回了特定的值 5，然后通过 <code class="inline">std::cout</code> 显示到控制台。
 </p>
 <p>
     第二个函数调用中，再次调用了 <code class="inline">returnFive</code> 函数。<code class="inline">returnFive</code> 函数向调用者返回了值 <code class="inline">5</code>。表达式 <code class="inline">5 + 2</code> 的执行结果是 <code class="inline">7</code>，然后通过 <code class="inline">std::cout</code> 显示到控制台。
 </p>
 <p>
-    第三个语句中，<code class="inline">returnFive</code> 函数再次被调用，值 <code class="inline">5</code> 被返回给调用者。然而，<code class="inline">main</code> 函数没有对它做任何处理，所以什么都没发生（返回值被忽略）。
+    第三条语句中，<code class="inline">returnFive</code> 函数再次被调用，值 <code class="inline">5</code> 被返回给调用者。然而，<code class="inline">main</code> 函数没有对它做任何处理，所以什么都没发生（返回值被忽略）。
 </p>
 <p>
     注意：返回值不会自动显示出来，除非用户用 <code class="inline">std::cout</code> 把它显示到控制台。在上面的最后一种情况里，返回值没有被发送给 <code class="inline">std::cout</code>，所以什么都不显示。

@@ -234,16 +234,16 @@ int main()
     这里把 <code class="inline">getValueFromUser</code> 的返回值直接用作 <code class="inline">printDouble</code> 函数的实参。
 </p>
 <p>
-    尽管这种形式更简洁，并很清楚地表明了从用户读取的数据不会用在别处，但这种紧凑形式有点难以阅读。如果你更喜欢使用变量的版本也可以。
+    尽管这种形式更简洁，并且很清楚地表明了从用户读取的数据不会用在别处，但这种紧凑形式有点难以阅读。也可以选择使用变量的版本。
 </p>
 <h2>
     形参与返回值的协作
 </h2>
 <p>
-    同时使用形参和返回值，可以创建函数来接受输入的数据，再用它们做点运算，最后向调用者返回值。
+    同时使用形参和返回值，可以使函数接受输入的数据，做一些运算，然后把值返回给调用者。
 </p>
 <p>
-    下面是一个很简单的函数，它计算两个数的和并把结果返回给调用者：
+    下面是一个很简单的函数，它把两个数相加并把结果返回给调用者：
 </p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
@@ -261,13 +261,13 @@ int main()
     return 0;
 }</code></pre>
 <p>
-    从 <code class="inline">main</code> 函数顶部开始执行。求 <code class="inline">add(4, 5)</code> 时，调用了 <code class="inline">add</code> 函数，形参 <code class="inline">x</code> 与 <code class="inline">y</code> 分别被初始化为值 <code class="inline">4</code> 与 <code class="inline">5</code>。
+    从 <code class="inline">main</code> 函数的顶部开始执行。求 <code class="inline">add(4, 5)</code> 时，调用了 <code class="inline">add</code> 函数，形参 <code class="inline">x</code> 与 <code class="inline">y</code> 分别被初始化为值 <code class="inline">4</code> 与 <code class="inline">5</code>。
 </p>
 <p>
     函数的返回语句对 <code class="inline">x + y</code> 求值得值 <code class="inline">9</code>，然后就被返回到 <code class="inline">main</code>。之后这个值 <code class="inline">9</code> 就被发送到 <code class="inline">std::cout</code> 并显示到控制台。
 </p>
 <p>
-    输出：
+    输出结果为：
 </p>
 <pre><code class="language-plaintext nohljsln lighter">9</code></pre>
 <p>
@@ -280,7 +280,7 @@ int main()
     更多例子
 </h2>
 <p>
-    看看更多的函数调用举例：
+    来看更多的函数调用例子：
 </p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
@@ -308,7 +308,7 @@ int main()
     return 0;
 }</code></pre>
 <p>
-    程序产生如下输出：
+    输出结果为：
 </p>
 <pre><code class="language-plaintext nohljsln lighter">9
 15
@@ -316,13 +316,13 @@ int main()
 7
 6</code></pre>
 <p>
-    第一个语句很直观。
+    第一条语句很直观。
 </p>
 <p>
-    第二个语句中，实参是在传递之前要先求值的表达式。这里 <code class="inline">1 + 2</code> 求值得 <code class="inline">3</code>，然后被复制给 <code class="inline">x</code>；<code class="inline">3 * 4</code> 求值得 <code class="inline">12</code>，然后被复制给 <code class="inline">y</code>。<code class="inline">add(3, 12)</code> 求值得 <code class="inline">15</code>。
+    第二条语句中，实参是在传递之前要先求值的表达式。这里 <code class="inline">1 + 2</code> 求值得 <code class="inline">3</code>，然后被复制给 <code class="inline">x</code>；<code class="inline">3 * 4</code> 求值得 <code class="inline">12</code>，然后被复制给 <code class="inline">y</code>。<code class="inline">add(3, 12)</code> 求值得 <code class="inline">15</code>。
 </p>
 <p>
-    接下来的两个语句也相当简单：
+    接下来的两条语句也相当简单：
 </p>
 <pre><code class="language-cpp">int a{ 5 };
 std::cout &lt;&lt; add(a, a) &lt;&lt; &apos;\n&apos;; // 求值 (5 + 5)</code></pre>
@@ -330,7 +330,7 @@ std::cout &lt;&lt; add(a, a) &lt;&lt; &apos;\n&apos;; // 求值 (5 + 5)</code></
     这里调用 <code class="inline">add()</code> 时，<code class="inline">a</code> 的值被复制给 <code class="inline">x</code> 与 <code class="inline">y</code>。因为 <code class="inline">a</code> 的值是 <code class="inline">5</code>，所以 <code class="inline">add(a, a) = add(5, 5)</code>，求值得 <code class="inline">10</code>。
 </p>
 <p>
-    来看这里的第一个较难的语句：
+    来看这里的第一条较难的语句：
 </p>
 <pre><code class="language-cpp">std::cout &lt;&lt; add(1, multiply(2, 3)) &lt;&lt; &apos;\n&apos;; // 求值 1 + (2 * 3)</code></pre>
 <p>

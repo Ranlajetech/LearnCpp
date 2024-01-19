@@ -55,7 +55,7 @@ int main()
     在第 7 行创建了变量 <code class="inline">x</code>，然后初始化为值 <code class="inline">5</code>。编译产生的代码会把字面值 <code class="inline">5</code> 复制到分配给 <code class="inline">x</code> 的内存位置。在第 8 行显示 <code class="inline">x</code> 时，编译产生的代码会让 <code class="inline">std::cout</code> 显示 <code class="inline">x</code> 所在内存位置的值，也就是 <code class="inline">5</code>。
 </p>
 <p>
-    因此，两个输出语句都做了相同的事（显示 <code class="inline">5</code>）。但在字面值情况下，值 <code class="inline">5</code> 是直接显示的；而在变量情况下，值 <code class="inline">5</code> 必须要到变量代表的内存位置去取回。
+    因此，两条输出语句都做了相同的事（显示 <code class="inline">5</code>）。但在字面值情况下，值 <code class="inline">5</code> 是直接显示的；而在变量情况下，值 <code class="inline">5</code> 必须要到变量代表的内存位置去取回。
 </p>
 <p>
     这也是为什么字面值是常量而变量可以变化。字面值的值直接放在了可执行文件里，而可执行文件创建之后就不会再更改。变量的值放在内存里，内存里的值可以在执行过程中更改。

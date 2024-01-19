@@ -21,12 +21,358 @@
 <h1>
     2.5 -- 局部作用域简介
 </h1>
+<h2>
+    局部变量
+</h2>
+<p>
+    定义在函数体里的变量叫做 <strong>局部变量</strong>（<strong>local variables</strong>）（与之相对的是 <em>全局变量</em>（<em>global variables</em>），会在以后讲述）。
+</p>
+<pre><code class="language-cpp">int add(int x, int y)
+{
+    int z{ x + y }; // z 是局部变量
 
+    return z;
+}</code></pre>
+<p>
+    函数形参一般也被认为是局部变量：
+</p>
+<pre><code class="language-cpp">int add(int x, int y) // 函数形参 x 与 y 是局部变量
+{
+    int z{ x + y };
+
+    return z;
+}</code></pre>
+<p>
+    本课会详细讨论局部变量的一些性质。
+</p>
+<h2>
+    局部变量的生命周期
+</h2>
+<p>
+    在 <a href="../Chap01/Chap01-03.html" target="_blank">1.3 -- 对象与变量简介</a> 一节中，讨论过像 <code class="inline">int x;</code> 这样的变量定义在语句执行时会造成变量的实例化（创建）。函数形参会在进入函数时被创建并初始化，函数体内的变量在定义处被创建并初始化。
+</p>
+<p>
+    例如：
+</p>
+<pre><code class="language-cpp">int add(int x, int y) // x 与 y 在此创建并初始化
+{
+    int z{ x + y };   // z 在此创建并初始化
+
+    return z;
+}</code></pre>
+<p>
+    接下来一个很自然的问题是，“已实例化的变量什么时候被销毁？”局部变量在它定义所在处的那一对花括号的末尾处按创建顺序的倒序被销毁（而函数形参是在函数末尾）。
+</p>
+<pre><code class="language-cpp">int add(int x, int y)
+{
+    int z{ x + y };
+
+    return z;
+} // z, y, 与 x 在此销毁</code></pre>
+<p>
+    和人的一生定义为出生到死亡一样，对象的 <strong>生命周期</strong>（<strong>lifetime</strong>）定义为它从被创建到销毁的这段时间。注意到变量的创建和销毁发生在运行时而不是编译时，因此生命周期是个运行时性质。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        以上关于创建、初始化、销毁的规则只是个保证。也就是说，对象的创建与初始化不能晚于定义处，而销毁不晚于定义处所在花括号的末尾（对于函数形参来说就是函数末尾）。
+    </p>
+    <p>
+        事实上， C++ 标准给了编译器很大的自由来决定局部变量创建与销毁的具体时间。可以为了优化而提前创建或晚些销毁。绝大多数情况下，局部变量会在进入函数时创建，在函数退出时按逆序销毁。讲到调用栈（call stack）时会更详细地讲解。
+    </p>
+</div>
+<p>
+    下面稍复杂一点的程序解释了变量 <code class="inline">x</code> 的生命周期：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void doSomething()
+{
+    std::cout &lt;&lt; &quot;Hello!\n&quot;;
+}
+
+int main()
+{
+    int x{ 0 };    // x 的生命周期从这里开始
+
+    doSomething(); // x 在函数调用期间仍存在
+
+    return 0;
+} // x 的生命周期在这里结束</code></pre>
+<p>
+    在上面的程序中，<code class="inline">x</code> 的生命周期从定义处延续到 <code class="inline">main</code> 函数的结尾。其中包括了 <code class="inline">doSomething</code> 函数的执行期。
+</p>
+<h2>
+    局部作用域
+</h2>
+<p>
+    标识符的作用域决定了在代码中它在哪里可见/可用。标识符可见/可用时，称其 <strong>在作用域内</strong>（<strong>in scope</strong>）；标识符不可见/不可用时，称其 <strong>不在作用域内</strong>（<strong>out of scope</strong>）。作用域是编译时性质，使用不在作用域内的标识符会造成编译错误。
+</p>
+<p>
+    局部变量的作用域从定义处开始，到定义处所在花括号的末尾（对于函数形参来说就是函数末尾）为止。这保证了变量在声明前不能使用（即使编译器把创建时间提前了）。在一个函数中定义的局部变量，在被调用的函数里不在作用域内。
+</p>
+<p>
+    下面的程序解释了变量 <code class="inline">x</code> 的作用域：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+// x 不在这个函数的任何作用域里
+void doSomething()
+{
+    std::cout &lt;&lt; &quot;Hello!\n&quot;;
+}
+
+int main()
+{
+    // x 不能在这里使用, 它尚未进入作用域
+
+    int x{ 0 }; // x 在此进入作用域, 可以在函数里使用了
+
+    doSomething();
+
+    return 0;
+} // x 离开了作用域, 不能再使用</code></pre>
+<p>
+    上面的程序中，变量 <code class="inline">x</code> 在定义处进入作用域，在 <code class="inline">main</code> 函数的结尾处离开作用域。注意，变量 <code class="inline">x</code> 在 <code class="inline">doSomething</code> 函数里的任何位置都不在作用域内。这与 <code class="inline">main</code> 函数调用 <code class="inline">doSomething</code> 没有任何关系。
+</p>
+<h2>
+    “在作用域外” 与 “离开作用域”
+</h2>
+<p>
+    新程序员可能会分不清“在作用域外”与“离开作用域”。
+</p>
+<p>
+    “在作用域外”的标识符无法用代码访问。上面的例子里，标识符 <code class="inline">x</code> 从定义到 <code class="inline">main</code> 函数末尾这一段在作用域内，这一段代码以外，标识符 <code class="inline">x</code>“在作用域外”。
+</p>
+<p>
+    “离开作用域”一般指对象而不是标识符。对象在被实例化处所在的作用域末尾（后花括号处）离开作用域。上面的例子里，名为 <code class="inline">x</code> 的对象在 <code class="inline">main</code> 函数末尾离开作用域。
+</p>
+<p>
+    局部变量的生命周期在它离开作用域处结束，它在此处销毁。
+</p>
+<p>
+    不是所有类型的变量都会在离开作用域时销毁。以后的课程中会举例说明。
+</p>
+<h2>
+    其他例子
+</h2>
+<p>
+    来看一个更复杂的例子。记住，生命周期是运行时性质，而作用域是编译时性质，即使在同一个程序里讨论，它们的意义也不同。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y) // x 与 y 在此创建并进入作用域
+{
+    // x 与 y 只在这个函数内可见/可用
+    return x + y;
+} // y 与 x 在此离开作用域并销毁
+
+int main()
+{
+    int a{ 5 }; // a 在此创建, 初始化, 进入作用域
+    int b{ 6 }; // b 在此创建, 初始化, 进入作用域
+
+    // a 与 b 只在这个函数内可用
+    std::cout &lt;&lt; add(a, b) &lt;&lt; &apos;\n&apos;; // 调用 add() 函数, x=5, y=6
+
+    return 0;
+} // b 与 a 在此离开作用域并销毁 </code></pre>
+<p>
+    形参 <code class="inline">x</code> 与 <code class="inline">y</code> 在调用 <code class="inline">add</code> 函数时创建，只在 <code class="inline">add</code> 函数内可见/可用，在 <code class="inline">add</code> 函数末尾销毁。变量<code class="inline">a</code> 与 <code class="inline">b</code> 在 <code class="inline">main</code> 函数内创建，只在 <code class="inline">main</code> 函数内可见/可用，在 <code class="inline">main</code> 函数末尾销毁。
+</p>
+<p>
+    为了增强理解，详细逐步地观察一下程序。发生顺序如下：
+</p>
+<ul>
+    <li>从 <code class="inline">main</code> 函数顶部开始执行。</li>
+    <li>创建 <code class="inline">main</code> 的变量 <code class="inline">a</code> 并赋值为 <code class="inline">5</code>。</li>
+    <li>创建 <code class="inline">main</code> 的变量 <code class="inline">b</code> 并赋值为 <code class="inline">6</code>。</li>
+    <li>调用 <code class="inline">add</code> 函数，实参值为 <code class="inline">5</code> 与 <code class="inline">6</code>。</li>
+    <li>创建 <code class="inline">add</code> 的形参 <code class="inline">x</code> 与 <code class="inline">y</code> 并分别初始化为 <code class="inline">5</code> 与 <code class="inline">6</code>。</li>
+    <li>表达式 <code class="inline">x + y</code> 求值得 <code class="inline">11</code>。</li>
+    <li><code class="inline">add</code> 把值 <code class="inline">11</code> 复制返回给调用者 <code class="inline">main</code>。</li>
+    <li>销毁 <code class="inline">add</code> 的形参 <code class="inline">y</code> 与 <code class="inline">x</code>。</li>
+    <li><code class="inline">main</code> 把 <code class="inline">11</code> 显示到控制台。</li>
+    <li><code class="inline">main</code> 函数向操作系统返回 <code class="inline">0</code>。</li>
+    <li>销毁 <code class="inline">main</code> 的变量 <code class="inline">b</code> 与 <code class="inline">a</code>。</li>
+</ul>
+<p>
+    注意，如果 <code class="inline">add</code> 函数执行两次，那么形参 <code class="inline">x</code> 与 <code class="inline">y</code> 就要创建销毁两次，每次调用一次。拥有大量函数和函数调用的程序中，会经常创建销毁变量。
+</p>
+<h2>
+    函数间的隔离
+</h2>
+<p>
+    上面的程序中，很容易看到变量 <code class="inline">a</code>、<code class="inline">b</code> 与变量 <code class="inline">x</code>、<code class="inline">y</code> 不同。
+</p>
+<p>
+    现在来看这个很相似的程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y) // add 的 x 与 y 在此创建并进入作用域
+{
+    // add 的 x 与 y 只在这个函数内可见/可用
+    return x + y;
+} // add 的 y 与 x 在此离开作用域并销毁
+
+int main()
+{
+    int x{ 5 }; // main 的 x 在此创建, 初始化, 进入作用域
+    int y{ 6 }; // main 的 y 在此创建, 初始化, 进入作用域
+
+    // main 的 x 与 y 只在这个函数内可用
+    std::cout &lt;&lt; add(x, y) &lt;&lt; &apos;\n&apos;; // 调用 add() 函数, x=5, y=6
+
+    return 0;
+} // main 的 y 与 x 在此离开作用域并销毁</code></pre>
+<p>
+    此例中，我们只把 <code class="inline">main</code> 函数的变量 <code class="inline">a</code> 与 <code class="inline">b</code> 改成 <code class="inline">x</code> 与 <code class="inline">y</code>。程序编译运行与之前完全相同，即使函数 <code class="inline">main</code> 与 <code class="inline">add</code> 都有名为 <code class="inline">x</code> 与 <code class="inline">y</code> 的变量。为什么还能正常工作？
+</p>
+<p>
+    首先，需要认识到即使 <code class="inline">main</code>、<code class="inline">add</code> 两个函数都有名为 <code class="inline">x</code> 与 <code class="inline">y</code> 的变量，这些变量也是不同的。<code class="inline">main</code> 函数中的变量 <code class="inline">x</code> 与 <code class="inline">y</code> 与 <code class="inline">add</code> 函数里的没有任何关系，它们只是恰巧拥有相同的名字。
+</p>
+<p>
+    其次，在 <code class="inline">main</code> 函数中，<code class="inline">x</code> 与 <code class="inline">y</code> 指 <code class="inline">main</code> 的局部作用域里的局部变量。这些变量只在 <code class="inline">main</code> 函数内部可见/可用。类似地，在 <code class="inline">add</code> 函数中，<code class="inline">x</code> 与 <code class="inline">y</code> 指函数形参，只在 <code class="inline">add</code> 函数内部可见/可用。
+</p>
+<p>
+    简而言之，<code class="inline">add</code> 与 <code class="inline">main</code> 都不知道其他函数具有同名变量。因为它们的作用域并不相交，编译器总能清晰地分辨 <code class="inline">x</code> 与 <code class="inline">y</code> 指的是哪个变量。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        在函数体中声明的形参或变量的名称只在它们的声明所在的函数中可见。也就是说，给函数中的局部变量命名时不用考虑其他函数中的变量名。这使得函数互相独立。
+    </p>
+</div>
+<p>
+    以后的章节中会更详细地讨论局部作用域与其他类型的作用域。
+</p>
+<h2>
+    在哪里定义局部变量
+</h2>
+<p>
+    现代 C++ 中，最佳实践是使函数体中的局部变量的定义紧挨着首次使用的位置：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int x{};       // x 在此定义
+    std::cin &gt;&gt; x; // 在这里使用
+
+    std::cout &lt;&lt; &quot;Enter another integer: &quot;;
+    int y{};       // y 在此定义
+    std::cin &gt;&gt; y; // 在这里使用
+
+    int sum{ x + y }; // sum 可用喜欢的值初始化
+    std::cout &lt;&lt; &quot;The sum is: &quot; &lt;&lt; sum &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    在上面的程序中，每个变量的定义都紧挨着它第一次使用的位置。没必要特别严格地遵守这一条，如果你想交换第 5 行和第 6 行的位置，也无所谓。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        局部变量的定义要尽量靠近它第一次使用的位置。
+    </p>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        由于那些老旧原始的编译器的限制，C 语言以前会要求所有的局部变量定义在函数顶部。上面的程序换用这种风格就像这样：
+    </p>
+    <pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    int x{}, y{}, sum{}; // 怎么使用的?
+
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    std::cin &gt;&gt; x;
+
+    std::cout &lt;&lt; &quot;Enter another integer: &quot;;
+    std::cin &gt;&gt; y;
+
+    sum = x + y;
+    std::cout &lt;&lt; &quot;The sum is: &quot; &lt;&lt; sum &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+    <p>
+        这种风格有几个不太好的地方：
+    </p>
+    <ul>
+        <li>变量的用途在定义处不清晰。需要浏览整个函数才能确定变量在哪使用、如何使用。</li>
+        <li>期望的初始化值可能在函数开头处并不知道（比如无法初始化变量 <code class="inline">sum</code>，因为不知道 <code class="inline">x</code> 与 <code class="inline">y</code> 的值）。</li>
+        <li>变量的初始化器和它的首次使用不相邻。如果忘记了它的初始值，还要翻到函数顶部看，这会使注意力分散。</li>
+    </ul>
+    <p>
+        C99 语言标准解除了这种限制。
+    </p>
+</div>
+<h2>
+    临时对象简介
+</h2>
+<p>
+    <strong>临时对象</strong>（<strong>temporary object</strong>）（或称 <strong>匿名对象</strong>（<strong>anonymous object</strong>））是编译器创建的用于临时存储值的未命名对象。
+</p>
+<p>
+    有许多方式创建临时变量，这里举个比较常见的例子：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int getValueFromUser()
+{
+    std::cout &lt;&lt; &quot;Enter an integer: &quot;;
+    int input{};
+    std::cin &gt;&gt; input;
+
+    return input; // 把输入的值返回给调用者
+}
+
+int main()
+{
+    std::cout &lt;&lt; getValueFromUser() &lt;&lt; &apos;\n&apos;; // 返回值存在哪里了?
+
+    return 0;
+}</code></pre>
+<p>
+    上面的程序中，<code class="inline">getValueFromUser()</code> 函数把存储于局部变量 <code class="inline">input</code> 中的值返回给调用者。<code class="inline">input</code> 在函数末尾就被销毁了，调用者收到的是值的副本，所以即使在 <code class="inline">input</code> 销毁之后这个值仍然可用。
+</p>
+<p>
+    但是返回给调用者的值的副本存储在哪？在 <code class="inline">main</code> 函数中没定义任何变量。答案是存储在临时对象中了。临时对象之后被传递给 <code class="inline">std::cout</code> 再被显示出来。
+</p>
+<p>
+    临时对象没有作用域（很合理，因为作用域是标识符的性质，而临时对象没有标识符）。
+</p>
+<p>
+    临时对象在创建处所在的完整表达式结束后就销毁了。所以存储 <code class="inline">getValueFromUser()</code> 返回值的临时对象在执行完 <code class="inline">std::cout &lt;&lt; getValueFromUser() &lt;&lt; &apos;\n&apos;</code> 之后就被销毁了。
+</p>
+<p>
+    当临时对象用于初始化变量时，初始化发生在临时对象被销毁之前。
+</p>
+<p>
+    在现代 C++ 中（尤其是 C++17 之后），编译器采取了各种技巧避免产生之前不得不创建的临时对象。由于 <code class="inline">getValueFromUser()</code> 的返回值会被直接输出，编译器可以跳过在 <code class="inline">main()</code> 中创建销毁临时对象的过程，直接使用 <code class="inline">getValueFromUser()</code> 的返回值来初始化 <code class="inline">operator&lt;&lt;</code> 的形参。
+</p>
+<h2>
+    <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-local-scope/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
+</h2>
 <hr/>
 <nav>
     <a href="Chap02-06.html">[ 下一课：2.6 -- 函数的用处, 以及如何高效使用 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-local-scope/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap02-04.html">[ 上一课：2.4 -- 函数的形参与实参简介 ]</a>
 </nav>
 </body>
