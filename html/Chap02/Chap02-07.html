@@ -21,12 +21,348 @@
 <h1>
     2.7 -- 前向声明与定义
 </h1>
+<p>
+    考察这条看似没问题的简单程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;;
+    return 0;
+}
+
+int add(int x, int y)
+{
+    return x + y;
+}</code></pre>
+<p>
+    你可能会认为程序会产生如下结果：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">The sum of 3 and 4 is: 7</code></pre>
+<p>
+    但实际上，它根本不能通过编译！Visual Studio 会给出如下编译错误：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">add.cpp(5) : error C3861: &apos;add&apos;: identifier not found</code></pre>
+<p>
+    程序不能编译的原因是：编译器按顺序处理代码文件的内容。当编译器在 <code class="inline">main</code> 函数第 5 行遇到对 <code class="inline">add</code> 的调用时，它不知道 <code class="inline">add</code> 是什么，因为它直到第 9 行才被定义！这就产生了错误 <code class="lighter">identifier not found</code>。
+</p>
+<p>
+    旧版本的 Visual Studio 还会给出一个额外错误：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">add.cpp(9) : error C2365: &apos;add&apos;; : redefinition; previous definition was &apos;formerly unknown identifier&apos;</code></pre>
+<p>
+    这有点误导性，因为 <code class="inline">add</code> 在第一次出现时还没有定义。但这也说明单个错误产生冗余的错误或警告是很常见的。有时候很难判定第一个之后的错误或警告到底是第一个问题的并发问题，还是需要单独解决的独立问题。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        解决编译错误或警告时，解决第一个问题之后重新编译一次。
+    </p>
+</div>
+<p>
+    为解决这个报错，我们明确：编译器不知道 <code class="inline">add</code> 是什么。一般有两种解决办法。
+</p>
+<h2>
+    选项 1：重新排序函数定义
+</h2>
+<p>
+    解决问题的一个方法是重排函数定义的顺序，这样 <code class="inline">add</code> 的定义就在 <code class="inline">main</code> 之前了：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y)
+{
+    return x + y;
+}
+
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;;
+    return 0;
+}</code></pre>
+<p>
+    这样，当 <code class="inline">main</code> 调用 <code class="inline">add</code> 时，编译器就已经知道 <code class="inline">add</code> 是什么了。由于这个程序非常简单，这种更改会相对容易。但在较大的程序中，为了按顺序声明函数，而去弄清楚什么函数按什么顺序调用了什么函数，可能会让人疲惫不堪。
+</p>
+<p>
+    此外，这种方法并不总是可行的。如果函数 A 调用函数 B，而函数 B 又调用函数 A，那么无论怎么排列函数都无法满足要求。如果先定义 A，编译器会报错不知道 B 是什么。如果先定义 B，编译器会报错不知道 A 是什么。
+</p>
+<h2>
+    选项 2：使用前向声明
+</h2>
+<p>
+    可以通过前向声明来解决这一问题。
+</p>
+<p>
+    <strong>前向声明</strong>（<strong>forward declaration</strong>）可以在真正定义标识符之前提前告诉编译器它的存在。
+</p>
+<p>
+    函数的前向声明可以在定义函数体之前告诉编译器函数的存在。这样，当编译器遇到对这个函数的调用时，就知道这是一个函数调用，并检查对函数的调用是否正确，即使它还不知道函数是如何定义的、在哪定义的。
+</p>
+<p>
+    使用 <strong>函数声明</strong>（<strong>function declaration</strong>）（也称 <strong>函数原型</strong>（<strong>function prototype</strong>））来做函数的前向声明。函数声明由函数的返回类型、名称、形参类型构成，以分号结尾。形参名是可选的。函数体不包含在声明里。
+</p>
+<p>
+    这是 <code class="inline">add</code> 函数的函数声明：
+</p>
+<pre><code class="language-cpp">int add(int x, int y); // 函数声明包括返回类型, 名称, 形参, 分号. 没有函数体!</code></pre>
+<p>
+    在之前无法编译的程序中，使用函数声明作为 <code class="inline">add</code> 函数的前向声明：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y); // add() 的前向声明 (使用函数声明)
+
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;; // 能正常工作, 因为上面有 add() 的前向声明
+    return 0;
+}
+
+int add(int x, int y) // 即使 add() 的函数体直到这里才有定义
+{
+    return x + y;
+}</code></pre>
+<p>
+    当编译器在 <code class="inline">main</code> 中遇到调用 <code class="inline">add</code> 时，就会知道 <code class="inline">add</code> 是什么样（这是一个函数，接受两个整数形参，返回一个整数），就不会报错了。
+</p>
+<p>
+    值得注意的是，函数声明不需要指明形参名（它们不被视作函数声明的一部分）。在上面的代码中，可以像这样做函数的前向声明：
+</p>
+<pre><code class="language-cpp">int add(int, int); // 有效的函数声明</code></pre>
+<p>
+    但是，我们还是更倾向于保留形参的名字（使用与实际函数定义处相同的名字），因为这样就可以只看函数声明就理解形参的含义。例如，看到声明 <code class="inline">void doSomething(int, int, int)</code> 时，你可能觉得自己能记住每个形参代表什么意思，但也可能会搞错。
+</p>
+<p>
+    而且，许多自动化文档生成工具会依据头文件的内容生成文档，而声明一般放在头文件里。在 <a href="Chap02-11.html" target="_blank">2.11 -- 头文件</a> 一节中会讨论头文件与声明。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        在函数声明里保留形参名。
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        提示
+    </p>
+    <p>
+        函数的前向声明可以简单地复制粘贴函数头，再加上一个分号。
+    </p>
+</div>
+<h2>
+    为什么使用前向声明？
+</h2>
+<p>
+    如果重排函数顺序就能使程序正常工作，为什么还要使用前向声明？
+</p>
+<p>
+    前向声明一般用于告知编译器某个定义在其他代码文件里的函数的存在。重排并不适用于这种情景，因为调用者和被调用者就不在一个文件里！在 <a href="Chap02-08.html">2.8 -- 有多个代码文件的程序</a> 一节中会更详细地讨论。
+</p>
+<p>
+    使用前向声明，就可以按任意顺序定义函数。代码可以更有组织度（比如把相关的函数放到一起），或者便于阅读。
+</p>
+<p>
+    少数情况下，两个函数会互相调用。此时怎么重排都不可能让两个函数都在对方前面。前向声明就能解决这种循环依赖的情况。
+</p>
+<h2>
+    函数体缺失
+</h2>
+<p>
+    新程序员会想知道，函数有前向声明但没有定义会发生什么。
+</p>
+<p>
+    这要看实际情况。如果这个函数从未被调用，那么程序能正常编译运行。但要是存在调用，编译不会出错，但链接器会报错说无法解析此函数调用。
+</p>
+<p>
+    考察以下函数：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y); // add() 的前向声明
+
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;;
+    return 0;
+}
+
+// 注意: 没有 add 函数的定义</code></pre>
+<p>
+    这个程序里，前向声明了 <code class="inline">add</code>，调用了 <code class="inline">add</code>，但哪里也没定义 <code class="inline">add</code>。尝试编译此程序时，Visual Studio 会给出以下信息：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Compiling...
+add.cpp
+Linking...
+add.obj : error LNK2001: unresolved external symbol "int __cdecl add(int,int)" (?add@@YAHHH@Z)
+add.exe : fatal error LNK1120: 1 unresolved externals</code></pre>
+<p>
+    可以看到，编译成功但在链接期失败，因为 <code class="inline">int add(int, int)</code> 没有定义。
+</p>
+<h2>
+    其他类型的前向声明
+</h2>
+<p>
+    前向声明最常用于声明函数。但前向声明也可用于声明 C++ 里其他种类的标识符，比如变量和类。变量和类的前向声明语法与这里不同，在以后的章节里再讲。
+</p>
+<h2>
+    声明与定义
+</h2>
+<p>
+    C++ 中经常讨论 “声明” 与 “定义”，而且互相不能替代。它们是什么意思？现在有了足够的基础知识来理解它们之间的区别。
+</p>
+<p>
+    <strong>声明</strong>（<strong>declaration</strong>）告知 <em>编译器</em> 一个标识符的 <em>存在</em> 以及与之相关的类型信息。这里是声明的一些例子：
+</p>
+<pre><code class="language-cpp">int add(int x, int y); // 告诉编译器有一个名为 add 的函数, 接受两个 int 形参并返回 int. 没有函数体!
+int x;                 // 告诉编译器有个名为 x 的整数变量</code></pre>
+<p>
+    <strong>定义</strong>（<strong>definition</strong>）是真正做实现（函数或类）或实例化（变量）的声明。
+</p>
+<p>
+    这里是定义的一些例子：
+</p>
+<pre><code class="language-cpp">int add(int x, int y) // 实现函数 add()
+{
+    int z{ x + y };   // 实例化变量 z
+
+    return z;
+}
+
+int x;                // 实例化变量 x</code></pre>
+<p>
+    C++ 中，所有定义都是声明。所以 <code class="inline">int x;</code> 既是定义也是声明。
+</p>
+<p>
+    但反过来，不是所有声明都是定义。不是定义的声明又叫 <strong>纯声明</strong>（<strong>pure declarations</strong>）。纯声明包括函数、变量、类的前向声明。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        术语
+    </p>
+    <p>
+        一般情况下，“声明” 指的就是 “纯声明”，而 “定义” 指 “也可用作声明的定义”。因此我们一般称 <code class="inline">int x;</code> 为定义。
+    </p>
+</div>
+<p>
+    编译器遇到一个标识符时，它会检查并保证该标识符的可用性（比如标识符是否在作用域中，用法是否符合语法等等）。
+</p>
+<p>
+    绝大多数情况下，声明能让编译器更有效率地保证标识符被正确使用。例如，当编译器遇到函数调用 <code class="inline">add(5, 6)</code> 时，如果它已经看到过声明 <code class="inline">add(int, int)</code>，就能验证 <code class="inline">add</code> 是个接受两个 <code class="inline">int</code> 类型参数的函数。它不需要实际看到过函数 <code class="inline">add</code> 的定义（可能在别的文件里）。
+</p>
+<p>
+    但是，也有几种情况下，编译器必须要能够看到标识符的完整定义才能使用它（比如模板定义和类定义，这些都会在以后的课程中讨论）。
+</p>
+<p>
+    这里是总结表格：
+</p>
+<div class="table-wrapper-scroll">
+    <table class="content-withhead">
+        <tr>
+            <th>项</th>
+            <th>含义</th>
+            <th>例子</th>
+        </tr>
+        <tr>
+            <td>声明（Declaration）</td>
+            <td>告诉编译器一个标识符和与之相关的类型信息。</td>
+            <td><code>void foo(); // 函数声明 (无函数体)<br/>void goo(); // 函数定义 (有函数体)<br/>int x; // 变量定义</code></td>
+        </tr>
+        <tr>
+            <td>定义（Definition）</td>
+            <td>实现一个函数或实例化一个变量。<br/>定义也是声明。</td>
+            <td><code>void foo() { } // 函数定义 (有函数体)<br/>int x; // 变量定义</code></td>
+        </tr>
+        <tr>
+            <td>纯声明（Pure declaration）</td>
+            <td>不是定义的声明。</td>
+            <td><code>void foo(); // 函数前向声明 (无函数体)</code></td>
+        </tr>
+        <tr>
+            <td>初始化（Initialization）</td>
+            <td>为已定义的对象提供初始值。</td>
+            <td><code>int x { 2 }; // 2 是初始化器</code></td>
+        </tr>
+    </table>
+</div>
+<p>
+    一般情况下，“声明” 指的就是 “纯声明”，而 “定义” 指 “也可用作声明的定义”。表格中采用的就是这种通用叫法。
+</p>
+<h2>
+    单次定义原则（ODR）
+</h2>
+<p>
+    <strong>单次定义原则</strong>（<strong>one definition rule</strong>，<strong>ODR</strong>）是 C++ 中的一条著名规则。它由三部分组成：
+</p>
+<ol>
+    <li>在同一 <em>文件</em> 中，每个函数、变量、类、模板，都只能有一个定义。在不同作用域中出现的定义（比如不同函数中定义的局部变量，或不同命名空间中定义的函数）不会违反这条规则。</li>
+    <li>在同一 <em>程序</em> 中，每个函数或变量只能有一个定义。这条规则的存在是因为程序可以有不止一个文件（下一节会讨论这一点）。对链接器不可见的函数与变量不包括在这条规则里（在 <a href="../Chap07/Chap07-06.html" target="_blank">7.6 -- 内部链接性</a> 一节中会详细讨论）。</li>
+    <li>类、模板、<code>inline</code> 函数、<code>inline</code> 变量，可以在不同的文件里有重复定义，但每一次的定义都必须完全相同的。这些概念都还没介绍过，所以暂时不用管它，我们会在涉及到的时候再讨论。</li>
+</ol>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        我们会在以下章节讨论 ODR 第三部分的豁免项：
+    </p>
+    <ul>
+        <li>类：<a href="../Chap13/Chap13-01.html" target="_blank">13.1 -- </a></li>
+        <li>函数模板：<a href="../Chap11/Chap11-06.html" target="_blank">11.6 -- 函数模板</a>、<a href="../Chap11/Chap11-07.html" target="_blank">11.7 -- 函数模板的实例化</a></li>
+        <li><code>inline</code> 函数与变量：<a href="../Chap05/Chap05-07.html" target="_blank">5.7 -- <code>inline</code> 函数与变量</a></li>
+    </ul>
+</div>
+<p>
+    违反第一条会造成编译器给出重复定义错误。违反第二条会造成链接器给出重复定义错误。违反第三条会造成未定义行为。
+</p>
+<p>
+    这是违反第一条的例子：
+</p>
+<pre><code class="language-cpp">int add(int x, int y)
+{
+     return x + y;
+}
+
+int add(int x, int y) // 违反了单次定义原则, 已经定义过函数 add(int, int) 
+{
+     return x + y;
+}
+
+int main()
+{
+    int x{};
+    int x{ 5 }; // 违反了单次定义原则, 已经定义过 x
+}</code></pre>
+<p>
+    这个例子中，函数 <code class="inline">add(int, int)</code> 定义了两次（在全局作用域），局部变量 <code class="inline">int x</code> 也定义了两次（在 <code class="inline">main()</code> 函数作用域中）。Visual Studio 编译器因此指出了如下编译错误：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">project3.cpp(9): error C2084: function &apos;int add(int,int)&apos; already has a body
+project3.cpp(3): note: see previous definition of &apos;add&apos;
+project3.cpp(16): error C2086: &apos;int x&apos;: redefinition
+project3.cpp(15): note: see declaration of &apos;x&apos;</code></pre>
+<p>
+    然而，<code class="inline">main()</code> 函数与 <code class="inline">add()</code> 函数中都有定义 <code class="inline">int x</code> 并不违反第一条。这些定义出现在不同的作用域中（每个都在对应的函数的作用域中），所以它们被视为不同对象的不同定义，而不是同一对象的重复定义。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        拥有同一标识符但有不同形参列表的函数也会被认为是不同的函数，这样的定义也不会违反 ODR。在 <a href="../Chap11/Chap11-01.html" target="_blank">11.1 -- 函数重载简介</a> 一节中会深入讨论。
+    </p>
+</div>
+<h2>
+    <a href="https://www.learncpp.com/cpp-tutorial/forward-declarations/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
+</h2>
 <hr/>
 <nav>
     <a href="Chap02-08.html">[ 下一课：2.8 -- 有多个代码文件的程序 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/forward-declarations/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap02-06.html">[ 上一课：2.6 -- 函数的用处, 以及如何高效使用 ]</a>
 </nav>
 </body>

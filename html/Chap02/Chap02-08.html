@@ -21,12 +21,260 @@
 <h1>
     2.8 -- 有多个代码文件的程序
 </h1>
+<h2>
+    向项目中添加文件
+</h2>
+<p>
+    当程序越来越大时，经常会拆分成多个文件，以便于组织与复用。使用 IDE 的一大优势就是它更方便使用多个文件。怎么创建并编译单文件项目，你已经学过了。向已有项目添加新文件非常容易。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        当向项目里添加新代码文件时，给它们加上 <em>.cpp</em> 拓展名。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Visual Studio 用户
+    </p>
+    <p>
+        在 Visual Studio 中，右击 <em>Solution Explorer</em> 窗口的 <em>Source File</em> 文件夹（或者项目名），选择 <em>Add -- New Item...</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        确保选择了 <em>C++ File (.cpp)</em>。给新文件取个名字，然后加入项目。
+    </p>
+    <p>
+        注意：Visual Studio 可能会显示紧凑视图而不是上面途中的完整视图。你可以继续使用紧凑视图，或者点击 <em>Show all Templates</em> 切换到完整视图。
+    </p>
+    <!-- picture here -->
+    <p>
+        注意：如果是在 <em>File</em> 菜单中而不是在 <em>Solution Explorer</em> 添加文件，新文件不会自动加到项目里，需要手动加入。右击 <em>Solution Explorer</em> 中的 <em>Source Files</em>，选择 <em>Add -- Existing Item</em>，再选择自己的文件。
+    </p>
+    <p>
+        编译文件时，应当能看到编译器列出的文件名。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        Code::Blocks 用户
+    </p>
+    <p>
+        在 Code::Blocks 中，<em>File -- New -- File...</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        在 <em>New from template</em> 对话框里，选择 <em>C/C++ source</em>，点击 <em>Go</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        你可能会看到一个 <em>C/C++ source</em> 对话框的欢迎页面。如果有，点击 <em>Next</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        在下一页里，选择 <em>C++</em>，点击 <em>Next</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        给新文件取个名字（别忘了 <em>.cpp</em> 拓展名），点击 <em>All</em> 按钮保证所有生成目标都被选择了。最后点击 <em>finish</em>。
+    </p>
+    <!-- picture here -->
+    <p>
+        编译文件时，应当能看到编译器列出的文件名。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        GCC/G++ 用户
+    </p>
+    <p>
+        在命令行，可以添加新文件，使用喜欢的编辑器，给它命名。编译程序时，要在编译命令里包含所有相关的代码文件。例如：<code class="inline">g++ main.cpp add.cpp -o main</code>，这里 <em>main.cpp</em> 与 <em>add.cpp</em> 是代码文件名，<em>main</em> 是输出文件名。
+    </p>
+</div>
+<div class="learncpp-blocktext-yellow">
+    <p class="learncpp-block-head-content">
+        VS Code 用户
+    </p>
+    <p>
+        在 <em>View -- Explorer</em> 打开 <em>Explorer</em> 窗口，点击项目名右侧的 <em>New File</em> 按钮。或者在 <em>File -- New File</em>。然后给文件命名（别忘了 <em>.cpp</em> 拓展名）。如果文件出现在了 <em>.vscode</em> 文件夹，把它拖到项目文件夹的一级目录。
+    </p>
+    <p>
+        然后打开 <em>task.json</em> 文件，找到 <code class="inline">&quot;${file}&quot;,</code>。
+    </p>
+    <p>
+        你有两个选择：
+    </p>
+    <ul>
+        <li>如果你想明确哪些文件要编译，那就替换掉 <code class="inline">&quot;${file}&quot;,</code>，写上想要编译的每个文件名，一个一行，就像：<br/>
+            <code class="inline">&quot;main.cpp&quot;,</code><br/>
+            <code class="inline">&quot;add.cpp&quot;,</code><br/></li>
+        <li>读者报告称，在 Windows 系统上，把 <code class="inline">&quot;${file}&quot;,</code> 替换为 <code class="inline">&quot;${fileDirname}\\**.cpp&quot;</code>，VS Code 会自动编译文件夹里所有的 <em>.cpp</em> 文件。</li>
+        <li>读者报告称，在 Linux 系统上，<code class="inline">&quot;${fileDirname}/**.cpp&quot;</code> 能正常工作。</li>
+    </ul>
+</div>
+<h2>
+    多个文件的例子
+</h2>
+<p>
+    
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;;
+    return 0;
+}
+
+int add(int x, int y)
+{
+    return x + y;
+}</code></pre>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    <em>add.cpp</em>：
+</p>
+<pre><code class="language-cpp">int add(int x, int y)
+{
+    return x + y;
+}</code></pre>
+<p>
+    <em>main.cpp</em>：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;; // 编译错误
+    return 0;
+}</code></pre>
+<p>
+    
+</p>
+<pre><code class="language-plaintext nohljsln lighter">main.cpp(5) : error C3861: &apos;add&apos;: identifier not found</code></pre>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<ol>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    <em>main.cpp</em>（带有前向声明）：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int add(int x, int y); // 需要, 这样 main.cpp 才知道 add() 是在别处定义的函数
+
+int main()
+{
+    std::cout &lt;&lt; &quot;The sum of 3 and 4 is: &quot; &lt;&lt; add(3, 4) &lt;&lt; &apos;\n&apos;;
+    return 0;
+}</code></pre>
+<p>
+    <em>add.cpp</em>（保持不变）：
+</p>
+<pre><code class="language-cpp">int add(int x, int y)
+{
+    return x + y;
+}</code></pre>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    
+</p>
+
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        Q：/ 提示
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+</div>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        
+    </p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<h2>
+    出错了！
+</h2>
+<p>
+    
+</p>
+<ol>
+    <li></li>
+    <li>
+        
+        <pre><code class="language-plaintext nohljsln lighter">unresolved external symbol &quot;int __cdecl add(int,int)&quot; (?add@@YAHHH@Z) referenced in function _main</code></pre>
+        <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </li>
+    <li></li>
+</ol>
+<h2>
+    小结
+</h2>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<p>
+    
+</p>
+<h2>
+    <a href="https://www.learncpp.com/cpp-tutorial/programs-with-multiple-code-files/#:~:text=Quiz%20time" target="_blank">随堂小测</a>
+</h2>
 <hr/>
 <nav>
     <a href="Chap02-09.html">[ 下一课：2.9 -- 命名冲突与命名空间简介 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
-    <a href="" target="_blank">[ 原文地址 ]</a><br/>
+    <a href="https://www.learncpp.com/cpp-tutorial/programs-with-multiple-code-files/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap02-07.html">[ 上一课：2.7 -- 前向声明与定义 ]</a>
 </nav>
 </body>

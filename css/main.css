@@ -109,31 +109,51 @@ table.content-withhead {
     border-radius: 10px;
 }
 
-table.content-nohead td {
+table.content-nohead td,
+table.content-withhead th,
+table.content-withhead td {
     padding: 4px 20px 4px 8px;
-    border-style: none;
-    border-color: transparent;
+    /* border-style: none; */
+    /* border-color: transparent; */
     text-align: left;
 }
 
-table.content-nohead tr:nth-child(odd) {
+table.content-withhead th {
+    font-size: large;
+    color: #ffffff;
+}
+
+table.content-nohead tr:nth-child(odd),
+table.content-withhead tr:nth-child(odd) {
     background-color: #edf5ff;
 }
 
-table.content-nohead tr:first-child td:first-child,
-table.content-withhead th:first-child td:first-child {
+table.content-withhead tr:first-child {
+    background-color: #64A6F5;
+}
+
+table.content-nohead tr:first-child td:first-child {
     border-radius: 10px 0 0 0;
 }
 
-table.content-nohead tr:first-child td:last-child,
-table.content-withhead th:first-child td:last-child {
+table.content-nohead tr:first-child td:last-child {
     border-radius: 0 10px 0 0;
 }
 
-table.content-nohead tr:last-child td:last-child {
+table.content-nohead tr:last-child td:last-child,
+table.content-withhead tr:last-child td:last-child {
     border-radius: 0 0 10px 0;
 }
 
-table.content-nohead tr:last-child td:first-child {
+table.content-nohead tr:last-child td:first-child,
+table.content-withhead tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
+}
+
+table.content-withhead tr:first-child th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+table.content-withhead tr:first-child th:last-child {
+    border-radius: 0 5px 0 0;
 }

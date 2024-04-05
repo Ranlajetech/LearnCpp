@@ -95,6 +95,25 @@
     </p>
 </div>
 
+<div class="table-wrapper-scroll">
+    <table class="content-nohead">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div class="table-wrapper-scroll">
+    <table class="content-withhead">
+        <tr>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
 <h2>
     <a href="#:~:text=Quiz%20time" target="_blank">随堂小测</a>
 </h2>

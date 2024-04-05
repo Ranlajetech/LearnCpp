@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>
-        2.3 -- 无返回值的函数（空函数）
+        2.3 -- 无返回值的函数（void 函数）
     </title>
 
     <link rel="stylesheet" href="../../css/main.css"/>
@@ -19,7 +19,7 @@
 
 <body>
 <h1>
-    2.3 -- 无返回值的函数（空函数）
+    2.3 -- 无返回值的函数（<code>void</code> 函数）
 </h1>
 <p>
     在 <a href="Chap02-01.html" target="_blank">2.1 -- 函数简介</a> 一节中，我们说过函数定义长这样：
@@ -32,7 +32,7 @@
     尽管之前展示过返回类型为 <code class="inline">void</code> 的函数例子，但当时没有讨论它的含义。这一课会讨论返回类型为 <code class="inline">void</code> 的函数。
 </p>
 <h2>
-    <code class="inline">void</code> 返回值
+    <code>void</code> 返回值
 </h2>
 <p>
     函数并不一定要向调用者返回值。可以使用 <code class="inline">void</code> 返回类型来告诉编译器函数没有返回值。例如：
@@ -60,16 +60,16 @@ int main()
     <code class="inline">main</code> 函数调用 <code class="inline">printHi</code> 时，执行了后者里面的代码，显示了 <code class="lighter">Hi</code>。在 <code class="inline">printHi</code> 末尾，控制权转回 <code class="inline">main</code> 然后程序继续。
 </p>
 <p>
-    不返回值的函数称为 <strong>无返回值的函数</strong>（<strong>non-value returning function</strong>） 或 <strong>空函数</strong>（<strong>void function</strong>）。
+    不返回值的函数称为 <strong>无返回值的函数</strong>（<strong>non-value returning function</strong>） 或 <strong><code>void</code> 函数</strong>（<strong>void function</strong>）。
 </p>
 <h2>
-    空函数不需要返回语句
+    <code>void</code> 函数不需要返回语句
 </h2>
 <p>
-    空函数会在函数结尾自动返回到调用者，不需要返回语句。
+    <code>void</code> 函数会在函数结尾自动返回到调用者，不需要返回语句。
 </p>
 <p>
-    也可以在空函数里使用无返回值的返回语句，这样的语句会让函数在执行到返回语句时返回到调用者，和在函数结尾处发生的事情一样。因此在空函数末尾放条空返回语句是多余的：
+    也可以在 <code>void</code> 函数里使用无返回值的返回语句，这样的语句会让函数在执行到返回语句时返回到调用者，和在函数结尾处发生的事情一样。因此在 <code>void</code> 函数末尾放条空返回语句是多余的：
 </p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
@@ -96,7 +96,7 @@ int main()
     </p>
 </div>
 <h2>
-    空函数不能用于需要值的表达式
+    <code>void</code> 函数不能用于需要值的表达式
 </h2>
 <p>
     一些表达式需要值。比如：
@@ -178,7 +178,7 @@ int main()
 }</code></pre>
 </div>
 <h2>
-    空函数返回值是编译错误
+    <code>void</code> 函数返回值是编译错误
 </h2>
 <p>
     试图让无返回值的函数返回值会引发编译错误：
