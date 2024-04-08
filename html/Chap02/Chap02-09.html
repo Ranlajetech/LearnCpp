@@ -21,7 +21,289 @@
 <h1>
     2.9 -- 命名冲突与命名空间简介
 </h1>
+<p>
+    假设你第一次去朋友家，给你的地址是 A 市 B 街 C 号。到达 A 市后，打开地图，发现两端各有一条 B 街！你要去哪边呢？除非有其他线索帮你辨别（比如你知道朋友住在河边），否则必须联系朋友寻求更多信息。因为这令人困惑且低效，在大多数国家，同一城市里的街道名和房屋地址都要求是独一无二的。
+</p>
+<p>
+    类似的，C++ 要求所有的标识符都不能有歧义。如果两个相同的标识符被引入同一程序里，而且编译器或链接器无法区分它们，编译器或链接器就会抛出错误。这种错误一般称作 <strong>命名冲突</strong>（<strong>naming collision</strong> 或 <strong>naming conflict</strong>）。
+</p>
+<p>
+    如果发生冲突的标识符在同一文件中。结果就是编译错误；如果是在同一程序中不同的文件引入的，结果就是链接错误。
+</p>
+<h2>
+    命名冲突举例
+</h2>
+<p>
+    <em>a.cpp</em>
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+void myFcn(int x)
+{
+    std::cout &lt;&lt; x;
+}</code></pre>
+<p>
+    <em>main.cpp</em>
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void myFcn(int x)
+{
+    std::cout &lt;&lt; 2 * x;
+}
+
+int main()
+{
+    return 0;
+}</code></pre>
+<p>
+    编译器编译这个程序时，它会分别编译 <em>a.cpp</em> 与 <em>main.cpp</em>，每个文件的编译都不会出错。
+</p>
+<p>
+    然而，链接器运行时，它会把 <em>a.cpp</em> 和 <em>main.cpp</em> 中的定义链接在一起，就会发现 <code class="inline">myFcn()</code> 函数的定义存在冲突。链接器就会中止并抛出错误。注意，这个错误甚至在没调用 <code class="inline">myFcn()</code> 时就会出现！
+</p>
+<p>
+    绝大多数的命名冲突都属于这两种情况：
+</p>
+<ol>
+    <li>同一程序的不同文件中，引入了两个或更多同名的函数或全局变量。这会造成链接错误，如上所示。</li>
+    <li>同一文件中，引入了两个或更多同名的函数或全局变量。这会造成编译错误。</li>
+</ol>
+<p>
+    当程序越来越大，使用了越来越多的标识符时，发生命名冲突的可能性会显著增加。好消息是，C++ 提供了大量的机制来避免命名冲突。局部作用域使不同函数中的局部变量不会互相冲突，就是这些机制中的一个。但是局部作用域并不能作用于函数名。所以我们怎么保证函数名不会互相冲突呢？
+</p>
+<h2>
+    域区域
+</h2>
+<p>
+    回到刚刚的地址问题，有两条 B 街只会当它们处于同一城市时才会成为问题。邮递员不会因为两封信一封寄往 A 市 B 街，另一封寄往 D 市 B 街而困惑，因为没有任何冲突。换句话说，不同的城市就是不同的集合，可以区分出相同的地名。
+</p>
+<p>
+    <strong>域区域</strong>（<strong>scope region</strong>）是源代码的一个区域，其中声明的标识符会被认为和其他域中的标识符不同（就像前面类比中的城市）。两个同名但声明在不同域中的标识符不会造成命名冲突。但是，在给定的域区域中，所有的标识符必须是独一无二的，否则就会造成命名冲突。
+</p>
+<p>
+    函数体就是域区域的一个例子。定义在不同函数中的同名标识符不会出问题 -- 因为每个函数都提供了不同的域区域，不会出现冲突。然而，如果在同一函数里定义同名的标识符，就会出现命名冲突，编译器会抛出错误。
+</p>
+<h2>
+    命名空间
+</h2>
+<p>
+    <strong>命名空间</strong>（<strong>namespace</strong>）提供了另一种域区域，称为 <strong>命名空间域</strong>（<strong>namespace scope</strong>），允许你在其中声明名字以避免歧义。在命名空间中声明的任何名字都不会与其他域中的相同名字混淆。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        在一个域区域（比如命名空间）中声明的名字不会与其他域中的相同名字混淆。
+    </p>
+</div>
+<p>
+    与函数不同，函数可以包含可执行语句，而命名空间域里只能有声明与定义。例如，在不同的命名空间中可以定义同名的函数，这不会造成命名冲突。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        在命名空间域中只能有声明与定义，不能有可执行语句。但函数可以定义在命名空间中，而函数本身可以包含可执行语句。
+    </p>
+</div>
+<p>
+    命名空间经常在大型项目中用来归类相关的标识符，用以确保不会无意中和其他标识符冲突。例如，如果把所有数学函数都放到叫 <code class="inline">math</code> 的命名空间中，那么你的数学函数就不会和 <code class="inline">math</code> 命名空间以外的同名函数冲突。
+</p>
+<p>
+    我们会在以后的课程中介绍如何自定义命名空间。
+</p>
+<h2>
+    全局命名空间
+</h2>
+<p>
+    在 C++ 中，所有没有定义在类、函数、命名空间中的名字，都会被认为是一个隐式定义的命名空间的一部分，叫作 <strong>全局命名空间</strong>（<strong>global namespace</strong>），也叫 <strong>全局域</strong>（<strong>the global scope</strong>）。
+</p>
+<p>
+    在本课顶部的例子里，<code class="inline">main()</code> 与两个版本的 <code class="inline">myFcn()</code> 都定义在全局命名空间中。此例中的命名冲突是因为两个版本的 <code class="inline">myFcn()</code> 都处于全局命名空间中，违反了同一域区域中所有名字都必须独一无二的规则。
+</p>
+<p>
+    对全局作用域的详细介绍参见 <a href="../Chap07/Chap07-04.html" target="_blank">7.4 -- 全局变量简介</a>。
+</p>
+<p>
+    目前需要知道两件事：
+</p>
+<ul>
+    <li>全局作用域中声明的标识符，它从声明处进入作用域，直到文件末尾</li>
+    <li>尽管可以在全局命名空间中定义变量，但应当避免这么做。原因详见 <a href="../Chap07/Chap07-08.html" target="_blank">7.8 -- 为什么（非常量的）全局变量很危险</a> 一课。</li>
+</ul>
+<p>
+    例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 把 std::cout 的声明导入全局作用域
+
+// 以下语句是全局命名空间的一部分
+
+void foo();    // OK: 函数前向声明
+int x;         // 可编译但强烈不推荐: 非常量全局变量定义(无初始化器)
+int y { 5 };   // 可编译但强烈不推荐: 非常量全局变量定义(有初始化器)
+x = 5;         // 编译错误: 不得在全局命名空间使用可执行语句
+
+int main()     // OK: 函数定义
+{
+    return 0;
+}
+
+void goo();    // OK: 函数前向声明</code></pre>
+<h2>
+    <code class="inline">std</code> 命名空间
+</h2>
+<p>
+    C++ 设计之初，标准库中所有标识符（包含 <code class="inline">std::cin</code> 与 <code class="inline">std::cout</code>）无需 <code class="inline">std::</code> 前缀就可访问（它们是全局作用域的一部分）。然而，这就意味着标准库中的标识符可能会和自定义标识符冲突（也定义在全局作用域）。本来能正常运行的代码可能只是因为新 <code class="inline">#include</code> 了标准库里的一个文件就不能正常运行了。或者更糟的情况，在某个 C++ 版本能编译的程序在某个新版本就不能编译了，因为标准库新引入的 C++ 标识符可能会和之前写的代码冲突。所以 C++ 把标准库中所有的功能都迁移到 <code class="inline">std</code> 命名空间中了（standard 的缩写）。
+</p>
+<p>
+    所以 <code class="inline">std::cout</code> 的名字并不是字面这样，实际上是 <code class="inline">cout</code>，<code class="inline">std</code> 是标识符 <code class="inline">cout</code> 所在命名空间的名字。由于 <code class="inline">cout</code> 定义在 <code class="inline">std</code> 命名空间中，<code class="inline">cout</code> 这个名字不会和 <code class="inline">std</code> 命名空间以外同样叫做 <code class="inline">cout</code> 的对象或函数冲突（比如全局命名空间中的）。
+</p>
+<p>
+    访问定义在命名空间中的标识符时（比如 <code class="inline">std::cout</code>），需要告诉编译器是在寻找定义在命名空间（<code class="inline">std</code>）中的标识符。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        使用定义在命名空间中的标识符时（比如 <code class="inline">std</code> 命名空间），需要告诉编译器这个标识符在命名空间中。
+    </p>
+</div>
+<p>
+    有几种方式做到这一点。
+</p>
+<h2>
+    显式命名空间限定符 <code class="inline">std::</code>
+</h2>
+<p>
+    告诉编译器想要使用 <code class="inline">std</code> 命名空间中的 <code class="inline">cout</code> 最直接的办法就是显式使用 <code class="inline">std::</code> 前缀。例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Hello world!&quot;; // 提到 cout 时, 指的是 std 命名空间中定义的 cout
+    return 0;
+}</code></pre>
+<p>
+    <code class="inline">::</code> 符号是 <strong>域解析运算符</strong>（<strong>scope resolution operator</strong>）。<code class="inline">::</code> 符号左侧的标识符表示 <code class="inline">::</code> 右侧的名字所在的命名空间。如果 <code class="inline">::</code> 符号的左侧没有标识符，就假定是全局命名空间。
+</p>
+<p>
+    所以提到 <code class="inline">std::cout</code> 时，其实说的是“声明在 <code class="inline">std</code> 命名空间中的 <code class="inline">cout</code>”。
+</p>
+<p>
+    这是使用 <code class="inline">cout</code> 最安全的方式，因为这样 <code class="inline">cout</code> 指代什么不存在任何歧义（在 <code class="inline">std</code> 命名空间中的那个）。
+</p>
+<div class="learncpp-blocktext-green">
+    <p class="learncpp-block-title">
+        最佳实践
+    </p>
+    <p>
+        显式使用命名空间前缀来访问定义在命名空间中的标识符。
+    </p>
+</div>
+<p>
+    包含命名空间前缀的标识符叫做 <strong>有限定的名字</strong>（<strong>qualified name</strong>）。
+</p>
+<h2>
+    <code class="inline">using namespace std</code> 与为何避免使用
+</h2>
+<p>
+    访问定义在命名空间中的标识符的另一种方法是使用 <code class="inline">using</code> 指令语句。这是使用 <code class="inline">using</code> 指令的 <em>HelloWorld</em> 程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+using namespace std; // 这是个 using 指令, 无需使用命名空间前缀就可以访问 std 命名空间中的名字
+
+int main()
+{
+    cout &lt;&lt; &quot;Hello world!&quot;;
+    return 0;
+}</code></pre>
+<p>
+    <strong>using 指令</strong>（<strong>using directive</strong>）让我们能不使用命名空间前缀就能访问命名空间中的名字。在上例中，编译器要确定 <code class="inline">cout</code> 是哪个标识符时，就会匹配 <code class="inline">std::cout</code>，它在 <code class="inline">using</code> 指令的作用下可以以 <code class="inline">cout</code> 的形式访问。
+</p>
+<p>
+    许多教材、教程，甚至某些 IDE 在程序顶部推荐或使用这样的 <code class="inline">using</code> 指令。然而这是个坏实践，我们强烈不推荐这么做。
+</p>
+<p>
+    考虑以下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 把 std::cout 的声明导入全局作用域
+
+using namespace std; // 可以用 &quot;cout&quot; 访问 std::cout
+
+int cout() // 在全局作用域定义自己的 &quot;cout&quot; 函数
+{
+    return 5;
+}
+
+int main()
+{
+    cout &lt;&lt; &quot;Hello, world!&quot;; // 编译错误! 要使用哪个 cout? 是 std 命名空间中的还是上面自定义的?
+
+    return 0;
+}</code></pre>
+<p>
+    以上程序不能编译，因为编译器无法搞清楚是要用自定义的 <code class="inline">cout</code>，还是 <code class="inline">std::cout</code>。
+</p>
+<p>
+    以这种形式使用 <code class="inline">using</code> 指令，我们定义的任何标识符都有可能和 <code class="inline">std</code> 命名空间中定义的任何同名标识符冲突。更糟的是，尽管现在没有标识符冲突，也可能会和未来的语言标准冲突。而这就是当初把标准库中所有标识符移动到 <code class="inline">std</code> 命名空间中的最大原因！
+</p>
+<div class="learncpp-blocktext-red">
+    <p class="learncpp-block-title">
+        警告
+    </p>
+    <p>
+        要避免在程序开头或在头文件中使用 <code class="inline">using</code> 指令（比如 <code class="inline">using namespace std;</code>）。这和当初引入命名空间的目的相悖。
+    </p>
+</div>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        我们会在 <a href="../Chap07/Chap07-12.html" target="_blank">7.12 -- <code>using</code> 声明与 <code>using</code> 指令</a> 一课中更多地讨论 <code class="inline">using</code> 声明与指令，与如何合理地使用它。
+    </p>
+</div>
+<h2>
+    花括号与缩进代码
+</h2>
+<p>
+    C++ 中，花括号经常用于划定嵌套在其他域区域内的域区域范围（花括号也用于其他与域无关的用途，比如列表初始化）。例如，定义在全局域区域的函数用花括号来把函数的域区域与全局域区域隔开。
+</p>
+<p>
+    在特定的情况下，定义在花括号外的标识符也可能是花括号所定义的与的一部分，而不在包含它的域里 -- 函数形参就是个例子。
+</p>
+<p>
+    例如：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt; // 把 std::cout 的声明导入全局作用域
+
+void foo(int x) // foo 定义在全局作用域, x 定义在 foo() 的作用域
+{ // 花括号描述了 foo() 函数的嵌套作用域
+    std::cout &lt;&lt; x &lt;&lt; &apos;\n&apos;;
+} // x 在此处离开作用域
+
+int main()
+{ // 花括号描述了 main() 函数的嵌套作用域
+    foo(5);
+
+    int x { 6 }; // x 定义在 main() 的作用域
+    std::cout &lt;&lt; x &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+} // x 在此处离开作用域
+// foo 与 main (与 std::cout) 在此处离开作用域 (文件尾)</code></pre>
+<p>
+    在嵌套的花括号区域内的代码一般会缩进一级，既增强可读性，也表明了这一段是在单独的域区域里。
+</p>
+<p>
+    <code class="inline">#include</code> 和 <code class="inline">foo()</code> 与 <code class="inline">main()</code> 的函数定义都在全局域区域里，所以它们没有缩进。每个函数内的语句都在函数的嵌套域区域内，所以它们缩进了一级。
+</p>
 <hr/>
 <nav>
     <a href="Chap02-10.html">[ 下一课：2.10 -- 预处理器简介 ]</a><br/>
