@@ -21,7 +21,372 @@
 <h1>
     2.10 -- 预处理器简介
 </h1>
+<p>
+    编译项目时，你可能会认为编译器会对每个文件都按字面写的那样编译。但实际上不是。
+</p>
+<p>
+    实际上，编译之前，每个代码文件（<em>.cpp</em> 文件）都要经过<strong>预处理</strong>（<strong>preprocessing</strong>）阶段。在这个阶段中，叫做 <strong>预处理器</strong>（<strong>preprocessor</strong>）的程序会对代码文件的文本做各种修改。预处理器并不是真的去改源代码文件，更改只发生在内存里或临时文件中。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        历史上，预处理器是独立于编译器的程序，但现代编译器里一般都集成了预处理器。
+    </p>
+</div>
+<p>
+    预处理器做的事情绝大部分都相当无趣。例如，去掉注释，保证文件以换行符结尾。但预处理器有一项很重要的工作：处理 <code class="inline">#include</code> 指令。
+</p>
+<p>
+    当预处理器处理完一个代码文件后，结果称做 <strong>翻译单元</strong>（<strong>translation unit</strong>）。接下来它会被编译器编译。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        包括预处理、编译、链接的全过程叫做 <strong>翻译</strong>（<strong>translation</strong>）。
+    </p>
+    <p>
+        如果你对此感兴趣，有个 <a href="https://zh.cppreference.com/w/cpp/language/translation_phases" title="CppReference" target="_blank">翻译阶段</a> 的列表。截至文章写成时，预处理包括第 1 阶段到第 4 阶段，编译包括第 5 阶段到第 7 阶段。
+    </p>
+</div>
+<h2>
+    预处理命令
+</h2>
+<p>
+    当预处理器运行时，他会从上到下扫描整个文件，寻找预处理命令。<strong>预处理命令</strong>（<strong>Preprocessor directives</strong>）（经常简称 指令，directives）是以 <code class="inline">#</code> 开头，以换行符（不是分号）结尾的指令。这种指令告诉预处理器完成特定的文本操作任务。注意，预处理器不理解 C++ 语法，它有单独的语法（有时很像 C++ 语法，但有时很不像）。
+</p>
+<p>
+    本课中，我们来看一看最常见的几种预处理指令。
+</p>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        <code class="inline">using</code> 指令（在 <a href="Chap02-09.html" target="_blank">2.9 -- 命名冲突与命名空间简介</a> 一课中介绍的）不是预处理指令（因此也不由预处理器处理）。因此 <em>directive</em> 一词经常指代预处理指令，但也不一定是。
+    </p>
+</div>
+<h2>
+    <code class="inline">#include</code>
+</h2>
+<p>
+    我们已经见过 <code class="inline">#include</code> 指令很多次了（一般就是 <code class="inline">#include &lt;iostream&gt;</code>）。<code class="inline">#include</code> 一个文件，接下来这个文件的内容就会被预处理（也会造成接下来额外的 <code class="inline">#include</code> 被递归地预处理），然后才继续预处理原文件的内容。
+</p>
+<p>
+    考察以下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
+int main()
+{
+    std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
+    return 0;
+}</code></pre>
+<p>
+    当预处理器在这个程序上运行时，预处理器会先把 <code class="inline">#include &lt;iostream&gt;</code> 替换成 <em>iostream</em> 文件的内容，处理它的内容，然后才是文件的其他部分。
+</p>
+<p>
+    预处理器处理完代码文件和所有 <code class="inline">#include</code> 进来的内容，结果叫做 <strong>翻译单元</strong>（<strong>translation unit</strong>）。翻译单元才是被传递给编译器去编译的东西。
+</p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-title">
+        知识重点
+    </p>
+    <p>
+        翻译单元既包含代码文件中被预处理过的代码，还有预处理过的<code class="inline">#include &lt;iostream&gt;</code> 进来的内容。
+    </p>
+</div>
+<p>
+    因为 <code class="inline">#include</code> 一般仅用于包含头文件，所以我们会在下一课讨论头文件时更详细地讨论 <code class="inline">#include</code>。
+</p>
+<h2>
+    宏定义
+</h2>
+<p>
+    <code class="inline">#include</code> 指令一般用于创建宏。在 C++ 中，<strong>宏</strong>（<strong>macro</strong>）是定义输入文本如何转换成替换的输出文本的。
+</p>
+<p>
+    宏一般有两种：对象式宏、函数式宏。
+</p>
+<p>
+    函数式宏和函数的行为很像，而且服务于同一目的。使用函数式宏一般被认为是不安全的，而且几乎所有它能做的事都能由普通函数完成。
+</p>
+<p>
+    对象式宏有两种定义方式：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">#define IDENTIFIER
+#define IDENTIFIER substitution_text</code></pre>
+<p>
+    上面的没有替换文本，下面的有。它们都是预处理指令而不是语句，所以它们不以分号结尾。
+</p>
+<p>
+    宏标识符命名规则和普通标识符命名规则相同：可以使用字母、数字、下划线，不能以数字开头，不应以下划线开头。按惯例，宏的名字一般用全大写字母，用下划线分隔。
+</p>
+<h2>
+    有替换文本的对象式宏
+</h2>
+<p>
+    预处理器遇到替换指令后，在此之后每次遇到这个标识符都会把它替换为对应的替换文本。宏的名字一般用全大写字母，用下划线表示空格。
+</p>
+<p>
+    考察以下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+#define MY_NAME &quot;Alex&quot;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;My name is: &quot; &lt;&lt; MY_NAME &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    预处理器把它转换成：
+</p>
+<pre><code class="language-cpp">// iostream 的内容被插入到这里
+
+int main()
+{
+    std::cout &lt;&lt; &quot;My name is: &quot; &lt;&lt; &quot;Alex&quot; &lt;&lt; &apos;\n&apos;;
+
+    return 0;
+}</code></pre>
+<p>
+    运行时显示输出：<code class="lighter">My name is: Alex</code>
+</p>
+<p>
+    有替换文本的对象式宏过去是（在 C 语言里）给字面值命名的一种方式。现在已经不再必要，因为 C++ 有更好的方法。有替换文本的对象式宏现在应当只能在老式代码里才能看到了。
+</p>
+<p>
+    我们建议彻底避免使用这种类型的宏，因为有更好的方法来做同样的事。我们会在 <a href="..//Chap05/Chap05-01.html" target="_blank">5.1 -- <code>const</code> 变量（具名常量）</a> 一课中详细讨论。
+</p>
+<h2>
+    无替换文本的对象式宏
+</h2>
+<p>
+    对象式宏定义也可以没有替换文本。
+</p>
+<p>
+    例如：
+</p>
+<pre><code class="language-cpp">#define USE_YEN</code></pre>
+<p>
+    这种宏的工作方式和你的预期相同：在此之后这个标识符每次出现都会被删除，不替换为任何东西！
+</p>
+<p>
+    这看起来没什么用，而且用它来替换文本 <em>确实</em> 十分无用。但这种指令一般并不是用来做这个。我们会在稍后讨论这种形式的用途。
+</p>
+<p>
+    与有替换文本的对象式宏不同，使用这种类型的宏一般被认为是可接受的。
+</p>
+<h2>
+    条件编译
+</h2>
+<p>
+    条件编译预处理器指令用于指定什么情况下，这段代码是否要编译。条件编译指令有不少，我们这里只讲最常用的三个：<code class="inline">#ifdef</code>、<code class="inline">#ifndef</code>、<code class="inline">#endif</code>。
+</p>
+<p>
+    <code class="inline">#ifdef</code> 预处理器指令要求预处理器检查某个标识符是否被 <code class="inline">#define</code> 过。如果有，那么在 <code class="inline">#ifdef</code> 与对应的 <code class="inline">#endif</code> 之间的代码就会被编译，否则这一部分会被忽略。
+</p>
+<p>
+    考察以下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+#define PRINT_JOE
+
+int main()
+{
+#ifdef PRINT_JOE
+    std::cout &lt;&lt; &quot;Joe\n&quot;; // 会被编译, 因为 #define 过 PRINT_JOE
+#endif
+
+#ifdef PRINT_BOB
+    std::cout &lt;&lt; &quot;Bob\n&quot;; // 会被排除, 因为没有 #define 过 PRINT_BOB
+#endif
+
+    return 0;
+}</code></pre>
+<p>
+    因为 <code class="inline">PRINT_JOE</code> 被 <code class="inline">#define</code> 过，<code class="inline">std::cout &lt;&lt; &quot;Joe\n&quot;</code> 这一行就会被编译。因为 <code class="inline">PRINT_BOB</code> 没有被 <code class="inline">#define</code> 过，<code class="inline">std::cout &lt;&lt; &quot;Bob\n&quot;</code> 这一行就会被忽略。
+</p>
+<p>
+    <code class="inline">#ifndef</code> 是 <code class="inline">#ifdef</code> 的否定，它检查标识符是否 <em>没有</em> 被 <code class="inline">#define</code> 过。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+#ifndef PRINT_BOB
+    std::cout &lt;&lt; &quot;Bob\n&quot;;
+#endif
+
+    return 0;
+}</code></pre>
+<p>
+    上面的程序显示 <code class="lighter">Bob</code>，因为 <code class="inline">PRINT_BOB</code> 没有被 <code class="inline">#define</code> 过。
+</p>
+<p>
+    有时也能见到用 <code class="inline">#if defined(PRINT_BOB)</code> 与 <code class="inline">#if !defined(PRINT_BOB)</code> 替代 <code class="inline">#ifdef PRINT_BOB</code> 与 <code class="inline">#ifndef PRINT_BOB</code> 的。它们的作用相同，只是前者是更有 C++ 风格的语法。
+</p>
+<h2>
+    <code class="inline">#if 0</code>
+</h2>
+<p>
+    更常见的条件编译指令还有用 <code class="inline">#if 0</code> 来阻止编译一段代码的（就像放到注释块里一样）。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Joe\n&quot;;
+
+#if 0 // 不要编译以下内容
+    std::cout &lt;&lt; &quot;Bob\n&quot;;
+    std::cout &lt;&lt; &quot;Steve\n&quot;;
+#endif // 直到这里
+
+    return 0;
+}</code></pre>
+<p>
+    以上代码只显示 <code class="lighter">Joe</code>，因为 <code class="lighter">Bob</code> 与 <code class="lighter">Steve</code> 被 <code class="inline">#if 0</code> 预处理器指令排除在编译范围外了。
+</p>
+<p>
+    这给注释掉带有多行注释的代码块（无法用多行注释注释掉，因为多行注释不能嵌套）提供了一个更方便的方法：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Joe\n&quot;;
+
+#if 0 // 不要编译以下内容
+    std::cout &lt;&lt; &quot;Bob\n&quot;;
+    /* 一些
+     * 多行
+     * 注释
+     */
+    std::cout &lt;&lt; &quot;Steve\n&quot;;
+#endif // until this point
+
+    return 0;
+}</code></pre>
+<p>
+    要暂时重新使用被 <code class="inline">#if 0</code> 包围的代码，可以把 <code class="inline">#if 0</code> 改为 <code class="inline">#if 1</code>。
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; &quot;Joe\n&quot;;
+
+#if 1 // 永远为真，以下代码会被编译
+    std::cout &lt;&lt; &quot;Bob\n&quot;;
+    /* 一些
+     * 多行
+     * 注释
+     */
+    std::cout &lt;&lt; &quot;Steve\n&quot;;
+#endif
+
+    return 0;
+}</code></pre>
+<h2>
+    对象式宏不影响其他预处理指令
+</h2>
+<p>
+    有的读者可能会想到：
+</p>
+<pre><code class="language-cpp">#define PRINT_JOE
+
+#ifdef PRINT_JOE
+// ...</code></pre>
+<p>
+    我们把 <code class="inline">PRINT_JOE</code> 定义成什么都没有，为什么预处理器没把 <code class="inline">#ifdef PRINT_JOE</code> 中的 <code class="inline">PRINT_JOE</code> 替换没呢？
+</p>
+<p>
+    宏只替换非预处理器指令中的文本。因为 <code class="inline">#ifdef PRINT_JOE</code> 是个预处理器指令，这里的 <code class="inline">PRINT_JOE</code> 不会被替换。
+</p>
+<p>
+    另一个例子：
+</p>
+<pre><code class="language-cpp">#define FOO 9 // 这是宏替换
+
+#ifdef FOO // 这个 FOO 不会被替换, 因为它是预处理指令
+    std::cout &lt;&lt; FOO &lt;&lt; &apos;\n&apos;; // 这个 FOO 会被替换为 9, 因为它是普通代码
+#endif</code></pre>
+<p>
+    但是预处理器的最终输出并不包含指令，它们在编译前被就被解析并删掉了，因为编译器不知道怎么处理它们。
+</p>
+<h2>
+    <code class="inline">#define</code> 的作用域
+</h2>
+<p>
+    指令在编译前被解析，一个一个文件地从头到尾处理。
+</p>
+<p>
+    考察以下程序：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void foo()
+{
+#define MY_NAME &quot;Alex&quot;
+}
+
+int main()
+{
+	std::cout &lt;&lt; &quot;My name is: &quot; &lt;&lt; MY_NAME &lt;&lt; &apos;\n&apos;;
+
+	return 0;
+}</code></pre>
+<p>
+    尽管 <code class="inline">#define MY_NAME &quot;Alex&quot;</code> 看起来是在 <code class="inline">foo</code> 函数内定义的，预处理器并不会注意到这一点，因为它不理解 C++ 中像函数这样的概念。因此，这个程序和把 <code class="inline">#define MY_NAME &quot;Alex&quot;</code> 放到紧挨着 <code class="inline">foo</code> 函数前后位置的程序行为相同。为了可读性，一般会在函数外 <code class="inline">#define</code> 标识符。
+</p>
+<p>
+    预处理器处理完毕后，这个文件中定义的所有标识符都会被丢弃。也就是说，指令的有效区间从它的定义处开始，到所在的文件结尾处结束。在一个代码文件中定义指令不会影响同一项目中的其他文件。
+</p>
+<p>
+    考察以下例子：
+</p>
+<p>
+    <em>function.cpp</em>：
+</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+void doSomething()
+{
+#ifdef PRINT
+    std::cout &lt;&lt; &quot;Printing!\n&quot;;
+#endif
+#ifndef PRINT
+    std::cout &lt;&lt; &quot;Not printing!\n&quot;;
+#endif
+}</code></pre>
+<p>
+    <em>main.cpp</em>
+</p>
+<pre><code class="language-cpp">void doSomething(); // doSomething() 函数的前向声明
+
+#define PRINT
+
+int main()
+{
+    doSomething();
+
+    return 0;
+}</code></pre>
+<p>
+    上面的程序显示：
+</p>
+<pre><code class="language-plaintext nohljsln lighter">Not printing!</code></pre>
+<p>
+    尽管 <em>main.cpp</em> 中定义了 <code class="inline">PRINT</code>，也不会影响 <em>function.cpp</em> 中的任何代码（<code class="inline">PRINT</code> 只 <code class="inline">#define</code> 在它的定义处到 <em>main.cpp</em> 结尾）。这一点在未来的课程里对头文件保护符的讨论中很重要。
+</p>
 <hr/>
 <nav>
     <a href="Chap02-11.html">[ 下一课：2.11 -- 头文件 ]</a><br/>
