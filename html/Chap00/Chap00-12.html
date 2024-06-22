@@ -40,12 +40,21 @@
     代号与最终名称对应如下：
 </p>
 <ul>
-    <li>c++1x = C++11</li>
-    <li>c++1y = C++14</li>
-    <li>c++1z = C++17</li>
-    <li>c++2a = C++20</li>
-    <li>c++2b = C++23</li>
+    <li>C++0x = C++11</li>
+    <li>C++1y = C++14</li>
+    <li>C++1z = C++17</li>
+    <li>C++2a = C++20</li>
+    <li>C++2b = C++23</li>
+    <li>C++2c = C++26（预计，未最终确定）</li>
 </ul>
+<div class="learncpp-blocktext-grey">
+    <p class="learncpp-block-title">
+        延申阅读
+    </p>
+    <p>
+        C++11 代号是 C++0x 的原因是，最开始的计划在 2010 年前完成它。
+    </p>
+</div>
 <h2>
     选择哪个语言标准？
 </h2>
@@ -55,6 +64,17 @@
 <p>
     个人项目或学习过程中，直接选择最新标准没什么坏处。
 </p>
+<div class="learncpp-blocktext-violet">
+    <p class="learncpp-block-head-content">
+        提示
+    </p>
+    <p>
+        许多编译器会对尚未完成的语言标准引入的特性提供“实验性”或“预览”支持。你所使用的 IDE 在配置语言标准的页面里可能也提供了这个选项，或者是需要手动添加未完成的语言标准代号来开启。
+    </p>
+    <p>
+        对未完成的语言标准特性的支持可能并不完整，而且可能有很多漏洞。
+    </p>
+</div>
 <div class="learncpp-blocktext-grey">
     <p class="learncpp-block-title">
         作者的话
@@ -70,14 +90,14 @@
     </p>
 </div>
 <p>
-    在本节末尾会有一些测试程序，你可以编译运行它们来看看你的编译器是否正确支持 C++17 和 C++20。
+    在本节末尾有个测试程序，可以用来运行查看你的编译器使用的是哪个语言标准。
 </p>
 <div class="learncpp-blocktext-grey">
     <p class="learncpp-block-title">
         提醒
     </p>
     <p>
-        更改语言标准时（或更改其他项目设置时），要对所有的生成设置做更改。
+        更改语言标准时（或更改其他项目设置时），要对所有的编译设置做更改。
     </p>
 </div>
 <h2>
@@ -105,9 +125,11 @@
         提示
     </p>
     <p>
-        推荐选用最新标准 <em>ISO C++ Latest (/std:c++latest)</em>，这保证你能利用编译器所支持的尽可能多的新特性。
+        推荐选用最新标准 <em>ISO C++ Latest (/std:c++latest)</em>，可以尽可能多地利用编译器所支持的新特性。
     </p>
-    <p>请选择下拉菜单中出现的语言标准，而不是手动打出来。</p>
+    <p>
+        请选择下拉菜单中出现的语言标准，而不是手动打出来。
+    </p>
 </div>
 <div class="learncpp-blocktext-grey">
     <p class="learncpp-block-title">
@@ -134,40 +156,45 @@
         提示
     </p>
     <p>
-        如果有 C++20 或 C++17，就选择最新的那一版。请忽略 GNU 标准。
+        如果有 C++23，C++20 或 C++17，就选择最新的 ISO 版本。请忽略 GNU 标准。
     </p>
 </div>
 <p>
     如果 C++17 不在列表里，请升级 Code::Blocks 到最新版本。
 </p>
-<p>
-    如果由于某种原因不能升级到最新版，你的 Code::Blocks 可能还会支持即将到来（或刚刚发布） 的版本。选择最新的版本。
-</p>
+<div class="learncpp-blocktext-red">
+    <p class="learncpp-block-title">
+        警告
+    </p>
+    <p>
+        截至本文写就时，Code::Blocks 最新版本（20.03）使用的是果实的编译器（GCC 8.1.0）。
+    </p>
+    <p>
+        推荐通过升级 MinGW 来升级你的编译器。在 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a> 一课中给出了过程。
+    </p>
+</div>
 <div class="learncpp-blocktext-violet">
     <p class="learncpp-block-head-content">
         提示
     </p>
     <p>
-        截至本文写就时，Code::Blocks 最新版本（20.03） 不支持 C++20，如果你希望在 Code::Blocks 中使用 C++20：
+        升级到 MinGW 最新版本后，可以查看 <em>Settings -- Compiler</em> 中有没有出现更新的语言标准复选框。如果没有，可以用以下方式手动选择 C++ 版本：
     </p>
-    <ol>
-        <li>升级 MinGW 以升级编译器。在 <a href="Chap00-06.html" target="_blank">0.6 -- 安装集成开发环境（IDE）</a> 一课中给出了过程。</li>
-        <li>在 <em>Global Compiler Settings -- Other compiler options</em> 标签页中添加：<br/>
-        <code class="inline">-std=c++20</code>
-        </li>
-    </ol>
+    <p>
+        在 <em>Global Compiler Settings -- Other compiler options</em> 标签页中添加以下编译器选项之一：<code class="inline">-std=c++11</code>，<code class="inline">-std=c++14</code>，<code class="inline">-std=c++17</code>，<code class="inline">-std=c++20</code>，<code class="inline">-std=c++23</code>。也可以尝试最新的语言标准代号 <code class="inline">-std=c++2c</code> 体验对即将到来的语言标准特性的实验性支持。
+    </p>
 </div>
 <h2>
-    在 GCC/G++ 中选用语言标准
+    在 GCC/G++/Clang 中选用语言标准
 </h2>
 <p>
-    使用 <code class="inline">-std=c++11</code>，<code class="inline">-std=c++14</code>，<code class="inline">-std=c++17</code>，<code class="inline">-std=c++20</code> 这些参数来开启对应的 C++11/14/17/20 特性。如果你使用的是 GCC 8 或 9，需要使用 <code class="inline">-std=c++2a</code>。
+    使用 <code class="inline">-std=c++11</code>，<code class="inline">-std=c++14</code>，<code class="inline">-std=c++17</code>，<code class="inline">-std=c++20</code> 这些参数来开启对应的 C++11/14/17/20 特性。如果你使用的是 GCC 8 或 9，需要使用 <code class="inline">-std=c++2a</code> 支持 C++20。也可以尝试最新的语言标准代号 <code class="inline">-std=c++2c</code> 体验对即将到来的语言标准特性的实验性支持。
 </p>
 <h2>
     在 VS Code 中选用语言标准
 </h2>
 <p>
-    使用 <code class="inline">&quot;-std=c++11&quot;,</code>，<code class="inline">&quot;-std=c++14&quot;,</code>，<code class="inline">&quot;-std=c++17&quot;,</code>，<code class="inline">&quot;-std=c++20&quot;,</code> 这些参数来开启对应的 C++11/14/17/20 特性。如果你使用的是 GCC 8 或 9，需要使用 <code class="inline">&quot;-std=c++2a&quot;,</code>。
+    可以遵循上面 GCC/G++/Clang 设定语言标准的方法。
 </p>
 <p>
     把合适的语言标准参数（包括引号和逗号）放到 <em>task.json</em> 文件 <code class="inline">&quot;args&quot;</code> 一节 <code class="inline">&quot;${file}&quot;</code> 行前面。
@@ -175,6 +202,7 @@
 <p>
     同时还要让 Intellisense 使用相同的语言标准。例如使用 C++20 时，要在 <em>setting.json</em> 文件中添加单独一行 <code class="inline">&quot;C_Cpp.default.cppStandard&quot;: &quot;c++20&quot;</code>
 </p>
+<!--
 <h2>
     测试编译器的 C++17 兼容性 <span class="learncpp-language-standard">C++17</span>
 </h2>
@@ -250,6 +278,13 @@ int main()
 
     return 0;
 }</code></pre>
+-->
+<h2>
+    编译器在使用什么语言标准？
+</h2>
+<p>
+    见下一课 <a href="Chap00-13.html">0.13 -- 编译器在使用什么语言标准</a>。
+</p>
 <h2>
     导出配置文件
 </h2>
@@ -294,17 +329,27 @@ int main()
     在新语言标准的开发过程中，语言标准文档草案可以公开浏览。这些文档可以在线免费获得。在通过之前的最后一份草案与通过的标准相当接近，所以绝大多数时候你可以看这份草案。标准草案同样可以在 <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/standards" target="_blank">Open-STD.org</a> 查到。
 </p>
 <h2>
-    编译器对新标准特性支持经常不完整
+    编译器对新标准特性的支持经常不完整
 </h2>
 <p>
-    尤其是对于相当新的语言标准，编译器经常会不支持或者部分支持某些新特性。如果尝试编译使用了相当新的特性的代码，很可能会奇怪地崩溃，这一般是因为编译器对这一特性的支持不完整。
+    即使在语言标准完成之后，编译器对这个语言标准的支持也经常会在对某个特定的特性的支持上有缺失、部分支持甚至存在漏洞。
 </p>
 <p>
-    <a href="https://cppreference.com" target="_blank">CppReference</a> 网站追踪了各大编译器对语言标准的实现情况。你可以在其主页顶部右侧 Compiler Support 部分找到。例如，对 C++23 特性的支持情况表格可以在 <a href="https://en.cppreference.com/w/cpp/compiler_support/23" title="CppReference" target="_blank">这里</a> 找到。
+    如果尝试编译一个应当可以通过编译的程序时奇怪地崩溃了，一般来说有两个原因：
+</p>
+<ul>
+    <li>编译器使用了较老的语言标准，不支持你所用的特性。尝试选择新语言标准然后重新编译。可以使用 <a href="Chap00-13.html">0.13 -- 编译器在使用什么语言标准</a> 中的程序验证是否正确配置了语言标准。</li>
+    <li>你所使用的编译器对你所使用的特性的支持可能缺失、部分支持或者存在漏洞。</li>
+</ul>
+<p>
+    <a href="https://cppreference.com" target="_blank">CppReference</a> 网站追踪了各大编译器对语言标准的实现情况。你可以在其主页顶部右侧 Compiler Support 部分找到。例如，可以在 <a href="https://en.cppreference.com/w/cpp/compiler_support/23" title="CppReference" target="_blank">这里</a> 找到对 C++23 特性的支持情况表格。
+</p>
+<p>
+    如果更新的编译器版本支持了之前有问题的特性，可以升级编译器到最新版本并尝试重新编译。如果编译器的最新版本不支持你想用的特性，可以尝试换一个支持的编译器，或者使用其他特性实现功能。
 </p>
 <hr/>
 <nav>
-    <a href="../Chap01/Chap01-01.html">[ 下一课：1.1 -- 语句与程序结构 ]</a><br/>
+    <a href="Chap00-13.html">[ 下一课：0.13 -- 编译器在使用什么语言标准 ]</a><br/>
     <a href="../../index.html" target="_blank">[ 目录 ]</a><br/>
     <a href="https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-choosing-a-language-standard/" target="_blank">[ 原文地址 ]</a><br/>
     <a href="Chap00-11.html">[ 上一课：0.11 -- 编译器设置：警告与错误等级 ]</a>
